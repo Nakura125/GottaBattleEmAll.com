@@ -22,10 +22,3 @@ Gli **utenti abilitati alla creazione di tornei** avranno la possibilità di cre
 
 Gli utenti potranno cercare e partecipare a tornei in base alle loro preferenze e abilità. Il sistema dovrebbe gestire le iscrizioni, generare i [bracket](https://en.wikipedia.org/wiki/Bracket_(tournament)) e fornire notifiche agli utenti sui prossimi match.
 
-### Sistema di Matchmaking:
-
-**Implementazione di un sistema di matchmaking** che abbia in considerazione il livello di abilità dei partecipanti e crei match equilibrati.
-
-### Classifiche e Premi:
-
-Tenere traccia dei risultati dei tornei, delle vittorie, delle sconfitte e assegnare **premi virtuali** o riconoscimenti agli utenti più talentuosi.
