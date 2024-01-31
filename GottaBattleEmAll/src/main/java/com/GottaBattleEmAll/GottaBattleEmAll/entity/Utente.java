@@ -10,6 +10,8 @@ import lombok.Setter;
 @Setter
 @MappedSuperclass
 public class Utente {
+
+    @Column(unique = true)
     protected String username;
     protected String nome;
     protected String cognome;

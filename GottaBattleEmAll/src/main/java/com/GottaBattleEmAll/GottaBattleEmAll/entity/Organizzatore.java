@@ -17,6 +17,7 @@ public class Organizzatore extends Utente{
     @GeneratedValue(strategy = GenerationType.UUID)
     private UUID id;
 
+
     @OneToMany(cascade = CascadeType.ALL, orphanRemoval = true)
     private List<Torneo> tornei;
 

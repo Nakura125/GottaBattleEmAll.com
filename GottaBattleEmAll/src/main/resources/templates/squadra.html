@@ -1,0 +1,709 @@
+../<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+<datalist id="pokemon">
+    
+        <option value="Tauros"></option>
+        <option value="Magikarp"></option>
+        <option value="Gyarados"></option>
+        <option value="Lapras"></option>
+        <option value="Lapras"></option>
+        <option value="Ditto"></option>
+        <option value="Eevee"></option>
+        <option value="Vaporeon"></option>
+        <option value="Jolteon"></option>
+        <option value="Flareon"></option>
+
+</datalist>
+
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <title>GottaBattleEmAll</title>
+    <!-- plugins:css -->
+    <link rel="stylesheet" th:href="@{../assets/vendors/mdi/css/materialdesignicons.min.css}">
+    <link rel="stylesheet" th:href="@{../assets/vendors/css/vendor.bundle.base.css}">
+    <!-- endinject -->
+    <!-- Plugin css for this page -->
+    <link rel="stylesheet" th:href="@{../assets/vendors/jvectormap/jquery-jvectormap.css}">
+    <link rel="stylesheet" th:href="@{../assets/vendors/flag-icon-css/css/flag-icon.min.css}">
+    <link rel="stylesheet" th:href="@{../assets/vendors/owl-carousel-2/owl.carousel.min.css}">
+    <link rel="stylesheet" th:href="@{../assets/vendors/owl-carousel-2/owl.theme.default.min.css}">
+    <!-- End plugin css for this page -->
+    <!-- inject:css -->
+    <!-- endinject -->
+    <!-- Layout styles -->
+    <link rel="stylesheet" th:href="@{../assets/css/stylebro.css}">
+    <!-- End layout styles -->
+    <link rel="shortcut icon" th:href="@{../assets/images/favicon.png}" />
+</head>
+
+<body>
+    <div class="container-scroller">
+        <div class="container-fluid">
+            <div th:insert="fragments/navbarGiocatore.html"></div>
+
+
+            <!-- partial -->
+    <div class="main-panel">
+        <div class="content-wrapper">
+            <div class="card-body">
+                <h4 class="card-title">Squadra</h4>
+                <form class="forms-sample">
+            </div>
+            <div class="form-group row">
+                <div class="form-group">
+                    <div class="input-group">
+                        <div class="input-group-prepend">
+                            <div class="input-group mb-3">
+                                <select class="form-select btn btn-sm btn-outline-primary" id="Tipo1">
+                                    <option value="1">Normale</option>
+                                    <option value="2">Fuoco</option>
+                                    <option value="3">Lotta</option>
+                                    <option value="4">Acqua</option>
+                                    <option value="5">Volante</option>
+                                    <option value="6">Erba</option>
+                                    <option value="7">Veleno</option>
+                                    <option value="8">Elettro</option>
+                                    <option value="9">Terra</option>
+                                    <option value="10">Psico</option>
+                                    <option value="11">Roccia</option>
+                                    <option value="12">Ghiaccio</option>
+                                    <option value="13">Coleottero</option>
+                                    <option value="14">Drago</option>
+                                    <option value="15">Spettro</option>
+                                    <option value="16">Buio</option>
+                                    <option value="17">Acciaio</option>
+                                    <option value="18">Folletto</option>
+                                </select>
+                            </div>
+                            <div class="input-group mb-3">
+                                <select class="form-select btn btn-sm btn-outline-primary" id="Tipo2">
+                                    <option value="0">none</option>
+                                    <option value="1">Normale</option>
+                                    <option value="2">Fuoco</option>
+                                    <option value="3">Lotta</option>
+                                    <option value="4">Acqua</option>
+                                    <option value="5">Volante</option>
+                                    <option value="6">Erba</option>
+                                    <option value="7">Veleno</option>
+                                    <option value="8">Elettro</option>
+                                    <option value="9">Terra</option>
+                                    <option value="10">Psico</option>
+                                    <option value="11">Roccia</option>
+                                    <option value="12">Ghiaccio</option>
+                                    <option value="13">Coleottero</option>
+                                    <option value="14">Drago</option>
+                                    <option value="15">Spettro</option>
+                                    <option value="16">Buio</option>
+                                    <option value="17">Acciaio</option>
+                                    <option value="18">Folletto</option>
+                                </select>
+                            </div>
+                        </div>
+                        <img src="https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/130.png"
+                            style="height: 50px; height: 50px;" alt="">
+                        <input type="text" class="form-control" placeholder="Gyarados" list="pokemon">
+                        <div>
+                            <table class="table">
+                                <thead>
+                                    <tr>
+                                        <th>Mossa1</th>
+                                        <th>Mossa2</th>
+                                        <th>Mossa3</th>
+                                        <th>Mossa4</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr>
+                                        <td>Avalanche</td>
+                                        <td>Bounce</td>
+                                        <td>Dragon Dance</td>
+                                        <td>Earthquake</td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                        <table class="table table-dark">
+                            <thead>
+                                <tr>
+                                    <th> PS</th>
+                                    <th> Attacco </th>
+                                    <th> Difesa </th>
+                                    <th> Attacco Sp. </th>
+                                    <th> Difesa Sp. </th>
+                                    <th> Velocità </th>
+                                    <th> Totale </th>
+                                    <th> Media </th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>95</td>
+                                    <td>125</td>
+                                    <td>79</td>
+                                    <td>60</td>
+                                    <td>100</td>
+                                    <td>81</td>
+                                    <td>540</td>
+                                    <td>90,00</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+                </form>
+            </div>
+            <div class="form-group row">
+                <div class="form-group">
+                    <div class="input-group">
+                        <div class="input-group-prepend">
+                            <div class="input-group mb-3">
+                                <select class="form-select btn btn-sm btn-outline-primary" id="Tipo1">
+                                    <option value="1">Normale</option>
+                                    <option value="2">Fuoco</option>
+                                    <option value="3">Lotta</option>
+                                    <option value="4">Acqua</option>
+                                    <option value="5">Volante</option>
+                                    <option value="6">Erba</option>
+                                    <option value="7">Veleno</option>
+                                    <option value="8">Elettro</option>
+                                    <option value="9">Terra</option>
+                                    <option value="10">Psico</option>
+                                    <option value="11">Roccia</option>
+                                    <option value="12">Ghiaccio</option>
+                                    <option value="13">Coleottero</option>
+                                    <option value="14">Drago</option>
+                                    <option value="15">Spettro</option>
+                                    <option value="16">Buio</option>
+                                    <option value="17">Acciaio</option>
+                                    <option value="18">Folletto</option>
+                                </select>
+                            </div>
+                            <div class="input-group mb-3">
+                                <select class="form-select btn btn-sm btn-outline-primary" id="Tipo2">
+                                    <option value="0">none</option>
+                                    <option value="1">Normale</option>
+                                    <option value="2">Fuoco</option>
+                                    <option value="3">Lotta</option>
+                                    <option value="4">Acqua</option>
+                                    <option value="5">Volante</option>
+                                    <option value="6">Erba</option>
+                                    <option value="7">Veleno</option>
+                                    <option value="8">Elettro</option>
+                                    <option value="9">Terra</option>
+                                    <option value="10">Psico</option>
+                                    <option value="11">Roccia</option>
+                                    <option value="12">Ghiaccio</option>
+                                    <option value="13">Coleottero</option>
+                                    <option value="14">Drago</option>
+                                    <option value="15">Spettro</option>
+                                    <option value="16">Buio</option>
+                                    <option value="17">Acciaio</option>
+                                    <option value="18">Folletto</option>
+                                </select>
+                            </div>
+                        </div>
+                        <img src="https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/130.png"
+                            style="height: 50px; height: 50px;" alt="">
+                        <input type="text" class="form-control" placeholder="Gyarados" list="pokemon">
+                        <div>
+                            <table class="table">
+                                <thead>
+                                    <tr>
+                                        <th>Mossa1</th>
+                                        <th>Mossa2</th>
+                                        <th>Mossa3</th>
+                                        <th>Mossa4</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr>
+                                        <td>Avalanche</td>
+                                        <td>Bounce</td>
+                                        <td>Dragon Dance</td>
+                                        <td>Earthquake</td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                        <table class="table table-dark">
+                            <thead>
+                                <tr>
+                                    <th> PS</th>
+                                    <th> Attacco </th>
+                                    <th> Difesa </th>
+                                    <th> Attacco Sp. </th>
+                                    <th> Difesa Sp. </th>
+                                    <th> Velocità </th>
+                                    <th> Totale </th>
+                                    <th> Media </th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>95</td>
+                                    <td>125</td>
+                                    <td>79</td>
+                                    <td>60</td>
+                                    <td>100</td>
+                                    <td>81</td>
+                                    <td>540</td>
+                                    <td>90,00</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+                </form>
+            </div>
+            <div class="form-group row">
+                <div class="form-group">
+                    <div class="input-group">
+                        <div class="input-group-prepend">
+                            <div class="input-group mb-3">
+                                <select class="form-select btn btn-sm btn-outline-primary" id="Tipo1">
+                                    <option value="1">Normale</option>
+                                    <option value="2">Fuoco</option>
+                                    <option value="3">Lotta</option>
+                                    <option value="4">Acqua</option>
+                                    <option value="5">Volante</option>
+                                    <option value="6">Erba</option>
+                                    <option value="7">Veleno</option>
+                                    <option value="8">Elettro</option>
+                                    <option value="9">Terra</option>
+                                    <option value="10">Psico</option>
+                                    <option value="11">Roccia</option>
+                                    <option value="12">Ghiaccio</option>
+                                    <option value="13">Coleottero</option>
+                                    <option value="14">Drago</option>
+                                    <option value="15">Spettro</option>
+                                    <option value="16">Buio</option>
+                                    <option value="17">Acciaio</option>
+                                    <option value="18">Folletto</option>
+                                </select>
+                            </div>
+                            <div class="input-group mb-3">
+                                <select class="form-select btn btn-sm btn-outline-primary" id="Tipo2">
+                                    <option value="0">none</option>
+                                    <option value="1">Normale</option>
+                                    <option value="2">Fuoco</option>
+                                    <option value="3">Lotta</option>
+                                    <option value="4">Acqua</option>
+                                    <option value="5">Volante</option>
+                                    <option value="6">Erba</option>
+                                    <option value="7">Veleno</option>
+                                    <option value="8">Elettro</option>
+                                    <option value="9">Terra</option>
+                                    <option value="10">Psico</option>
+                                    <option value="11">Roccia</option>
+                                    <option value="12">Ghiaccio</option>
+                                    <option value="13">Coleottero</option>
+                                    <option value="14">Drago</option>
+                                    <option value="15">Spettro</option>
+                                    <option value="16">Buio</option>
+                                    <option value="17">Acciaio</option>
+                                    <option value="18">Folletto</option>
+                                </select>
+                            </div>
+                        </div>
+                        <img src="https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/130.png"
+                            style="height: 50px; height: 50px;" alt="">
+                        <input type="text" class="form-control" placeholder="Gyarados" list="pokemon">
+                        <div>
+                            <table class="table">
+                                <thead>
+                                    <tr>
+                                        <th>Mossa1</th>
+                                        <th>Mossa2</th>
+                                        <th>Mossa3</th>
+                                        <th>Mossa4</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr>
+                                        <td>Avalanche</td>
+                                        <td>Bounce</td>
+                                        <td>Dragon Dance</td>
+                                        <td>Earthquake</td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                        <table class="table table-dark">
+                            <thead>
+                                <tr>
+                                    <th> PS</th>
+                                    <th> Attacco </th>
+                                    <th> Difesa </th>
+                                    <th> Attacco Sp. </th>
+                                    <th> Difesa Sp. </th>
+                                    <th> Velocità </th>
+                                    <th> Totale </th>
+                                    <th> Media </th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>95</td>
+                                    <td>125</td>
+                                    <td>79</td>
+                                    <td>60</td>
+                                    <td>100</td>
+                                    <td>81</td>
+                                    <td>540</td>
+                                    <td>90,00</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+                </form>
+            </div>
+            <div class="form-group row">
+                <div class="form-group">
+                    <div class="input-group">
+                        <div class="input-group-prepend">
+                            <div class="input-group mb-3">
+                                <select class="form-select btn btn-sm btn-outline-primary" id="Tipo1">
+                                    <option value="1">Normale</option>
+                                    <option value="2">Fuoco</option>
+                                    <option value="3">Lotta</option>
+                                    <option value="4">Acqua</option>
+                                    <option value="5">Volante</option>
+                                    <option value="6">Erba</option>
+                                    <option value="7">Veleno</option>
+                                    <option value="8">Elettro</option>
+                                    <option value="9">Terra</option>
+                                    <option value="10">Psico</option>
+                                    <option value="11">Roccia</option>
+                                    <option value="12">Ghiaccio</option>
+                                    <option value="13">Coleottero</option>
+                                    <option value="14">Drago</option>
+                                    <option value="15">Spettro</option>
+                                    <option value="16">Buio</option>
+                                    <option value="17">Acciaio</option>
+                                    <option value="18">Folletto</option>
+                                </select>
+                            </div>
+                            <div class="input-group mb-3">
+                                <select class="form-select btn btn-sm btn-outline-primary" id="Tipo2">
+                                    <option value="0">none</option>
+                                    <option value="1">Normale</option>
+                                    <option value="2">Fuoco</option>
+                                    <option value="3">Lotta</option>
+                                    <option value="4">Acqua</option>
+                                    <option value="5">Volante</option>
+                                    <option value="6">Erba</option>
+                                    <option value="7">Veleno</option>
+                                    <option value="8">Elettro</option>
+                                    <option value="9">Terra</option>
+                                    <option value="10">Psico</option>
+                                    <option value="11">Roccia</option>
+                                    <option value="12">Ghiaccio</option>
+                                    <option value="13">Coleottero</option>
+                                    <option value="14">Drago</option>
+                                    <option value="15">Spettro</option>
+                                    <option value="16">Buio</option>
+                                    <option value="17">Acciaio</option>
+                                    <option value="18">Folletto</option>
+                                </select>
+                            </div>
+                        </div>
+                        <img src="https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/130.png"
+                            style="height: 50px; height: 50px;" alt="">
+                        <input type="text" class="form-control" placeholder="Gyarados" list="pokemon">
+                        <div>
+                            <table class="table">
+                                <thead>
+                                    <tr>
+                                        <th>Mossa1</th>
+                                        <th>Mossa2</th>
+                                        <th>Mossa3</th>
+                                        <th>Mossa4</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr>
+                                        <td>Avalanche</td>
+                                        <td>Bounce</td>
+                                        <td>Dragon Dance</td>
+                                        <td>Earthquake</td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                        <table class="table table-dark">
+                            <thead>
+                                <tr>
+                                    <th> PS</th>
+                                    <th> Attacco </th>
+                                    <th> Difesa </th>
+                                    <th> Attacco Sp. </th>
+                                    <th> Difesa Sp. </th>
+                                    <th> Velocità </th>
+                                    <th> Totale </th>
+                                    <th> Media </th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>95</td>
+                                    <td>125</td>
+                                    <td>79</td>
+                                    <td>60</td>
+                                    <td>100</td>
+                                    <td>81</td>
+                                    <td>540</td>
+                                    <td>90,00</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+                </form>
+            </div>
+            <div class="form-group row">
+                <div class="form-group">
+                    <div class="input-group">
+                        <div class="input-group-prepend">
+                            <div class="input-group mb-3">
+                                <select class="form-select btn btn-sm btn-outline-primary" id="Tipo1">
+                                    <option value="1">Normale</option>
+                                    <option value="2">Fuoco</option>
+                                    <option value="3">Lotta</option>
+                                    <option value="4">Acqua</option>
+                                    <option value="5">Volante</option>
+                                    <option value="6">Erba</option>
+                                    <option value="7">Veleno</option>
+                                    <option value="8">Elettro</option>
+                                    <option value="9">Terra</option>
+                                    <option value="10">Psico</option>
+                                    <option value="11">Roccia</option>
+                                    <option value="12">Ghiaccio</option>
+                                    <option value="13">Coleottero</option>
+                                    <option value="14">Drago</option>
+                                    <option value="15">Spettro</option>
+                                    <option value="16">Buio</option>
+                                    <option value="17">Acciaio</option>
+                                    <option value="18">Folletto</option>
+                                </select>
+                            </div>
+                            <div class="input-group mb-3">
+                                <select class="form-select btn btn-sm btn-outline-primary" id="Tipo2">
+                                    <option value="0">none</option>
+                                    <option value="1">Normale</option>
+                                    <option value="2">Fuoco</option>
+                                    <option value="3">Lotta</option>
+                                    <option value="4">Acqua</option>
+                                    <option value="5">Volante</option>
+                                    <option value="6">Erba</option>
+                                    <option value="7">Veleno</option>
+                                    <option value="8">Elettro</option>
+                                    <option value="9">Terra</option>
+                                    <option value="10">Psico</option>
+                                    <option value="11">Roccia</option>
+                                    <option value="12">Ghiaccio</option>
+                                    <option value="13">Coleottero</option>
+                                    <option value="14">Drago</option>
+                                    <option value="15">Spettro</option>
+                                    <option value="16">Buio</option>
+                                    <option value="17">Acciaio</option>
+                                    <option value="18">Folletto</option>
+                                </select>
+                            </div>
+                        </div>
+                        <img src="https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/130.png"
+                            style="height: 50px; height: 50px;" alt="">
+                        <input type="text" class="form-control" placeholder="Gyarados" list="pokemon">
+                        <div>
+                            <table class="table">
+                                <thead>
+                                    <tr>
+                                        <th>Mossa1</th>
+                                        <th>Mossa2</th>
+                                        <th>Mossa3</th>
+                                        <th>Mossa4</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr>
+                                        <td>Avalanche</td>
+                                        <td>Bounce</td>
+                                        <td>Dragon Dance</td>
+                                        <td>Earthquake</td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                        <table class="table table-dark">
+                            <thead>
+                                <tr>
+                                    <th> PS</th>
+                                    <th> Attacco </th>
+                                    <th> Difesa </th>
+                                    <th> Attacco Sp. </th>
+                                    <th> Difesa Sp. </th>
+                                    <th> Velocità </th>
+                                    <th> Totale </th>
+                                    <th> Media </th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>95</td>
+                                    <td>125</td>
+                                    <td>79</td>
+                                    <td>60</td>
+                                    <td>100</td>
+                                    <td>81</td>
+                                    <td>540</td>
+                                    <td>90,00</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+                </form>
+            </div>
+            <div class="form-group row">
+                <div class="form-group">
+                    <div class="input-group">
+                        <div class="input-group-prepend">
+                            <div class="input-group mb-3">
+                                <select class="form-select btn btn-sm btn-outline-primary" id="Tipo1">
+                                    <option value="1">Normale</option>
+                                    <option value="2">Fuoco</option>
+                                    <option value="3">Lotta</option>
+                                    <option value="4">Acqua</option>
+                                    <option value="5">Volante</option>
+                                    <option value="6">Erba</option>
+                                    <option value="7">Veleno</option>
+                                    <option value="8">Elettro</option>
+                                    <option value="9">Terra</option>
+                                    <option value="10">Psico</option>
+                                    <option value="11">Roccia</option>
+                                    <option value="12">Ghiaccio</option>
+                                    <option value="13">Coleottero</option>
+                                    <option value="14">Drago</option>
+                                    <option value="15">Spettro</option>
+                                    <option value="16">Buio</option>
+                                    <option value="17">Acciaio</option>
+                                    <option value="18">Folletto</option>
+                                </select>
+                            </div>
+                            <div class="input-group mb-3">
+                                <select class="form-select btn btn-sm btn-outline-primary" id="Tipo2">
+                                    <option value="0">none</option>
+                                    <option value="1">Normale</option>
+                                    <option value="2">Fuoco</option>
+                                    <option value="3">Lotta</option>
+                                    <option value="4">Acqua</option>
+                                    <option value="5">Volante</option>
+                                    <option value="6">Erba</option>
+                                    <option value="7">Veleno</option>
+                                    <option value="8">Elettro</option>
+                                    <option value="9">Terra</option>
+                                    <option value="10">Psico</option>
+                                    <option value="11">Roccia</option>
+                                    <option value="12">Ghiaccio</option>
+                                    <option value="13">Coleottero</option>
+                                    <option value="14">Drago</option>
+                                    <option value="15">Spettro</option>
+                                    <option value="16">Buio</option>
+                                    <option value="17">Acciaio</option>
+                                    <option value="18">Folletto</option>
+                                </select>
+                            </div>
+                        </div>
+                        <img src="https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/130.png"
+                            style="height: 50px; height: 50px;" alt="">
+                        <input type="text" class="form-control" placeholder="Gyarados" list="pokemon">
+                        <div>
+                            <table class="table">
+                                <thead>
+                                    <tr>
+                                        <th>Mossa1</th>
+                                        <th>Mossa2</th>
+                                        <th>Mossa3</th>
+                                        <th>Mossa4</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr>
+                                        <td>Avalanche</td>
+                                        <td>Bounce</td>
+                                        <td>Dragon Dance</td>
+                                        <td>Earthquake</td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                        <table class="table table-dark">
+                            <thead>
+                                <tr>
+                                    <th> PS</th>
+                                    <th> Attacco </th>
+                                    <th> Difesa </th>
+                                    <th> Attacco Sp. </th>
+                                    <th> Difesa Sp. </th>
+                                    <th> Velocità </th>
+                                    <th> Totale </th>
+                                    <th> Media </th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>95</td>
+                                    <td>125</td>
+                                    <td>79</td>
+                                    <td>60</td>
+                                    <td>100</td>
+                                    <td>81</td>
+                                    <td>540</td>
+                                    <td>90,00</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+                </form>
+            </div>
+
+            <!-- content-wrapper ends -->
+            <!-- partial:partials/_footer.html -->
+            <div th:insert="fragments/footer.html :: footer" ></div>
+
+        </div>
+        <!-- main-panel ends -->
+    </div>
+    <!-- page-body-wrapper ends -->
+    </div>
+
+
+    <!-- container-scroller -->
+    <!-- plugins:js -->
+    <script th:src="@{../assets/vendors/js/vendor.bundle.base.js}"></script>
+    <!-- endinject -->
+    <!-- Plugin js for this page -->
+    <script th:src="@{../assets/vendors/chart.js/Chart.min.js}"></script>
+    <script th:src="@{../assets/vendors/progressbar.js/progressbar.min.js}"></script>
+    <script th:src="@{../assets/vendors/jvectormap/jquery-jvectormap.min.js}"></script>
+    <script th:src="@{../assets/vendors/jvectormap/jquery-jvectormap-world-mill-en.js}"></script>
+    <script th:src="@{../assets/vendors/owl-carousel-2/owl.carousel.min.js}"></script>
+    <!-- End plugin js for this page -->
+    <!-- inject:js -->
+    <script th:src="@{../assets/js/hoverable-collapse.js}"></script>
+    <script th:src="@{../assets/js/misc.js}"></script>
+    <script th:src="@{../assets/js/off-canvas.js}"></script>
+    <script th:src="@{../assets/js/settings.js}"></script>
+    <script th:src="@{../assets/js/todolist.js}"></script>
+    <!-- endinject -->
+    <!-- Custom js for this page -->
+    <script th:src="@{../assets/js/dashboard.js}"></script>
+    <!-- End custom js for this page -->
+</body>
+
+</html>

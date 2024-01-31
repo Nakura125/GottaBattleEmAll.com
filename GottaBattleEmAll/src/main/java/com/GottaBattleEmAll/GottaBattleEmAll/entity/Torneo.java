@@ -18,6 +18,9 @@ public class Torneo {
     @GeneratedValue(strategy = GenerationType.UUID)
     private UUID id;
 
+    @Column(unique = true)
+    private String nome;
+
     @OneToMany(cascade = CascadeType.ALL, orphanRemoval = true)
     List<Partita> partite;
 

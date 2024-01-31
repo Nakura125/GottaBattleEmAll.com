@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <title>GottaBattleEmAll</title>
+    <!-- plugins:css -->
+    <link rel="stylesheet" th:href="@{../assets/vendors/mdi/css/materialdesignicons.min.css}">
+    <link rel="stylesheet" th:href="@{../assets/vendors/css/vendor.bundle.base.css}">
+    <!-- endinject -->
+    <!-- Plugin css for this page -->
+    <link rel="stylesheet" th:href="@{../assets/vendors/jvectormap/jquery-jvectormap.css}">
+    <link rel="stylesheet" th:href="@{../assets/vendors/flag-icon-css/css/flag-icon.min.css}">
+    <link rel="stylesheet" th:href="@{../assets/vendors/owl-carousel-2/owl.carousel.min.css}">
+    <link rel="stylesheet" th:href="@{../assets/vendors/owl-carousel-2/owl.theme.default.min.css}">
+    <!-- End plugin css for this page -->
+    <!-- inject:css -->
+    <!-- endinject -->
+    <!-- Layout styles -->
+    <link rel="stylesheet" th:href="@{../assets/css/stylebro.css}">
+    <!-- End layout styles -->
+    <link rel="shortcut icon" th:href="@{../assets/images/favicon.png}" />
+  </head>
+  <body>
+    <div class="container-scroller">
+        <div th:insert="fragments/sidebarModeratore.html"></div>
+
+        <div class="container-fluid page-body-wrapper">
+            <div th:insert="fragments/navbarModeratore.html"></div>
+
+
+      <!-- partial -->
+            <div class="main-panel">
+                <div class="content-wrapper">
+                    <div class="card-body">
+                        <h4 class="card-title">Informazioni Personali</h4>
+                        <form class="forms-sample">
+                          </div>
+                          <div class="form-group row">
+                            <label for="exampleInputEmail2" class="col-sm-3 col-form-label">Email</label>
+                            <div class="col-sm-9">
+                              <input type="email" class="form-control" id="exampleInputEmail2" placeholder="pippofranco@gmail.com">
+                            </div>
+                          </div>
+                          <div class="form-group row">
+                            <label for="exampleInputPassword2" class="col-sm-3 col-form-label">Password</label>
+                            <div class="col-sm-9">
+                              <input type="password" class="form-control" id="exampleInputPassword2">
+                            </div>
+                          </div>
+                          <div class="form-group row">
+                            <label for="exampleInputConfirmPassword2" class="col-sm-3 col-form-label">Re Password</label>
+                            <div class="col-sm-9">
+                              <input type="password" class="form-control" id="exampleInputConfirmPassword2">
+                            </div>
+                          </div>
+                          <button type="submit" class="btn btn-primary mr-2">Submit</button>
+                          <button class="btn btn-dark">Cancel</button>
+                        </form>
+                      </div>
+
+
+                    <!-- content-wrapper ends -->
+                    <!-- partial:partials/_footer.html -->
+                    <footer class="footer">
+                        <div class="d-sm-flex justify-content-center justify-content-sm-between">
+                            <span class="text-muted d-block text-center text-sm-left d-sm-inline-block">Copyright ©
+                                GottaBattleEmAll.com 2023</span>
+                        </div>
+                    </footer>
+                    <!-- partial -->
+                </div>
+                <!-- main-panel ends -->
+            </div>
+            <!-- page-body-wrapper ends -->
+        </div>
+
+
+    <!-- container-scroller -->
+    <!-- plugins:js -->
+    <script th:src="@{../assets/vendors/js/vendor.bundle.base.js}"></script>
+    <!-- endinject -->
+    <!-- Plugin js for this page -->
+    <script th:src="@{../assets/vendors/chart.js/Chart.min.js}"></script>
+    <script th:src="@{../assets/vendors/progressbar.js/progressbar.min.js}"></script>
+    <script th:src="@{../assets/vendors/jvectormap/jquery-jvectormap.min.js}"></script>
+    <script th:src="@{../assets/vendors/jvectormap/jquery-jvectormap-world-mill-en.js}"></script>
+    <script th:src="@{../assets/vendors/owl-carousel-2/owl.carousel.min.js}"></script>
+    <!-- End plugin js for this page -->
+    <!-- inject:js -->
+    <script th:src="@{../assets/js/hoverable-collapse.js}"></script>
+    <script th:src="@{../assets/js/misc.js}"></script>
+    <script th:src="@{../assets/js/off-canvas.js}"></script>
+    <script th:src="@{../assets/js/settings.js}"></script>
+    <script th:src="@{../assets/js/todolist.js}"></script>
+    <!-- endinject -->
+    <!-- Custom js for this page -->
+    <script th:src="@{../assets/js/dashboard.js}"></script>
+    <!-- End custom js for this page -->
+</body>
+
+</html>

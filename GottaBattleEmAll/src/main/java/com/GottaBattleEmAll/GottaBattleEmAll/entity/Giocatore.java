@@ -17,6 +17,9 @@ public class Giocatore extends Utente{
     @GeneratedValue(strategy = GenerationType.UUID)
     private UUID id;
 
+
+
+
     @ManyToMany
     @JoinTable(
             name = "squadra",

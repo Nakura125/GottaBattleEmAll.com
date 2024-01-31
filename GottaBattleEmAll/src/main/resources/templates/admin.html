@@ -1,0 +1,186 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <title>GottaBattleEmAll</title>
+    <!-- plugins:css -->
+    <link rel="stylesheet" th:href="@{../assets/vendors/mdi/css/materialdesignicons.min.css}">
+    <link rel="stylesheet" th:href="@{../assets/vendors/css/vendor.bundle.base.css}">
+    <!-- endinject -->
+    <!-- Plugin css for this page -->
+    <link rel="stylesheet" th:href="@{../assets/vendors/jvectormap/jquery-jvectormap.css}">
+    <link rel="stylesheet" th:href="@{../assets/vendors/flag-icon-css/css/flag-icon.min.css}">
+    <link rel="stylesheet" th:href="@{../assets/vendors/owl-carousel-2/owl.carousel.min.css}">
+    <link rel="stylesheet" th:href="@{../assets/vendors/owl-carousel-2/owl.theme.default.min.css}">
+    <!-- End plugin css for this page -->
+    <!-- inject:css -->
+    <!-- endinject -->
+    <!-- Layout styles -->
+    <link rel="stylesheet" th:href="@{../assets/css/stylebro.css}">
+    <!-- End layout styles -->
+    <link rel="shortcut icon" th:href="@{../assets/images/favicon.png}" />
+  </head>
+  <body>
+    <div class="container-scroller">
+      <div th:insert="fragments/sidebarModeratore.html"></div>
+
+      <div class="container-fluid page-body-wrapper">
+        <div th:insert="fragments/navbarModeratore.html"></div>
+        <div class="main-panel">
+          <div class="content-wrapper">
+            <div class="row">
+              <div class="col-xl-3 col-sm-6 grid-margin stretch-card">
+                <div class="card">
+                  <div class="card-body">
+                    <div class="row">
+                      <div class="col-9">
+                        <div class="d-flex align-items-center align-self-start">
+                          <h3 class="mb-0">50</h3>
+                        </div>
+                      </div>
+                    </div>
+                    <h6 class="text-muted font-weight-normal">Utenti Iscritti</h6>
+                  </div>
+                </div>
+              </div>
+              <div class="col-xl-3 col-sm-6 grid-margin stretch-card">
+                <div class="card">
+                  <div class="card-body">
+                    <div class="row">
+                      <div class="col-9">
+                        <div class="d-flex align-items-center align-self-start">
+                          <h3 class="mb-0">40</h3>
+                        </div>
+                      </div>
+                    </div>
+                    <h6 class="text-muted font-weight-normal">Giocatori</h6>
+                  </div>
+                </div>
+              </div>
+              <div class="col-xl-3 col-sm-6 grid-margin stretch-card">
+                <div class="card">
+                  <div class="card-body">
+                    <div class="row">
+                      <div class="col-9">
+                        <div class="d-flex align-items-center align-self-start">
+                          <h3 class="mb-0">10</h3>
+                        </div>
+                      </div>
+                    </div>
+                    <h6 class="text-muted font-weight-normal">Moderatori</h6>
+                  </div>
+                </div>
+              </div>
+              <div class="col-xl-3 col-sm-6 grid-margin stretch-card">
+                <div class="card">
+                  <div class="card-body">
+                    <div class="row">
+                      <div class="col-9">
+                        <div class="d-flex align-items-center align-self-start">
+                          <h3 class="mb-0">12304</h3>
+                        </div>
+                      </div>
+                    </div>
+                    <h6 class="text-muted font-weight-normal">Tornei</h6>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="row ">
+              <div class="col-12 grid-margin">
+                <div class="card">
+                  <div class="card-body">
+                    <h4 class="card-title">Stato Notifiche</h4>
+                    <div class="table-responsive">
+                      <table class="table">
+                        <thead>
+                          <tr>
+                            <th> Nickname </th>
+                            <th> Nome </th>
+                            <th> Cognome </th>
+                            <th> Email </th>
+                            <th> Stato </th>
+                          </tr>
+                        </thead>
+                        <tbody>
+                          <tr>
+                            <td>
+                              <img th:src="@{assets/images/faces/face1.jpg}" alt="image" />
+                              <span class="pl-2">Luis Sal</span>
+                            </td>
+                            <td> Luigi </td>
+                            <td> Rocchino </td>
+                            <td> emaildiprova@gmail.com </td>
+                            <td>
+                              <div class="badge badge-outline-success">Approved</div>
+                            </td>
+                          </tr>
+                          <tr>
+                            <td>
+                              <img th:src="@{assets/images/faces/face2.jpg}" alt="image" />
+                              <span class="pl-2">Pippo</span>
+                            </td>
+                            <td> Pippo </td>
+                            <td> Giuliano </td>
+                            <td> emaildiprova2@gmail.com </td>
+                            <td>
+                              <div class="badge badge-outline-warning">Pending</div>
+                            </td>
+                          </tr>
+                          <tr>
+                            <td>
+                              <img th:src="@{assets/images/faces/face5.jpg}" alt="image" />
+                              <span class="pl-2">Carminuccio</span>
+                            </td>
+                            <td> Carmine </td>
+                            <td> Fulato </td>
+                            <td> emaildiprova3@gmail.com </td>
+                            <td>
+                              <div class="badge badge-outline-danger">Rejected</div>
+                            </td>
+                          </tr> 
+                        </tbody>
+                      </table>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          <!-- content-wrapper ends -->
+          <!-- partial:partials/_footer.html -->
+          <footer class="footer">
+            <div class="d-sm-flex justify-content-center justify-content-sm-between">
+              <span class="text-muted d-block text-center text-sm-left d-sm-inline-block">Copyright © GottaBattleEmAll.com 2023</span>
+            </div>
+          </footer>
+          <!-- partial -->
+        </div>
+        <!-- main-panel ends -->
+      </div>
+      <!-- page-body-wrapper ends -->
+    </div>
+      <!-- container-scroller -->
+      <!-- plugins:js -->
+      <script th:src="@{assets/vendors/js/vendor.bundle.base.js}"></script>
+      <!-- endinject -->
+      <!-- Plugin js for this page -->
+      <script th:src="@{../assets/vendors/chart.js/Chart.min.js}"></script>
+      <script th:src="@{../assets/vendors/progressbar.js/progressbar.min.js}"></script>
+      <script th:src="@{../assets/vendors/jvectormap/jquery-jvectormap.min.js}"></script>
+      <script th:src="@{../assets/vendors/jvectormap/jquery-jvectormap-world-mill-en.js}"></script>
+      <script th:src="@{../assets/vendors/owl-carousel-2/owl.carousel.min.js}"></script>
+      <!-- End plugin js for this page -->
+      <!-- inject:js -->
+      <script th:src="@{../assets/js/hoverable-collapse.js}"></script>
+      <script th:src="@{../assets/js/misc.js}"></script>
+      <script th:src="@{../assets/js/off-canvas.js}"></script>
+      <script th:src="@{../assets/js/settings.js}"></script>
+      <script th:src="@{../assets/js/todolist.js}"></script>
+      <!-- endinject -->
+      <!-- Custom js for this page -->
+      <script th:src="@{../assets/js/dashboard.js}"></script>
+      <!-- End custom js for this page -->
+  </body>
+</html>
