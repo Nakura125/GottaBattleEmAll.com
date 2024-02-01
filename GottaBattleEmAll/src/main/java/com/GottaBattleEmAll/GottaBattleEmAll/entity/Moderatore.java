@@ -23,4 +23,9 @@ public class Moderatore {
 
     private String password;
 
+    public Moderatore(String username, String password) {
+        this.username = username;
+        this.password = password;
+    }
+
 }

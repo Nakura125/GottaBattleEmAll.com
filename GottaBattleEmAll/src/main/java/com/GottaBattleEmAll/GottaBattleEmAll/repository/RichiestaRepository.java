@@ -1,4 +1,11 @@
 package com.GottaBattleEmAll.GottaBattleEmAll.repository;
 
-public interface RichiestaRepository {
+import com.GottaBattleEmAll.GottaBattleEmAll.entity.Richiesta;
+import org.springframework.data.jpa.repository.JpaRepository;
+import org.springframework.stereotype.Repository;
+
+import java.util.UUID;
+
+@Repository
+public interface RichiestaRepository extends JpaRepository<Richiesta, UUID> {
 }

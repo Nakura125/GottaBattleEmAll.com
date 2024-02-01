@@ -4,6 +4,8 @@ import com.GottaBattleEmAll.GottaBattleEmAll.entity.Giocatore;
 import com.GottaBattleEmAll.GottaBattleEmAll.entity.Organizzatore;
 import com.GottaBattleEmAll.GottaBattleEmAll.entity.Torneo;
 
+import java.util.List;
+
 public interface TorneoService {
 
     public String creaTorneo(Torneo torneo, Organizzatore organizzatore);
@@ -22,5 +24,9 @@ public interface TorneoService {
 
     public boolean seguireOrganizzatore(Giocatore giocatore, Organizzatore organizzatore);
 
-    public Torneo getTorneoIscritto(Giocatore giocatore);
+    public List<Torneo> getTorneoIscritto(Giocatore giocatore);
+
+    public String iscrizioneTorneo(Giocatore giocatore, Torneo torneo);
+
+    public List<Torneo> cercareTorneo(String nome);
 }
