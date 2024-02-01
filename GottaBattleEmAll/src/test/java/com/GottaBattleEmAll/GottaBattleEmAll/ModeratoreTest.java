@@ -35,7 +35,7 @@ public class ModeratoreTest {
     }
 
     @Test
-    public void testLoginSuccess() {
+    public void testAutenticazione() {
         Moderatore mockModeratore = new Moderatore();
         mockModeratore.setUsername("testUser");//usare querlli del TCS
         mockModeratore.setPassword("testPassword");
@@ -52,7 +52,7 @@ public class ModeratoreTest {
     }
 
     @Test
-    public void testLoginIncorrectCredentials() {
+    public void testCredenzialiSbagliateoNonPresenti1() {
         when(moderatoreRepository.findByUsername("nonEsistente")).thenReturn(null);//usare querlli del TCS
 
         Moderatore inputModeratore = new Moderatore();
@@ -65,7 +65,7 @@ public class ModeratoreTest {
     }
 
     @Test
-    public void testLoginEmptyCredentials() {
+    public void testCredenzialiSbagliateoNonPresenti2() {
         Moderatore mockModeratore = new Moderatore();
         mockModeratore.setUsername("testUser");//usare querlli del TCS
         mockModeratore.setPassword("testPassword");
