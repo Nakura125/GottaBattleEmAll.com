@@ -70,10 +70,10 @@
                                                 </td>
                                             </tr>
                                             <tr th:if="${notifiche!= null}" th:each="notifica : ${notifiche}">
-                                                <td th:text="${notifica.organizzatore.getUsername()}"></td>
-                                                <td th:text="${notifica.organizzatore.getNome()}"></td>
-                                                <td th:text="${notifica.organizzatore.getCognome()}"></td>
-                                                <td th:text="${notifica.organizzatore.getEmail()}"></td>
+                                                <td th:text="${notifica.getOrganizzatore().getUsername()}"></td>
+                                                <td th:text="${notifica.getOrganizzatore().getNome()}"></td>
+                                                <td th:text="${notifica.getOrganizzatore().getCognome()}"></td>
+                                                <td th:text="${notifica.getOrganizzatore().getEmail()}"></td>
                                                 <td>
                                                     <div class="dropdown">
                                                         <button class="btn btn-secondary dropdown-toggle" type="button"
@@ -83,8 +83,8 @@
                                                             aria-labelledby="dropdownMenuButton2">
                                                             <h6 class="dropdown-header">Azioni</h6>
                                                             <div class="dropdown-divider"></div>
-                                                            <a class="dropdown-item" href="#">Accetta</a>
-                                                            <a class="dropdown-item" href="#">Rifiuta</a>
+                                                            <a class="dropdown-item" th:href="'/Moderatore/accettareRichiesta?username='${notifica.getOrganizzatore().getUsername()}">Accetta</a>
+                                                            <a class="dropdown-item" th:href="'/Moderatore/rifiutareRichiesta?username='${notifica.getOrganizzatore().getUsername()}">Rifiuta</a>
                                                         </div>
                                                     </div>
                                                 </td>

@@ -1,7 +1,10 @@
 package com.GottaBattleEmAll.GottaBattleEmAll.service;
 
+import com.GottaBattleEmAll.GottaBattleEmAll.entity.Giocatore;
+import com.GottaBattleEmAll.GottaBattleEmAll.entity.Organizzatore;
 import com.GottaBattleEmAll.GottaBattleEmAll.entity.Utente;
 
+import java.util.List;
 public interface UtenteService {
 
     public String login(Utente utente, String ruolo);
@@ -10,6 +13,11 @@ public interface UtenteService {
 
     public void logout(Utente idUtente);
 
-    public Utente findByUsername(String username,String ruolo);
+    public <Ruolo extends Utente>  Ruolo findByUsername(String username);
+
+
+    public List<Organizzatore> findActiveOrganizzatoriPaged(int number, int size);
+
+    public List<Giocatore> findActiveGiocatoriPaged(int number, int size);
 
 }
