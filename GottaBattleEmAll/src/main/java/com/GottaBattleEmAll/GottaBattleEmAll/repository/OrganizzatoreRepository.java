@@ -9,4 +9,6 @@ import java.util.UUID;
 @Repository
 
 public interface OrganizzatoreRepository extends JpaRepository<Organizzatore, UUID> {
+
+    public Organizzatore findByUsername(String username);
 }
