@@ -1,10 +1,9 @@
 package com.GottaBattleEmAll.GottaBattleEmAll.service;
 
-import com.GottaBattleEmAll.GottaBattleEmAll.entity.Moderatore;
-import com.GottaBattleEmAll.GottaBattleEmAll.entity.Organizzatore;
-import com.GottaBattleEmAll.GottaBattleEmAll.entity.Richiesta;
-import com.GottaBattleEmAll.GottaBattleEmAll.entity.Utente;
+import com.GottaBattleEmAll.GottaBattleEmAll.entity.*;
+import com.GottaBattleEmAll.GottaBattleEmAll.repository.GiocatoreRepository;
 import com.GottaBattleEmAll.GottaBattleEmAll.repository.ModeratoreRepository;
+import com.GottaBattleEmAll.GottaBattleEmAll.repository.OrganizzatoreRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -14,10 +13,14 @@ import java.util.List;
 public class ModeratoreServiceImpl implements ModeratoreService{
 
     public final ModeratoreRepository moderatoreRepository;
+    public final GiocatoreRepository giocatoreRepository;
+    public final OrganizzatoreRepository organizzatoreRepository;
 
     @Autowired
-    public ModeratoreServiceImpl(ModeratoreRepository moderatoreRepository){
+    public ModeratoreServiceImpl(ModeratoreRepository moderatoreRepository, GiocatoreRepository giocatoreRepository, OrganizzatoreRepository organizzatoreRepository){
         this.moderatoreRepository = moderatoreRepository;
+        this.giocatoreRepository = giocatoreRepository;
+        this.organizzatoreRepository = organizzatoreRepository;
     }
 
     @Override
@@ -42,7 +45,10 @@ public class ModeratoreServiceImpl implements ModeratoreService{
 
     @Override
     public Moderatore findByUsername(String username) {
-        return null;
+        if(username==null || username.isEmpty()) {
+            return null;
+        }
+        return moderatoreRepository.findByUsername(username);
     }
 
     @Override
@@ -52,26 +58,110 @@ public class ModeratoreServiceImpl implements ModeratoreService{
 
     @Override
     public boolean bannare(Moderatore moderatore, Utente utente, String ruolo) {
+
+
+        if(moderatore.getUsername()==null || moderatore.getUsername().isEmpty() || utente.getUsername()==null
+                || utente.getUsername().isEmpty() || ruolo==null || ruolo.isEmpty()) {
+            return false;
+        }
+
+
+        if (moderatoreRepository.findByUsername(moderatore.getUsername()) == null)
+            return false;
+
+
+        if (ruolo.equals("giocatore")) {
+            Giocatore g = giocatoreRepository.findByUsername(utente.getUsername());
+            if (g != null && g.getStato() == Stato.ATTIVO) {
+                g.setStato(Stato.BANNATO);
+                giocatoreRepository.save(g);
+                return true;
+            }
+        }
+
+        if (ruolo.equals("organizzatore")) {
+            Organizzatore o = organizzatoreRepository.findByUsername(utente.getUsername());
+            if (o != null && o.getStato() == Stato.ATTIVO) {
+                o.setStato(Stato.BANNATO);
+                organizzatoreRepository.save(o);
+                return true;
+            }
+        }
         return false;
     }
 
     @Override
     public boolean sbannare(Moderatore moderatore, Utente utente, String ruolo) {
+
+        if(moderatore.getUsername()==null || moderatore.getUsername().isEmpty() || utente.getUsername()==null
+                || utente.getUsername().isEmpty() || ruolo==null || ruolo.isEmpty()) {
+            return false;
+        }
+
+
+        if (moderatoreRepository.findByUsername(moderatore.getUsername()) == null)
+            return false;
+
+        if (ruolo.equals("giocatore")) {
+            Giocatore g = giocatoreRepository.findByUsername(utente.getUsername());
+            if (g != null && g.getStato() == Stato.BANNATO) {
+                g.setStato(Stato.ATTIVO);
+                giocatoreRepository.save(g);
+                return true;
+            }
+        }
+        if (ruolo.equals("organizzatore")) {
+            Organizzatore o = organizzatoreRepository.findByUsername(utente.getUsername());
+            if (o != null && o.getStato() == Stato.BANNATO) {
+                o.setStato(Stato.ATTIVO);
+                organizzatoreRepository.save(o);
+                return true;
+            }
+        }
         return false;
     }
 
     @Override
     public boolean accettare(Moderatore moderatore, Organizzatore organizzatore) {
+        if(moderatore.getUsername()==null || moderatore.getUsername().isEmpty() || organizzatore.getUsername()==null
+                || organizzatore.getUsername().isEmpty()) {
+            return false;
+        }
+
+        if (moderatoreRepository.findByUsername(moderatore.getUsername()) == null)
+            return false;
+
+        Organizzatore o = organizzatoreRepository.findByUsername(organizzatore.getUsername());
+        if (o != null && o.getStato() == Stato.INVERIFICA) {
+            o.setStato(Stato.ATTIVO);
+            organizzatoreRepository.save(o);
+            return true;
+        }
         return false;
     }
+
 
     @Override
     public boolean rifiutare(Moderatore moderatore, Organizzatore organizzatore) {
+        if(moderatore.getUsername()==null || moderatore.getUsername().isEmpty() || organizzatore.getUsername()==null
+                || organizzatore.getUsername().isEmpty()) {
+            return false;
+        }
+
+        if (moderatoreRepository.findByUsername(moderatore.getUsername()) == null)
+            return false;
+
+        Organizzatore o = organizzatoreRepository.findByUsername(organizzatore.getUsername());
+        if (o != null && o.getStato() == Stato.INVERIFICA) {
+            o.setStato(Stato.RIFIUTATO);
+            organizzatoreRepository.save(o);
+            return true;
+        }
         return false;
     }
 
     @Override
-    public List<Richiesta> notifiche() {
+    public List<Richiesta> notifiche(){
         return null;
     }
 }
