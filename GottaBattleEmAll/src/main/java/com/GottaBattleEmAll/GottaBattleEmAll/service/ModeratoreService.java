@@ -3,7 +3,11 @@ package com.GottaBattleEmAll.GottaBattleEmAll.service;
 import com.GottaBattleEmAll.GottaBattleEmAll.entity.Moderatore;
 
 import com.GottaBattleEmAll.GottaBattleEmAll.entity.Organizzatore;
+import com.GottaBattleEmAll.GottaBattleEmAll.entity.Richiesta;
 import com.GottaBattleEmAll.GottaBattleEmAll.entity.Utente;
+
+import java.util.List;
+
 public interface ModeratoreService {
 
     public String login(Moderatore moderatore);
@@ -18,6 +22,8 @@ public interface ModeratoreService {
     public boolean accettare(Moderatore moderatore, Organizzatore organizzatore);
 
     public boolean rifiutare(Moderatore moderatore, Organizzatore organizzatore);
+
+    public List<Richiesta> notifiche();
 
 
 }

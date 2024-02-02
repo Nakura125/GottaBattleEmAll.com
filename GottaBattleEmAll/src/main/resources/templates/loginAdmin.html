@@ -1,4 +1,4 @@
-../<!DOCTYPE html>
+<!DOCTYPE html>
 <html lang="en">
   <head>
     <script>
@@ -47,52 +47,24 @@
             <div class="card col-lg-4 mx-auto">
               <div class="card-body px-5 py-5">
                 <h3 class="card-title text-left mb-3">Login Admin</h3>
-                <form>
+                <form method="post" action="loginAdmin" >
+                    <div class="form-group">
+                      <label>Username *</label>
+                      <input name="username" value="" type="text" class="form-control p_input">
+                    </div>
+                    <div class="form-group">
+                      <label>Password *</label>
+                      <input name="password" value="" type="text" class="form-control p_input">
+                    </div>
+                    <div class="text-center">
+                      <button type="submit" class="btn btn-primary btn-block enter-btn">Login</button>
+                    </div>
 
-                <div>
-                  <div class="form-group  align-items-center justify-content-between">
-                    <div class="form-check">
-                      <label class="form-check-label">
-                        <input id="chkPippo" name="chkPippo" type="checkbox" value="pippo" class="form-check-input-ruolo"> Pippo
-                      </label>
+                    <div th:if="${error != null}" class="alert alert-danger" role="alert">
+                      <strong>Errore!</strong> <span th:text="${error}"></span>
                     </div>
-                  </div>
-                  <div class="form-check">
-                    <div>
-                      <label class="form-check-label">
-                        <input id="chkBro" name="chkBro" type="checkbox" value="bro" class="form-check-input-ruolo"> Bro
-                      </label>
-                    </div>
-                  </div>
-                  <div class="form-check">
-                    <div>
-                      <label class="form-check-label">
-                        <input id="chkFranco" name="chkFranco" type="checkbox" value="franco" class="form-check-input-ruolo"> Franco
-                      </label>
-                    </div>
-                  </div>
-                </div>
 
-                  
-                  <div class="form-group">
-                    <label>Email *</label>
-                    <input type="text" class="form-control p_input">
-                  </div>
-                  <div class="form-group">
-                    <label>Password *</label>
-                    <input type="text" class="form-control p_input">
-                  </div>
-                  <div class="form-group d-flex align-items-center justify-content-between">
-                    <div class="form-check">
-                      <label class="form-check-label">
-                        <input type="checkbox" class="form-check-input"> Remember me </label>
-                    </div>
-                  </div>
-                    <a href="#" class="forgot-pass">Ho dimenticato la password</a>
-                  </div>
-                  <div class="text-center">
-                    <button type="submit" class="btn btn-primary btn-block enter-btn">Login</button>
-                  </div>
+
                 </form>
               </div>
             </div>

@@ -69,11 +69,11 @@
                                                     </div>
                                                 </td>
                                             </tr>
-                                            <tr>
-                                                <td>Pippo</td>
-                                                <td>Pippo</td>
-                                                <td>Giuliano</td>
-                                                <td>emaildiprova2@gmail</td>
+                                            <tr th:if="${notifiche!= null}" th:each="notifica : ${notifiche}">
+                                                <td th:text="${notifica.organizzatore.getUsername()}"></td>
+                                                <td th:text="${notifica.organizzatore.getNome()}"></td>
+                                                <td th:text="${notifica.organizzatore.getCognome()}"></td>
+                                                <td th:text="${notifica.organizzatore.getEmail()}"></td>
                                                 <td>
                                                     <div class="dropdown">
                                                         <button class="btn btn-secondary dropdown-toggle" type="button"
@@ -88,27 +88,6 @@
                                                         </div>
                                                     </div>
                                                 </td>
-                                            </tr>
-                                            <tr>
-                                                <td>Carminuccio</td>
-                                                <td>Carmine</td>
-                                                <td>Fulato</td>
-                                                <td>emaildiprova3@gmail</td>
-                                                <td>
-                                                    <div class="dropdown">
-                                                        <button class="btn btn-secondary dropdown-toggle" type="button"
-                                                            id="dropdownMenuButton2" data-toggle="dropdown"
-                                                            aria-haspopup="true" aria-expanded="false"> Stato </button>
-                                                        <div class="dropdown-menu"
-                                                            aria-labelledby="dropdownMenuButton2">
-                                                            <h6 class="dropdown-header">Azioni</h6>
-                                                            <div class="dropdown-divider"></div>
-                                                            <a class="dropdown-item" href="#">Accetta</a>
-                                                            <a class="dropdown-item" href="#">Rifiuta</a>
-                                                        </div>
-                                                    </div>
-                                                </td>
-                                            </tr>
                                         </tbody>
                                     </table>
                                 </div>

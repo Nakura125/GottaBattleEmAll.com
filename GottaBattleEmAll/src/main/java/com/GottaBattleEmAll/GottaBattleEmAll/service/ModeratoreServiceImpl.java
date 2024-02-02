@@ -2,10 +2,13 @@ package com.GottaBattleEmAll.GottaBattleEmAll.service;
 
 import com.GottaBattleEmAll.GottaBattleEmAll.entity.Moderatore;
 import com.GottaBattleEmAll.GottaBattleEmAll.entity.Organizzatore;
+import com.GottaBattleEmAll.GottaBattleEmAll.entity.Richiesta;
 import com.GottaBattleEmAll.GottaBattleEmAll.entity.Utente;
 import com.GottaBattleEmAll.GottaBattleEmAll.repository.ModeratoreRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+
+import java.util.List;
 
 @Service
 public class ModeratoreServiceImpl implements ModeratoreService{
@@ -65,5 +68,10 @@ public class ModeratoreServiceImpl implements ModeratoreService{
     @Override
     public boolean rifiutare(Moderatore moderatore, Organizzatore organizzatore) {
         return false;
+    }
+
+    @Override
+    public List<Richiesta> notifiche() {
+        return null;
     }
 }
