@@ -6,6 +6,7 @@
   <script>
     document.addEventListener('DOMContentLoaded', function () {
       var checkboxes = document.querySelectorAll('.form-check-input-ruolo');
+      var ruoloField = document.getElementById("ruolo");
 
       checkboxes.forEach(function (checkbox) {
         checkbox.addEventListener('change', function () {
@@ -14,6 +15,11 @@
               otherCheckbox.checked = false;
             }
           });
+          if (checkbox.checked) {
+            ruoloField.value = checkbox.value;
+          } else {
+            ruoloField.value = "";
+          }
         });
       });
     });
@@ -38,89 +44,90 @@
 </head>
 
 <body>
-  <div class="container-scroller">
-    <div class="container-fluid page-body-wrapper full-page-wrapper">
-      <div class="row w-100 m-0">
-        <div class="content-wrapper full-page-wrapper d-flex align-items-center auth login-bg">
-          <div class="card col-lg-4 mx-auto">
-            <div class="card-body px-5 py-5">
-              <h3 class="card-title text-left mb-3">Register</h3>
-              <form>
-                <div>
-                  <div class="form-group  align-items-center justify-content-between">
-                    <div class="form-check">
-                      <label class="form-check-label">
-                        <input id="chkPippo" name="chkPippo" type="checkbox" value="pippo" class="form-check-input-ruolo">
-                        Utente
-                      </label>
-                    </div>
-                  </div>
-                  <div class="form-check">
-                    <div>
-                      <label class="form-check-label">
-                        <input id="chkBro" name="chkBro" type="checkbox" value="bro" class="form-check-input-ruolo  "> Organizzatore
-                      </label>
-                    </div>
-                  </div>
-                </div>
-
-                <div class="form-group">
-                  <label>Username</label>
-                  <input type="text" class="form-control p_input">
-                </div>
-                <div class="form-group">
-                  <label>Nome</label>
-                  <input type="text" class="form-control p_input">
-                </div>
-                <div class="form-group">
-                  <label>Cognome</label>
-                  <input type="text" class="form-control p_input">
-                </div>
-                <div class="form-group">
-                  <label>Email</label>
-                  <input type="email" class="form-control p_input">
-                </div>
-                <div class="form-group">
-                  <label>Password</label>
-                  <input type="password" class="form-control p_input">
-                </div>
-                <div class="form-group">
-                  <label>Reinserisci Password</label>
-                  <input type="password" class="form-control p_input">
-                </div>
-                <div class="form-group d-flex align-items-center justify-content-between">
+<div class="container-scroller">
+  <div class="container-fluid page-body-wrapper full-page-wrapper">
+    <div class="row w-100 m-0">
+      <div class="content-wrapper full-page-wrapper d-flex align-items-center auth login-bg">
+        <div class="card col-lg-4 mx-auto">
+          <div class="card-body px-5 py-5">
+            <h3 class="card-title text-left mb-3">Register</h3>
+            <form th:action="@{/registrazione}" method="post">
+              <div>
+                <div class="form-group  align-items-center justify-content-between">
                   <div class="form-check">
                     <label class="form-check-label">
-                      <input type="checkbox" class="form-check-input"> Ricordami </label>
+                      <input  type="checkbox" value="giocatore" class="form-check-input-ruolo">
+                      Giocatore
+                    </label>
                   </div>
                 </div>
-                <div class="text-center">
-                  <button type="submit" class="btn btn-primary btn-block enter-btn">Register</button>
+                <div class="form-check">
+                  <div>
+                    <label class="form-check-label">
+                      <input  type="checkbox" value="organizzatore" class="form-check-input-ruolo  "> Organizzatore
+                    </label>
+                  </div>
                 </div>
-                <p class="sign-up text-center">Hai già un Account?<a href="#"> Login</a></p>
-              </form>
-            </div>
+              </div>
+              <input type="hidden" name="ruolo" id="ruolo" value="">
+
+              <div class="form-group">
+                <label>Username</label>
+                <input id="username" name="username" type="text" class="form-control p_input">
+              </div>
+              <div class="form-group">
+                <label>Nome</label>
+                <input id="nome" name="nome" type="text" class="form-control p_input">
+              </div>
+              <div class="form-group">
+                <label>Cognome</label>
+                <input id="cognome" name="cognome" type="text" class="form-control p_input">
+              </div>
+              <div class="form-group">
+                <label>Email</label>
+                <input id="email" name="email" type="email" class="form-control p_input">
+              </div>
+              <div class="form-group">
+                <label>Password</label>
+                <input id="password" name="password" type="password" class="form-control p_input">
+              </div>
+              <div class="form-group">
+                <label>Conferma password</label>
+                <input id="confermaPassword" name="confermaPassword" type="password" class="form-control p_input">
+              </div>
+              <div class="form-group d-flex align-items-center justify-content-between">
+                <div class="form-check">
+                  <label class="form-check-label">
+                    <input type="checkbox" class="form-check-input"> Ricordami </label>
+                </div>
+              </div>
+              <div class="text-center">
+                <button type="submit" class="btn btn-primary btn-block enter-btn">Register</button>
+              </div>
+              <p class="sign-up text-center">Hai già un Account?<a href="#"> Login</a></p>
+            </form>
           </div>
         </div>
-        <!-- content-wrapper ends -->
       </div>
-      <!-- row ends -->
+      <!-- content-wrapper ends -->
     </div>
-    <!-- page-body-wrapper ends -->
+    <!-- row ends -->
   </div>
-  <!-- container-scroller -->
-  <!-- plugins:js -->
-  <script th:src="@{assets/vendors/js/vendor.bundle.base.js}"></script>
-  <!-- endinject -->
-  <!-- Plugin js for this page -->
-  <!-- End plugin js for this page -->
-  <!-- inject:js -->
-  <script th:src="@{assets/js/off-canvas.js}"></script>
-  <script th:src="@{assets/js/hoverable-collapse.js}"></script>
-  <script th:src="@{assets/js/misc.js}"></script>
-  <script th:src="@{assets/js/settings.js}"  ></script>
-  <script th:src="@{assets/js/todolist.js}" ></script>
-  <!-- endinject -->
+  <!-- page-body-wrapper ends -->
+</div>
+<!-- container-scroller -->
+<!-- plugins:js -->
+<script th:src="@{assets/vendors/js/vendor.bundle.base.js}"></script>
+<!-- endinject -->
+<!-- Plugin js for this page -->
+<!-- End plugin js for this page -->
+<!-- inject:js -->
+<script th:src="@{assets/js/off-canvas.js}"></script>
+<script th:src="@{assets/js/hoverable-collapse.js}"></script>
+<script th:src="@{assets/js/misc.js}"></script>
+<script th:src="@{assets/js/settings.js}"  ></script>
+<script th:src="@{assets/js/todolist.js}" ></script>
+<!-- endinject -->
 </body>
 
 </html>
