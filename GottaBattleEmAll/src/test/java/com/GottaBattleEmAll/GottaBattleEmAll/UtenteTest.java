@@ -15,7 +15,7 @@ import org.mockito.MockitoAnnotations;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.mockito.ArgumentMatchers.anyString;
-import static org.mockito.Mockito.when;
+import static org.mockito.Mockito.*;
 
 public class UtenteTest {
 
@@ -122,7 +122,125 @@ public class UtenteTest {
         String result = utenteService.login(inputUtente, ruolo);
 
         assertEquals("account ancora non accettato", result);
-
-
     }
+
+    @Test
+    public void testModificaProfilo() {
+        Utente inputUtente = new Utente();
+        inputUtente.setUsername("Blanco01");
+        inputUtente.setPassword("Mario01");
+        inputUtente.setNome("Giovanni");
+        inputUtente.setCognome("Blanco");
+        inputUtente.setEmail("Bianco01@gmail.com");
+        String confermaPassword = "Mario01";
+        String ruolo = "giocatore";
+        String username = "Blanco";
+
+        Giocatore mockGiocatore = new Giocatore();
+        mockGiocatore.setUsername("Blanco");
+        mockGiocatore.setPassword("Mario01");
+        mockGiocatore.setNome("Giovanni");
+        mockGiocatore.setCognome("Blanco");
+        mockGiocatore.setEmail("Bianco01@gmail.com");
+
+        when(giocatoreRepository.findByUsername("Blanco01")).thenReturn(null);
+        when(giocatoreRepository.findByUsername(username)).thenReturn(mockGiocatore);
+
+        String result = utenteService.modificaProfilo(inputUtente, confermaPassword, ruolo, username);
+
+        verify(giocatoreRepository, times(1)).save(mockGiocatore);
+
+        assertEquals("modifica effettuata", result);
+    }
+
+    @Test
+    public void testModificaProfiloUsernameGiàEsistente() {
+        Utente inputUtente = new Utente();
+        inputUtente.setUsername("Blanco");
+        inputUtente.setPassword("Mario01");
+        inputUtente.setNome("Giovanni");
+        inputUtente.setCognome("Blanco");
+        inputUtente.setEmail("Blanco01@gmail.com");
+        String confermaPassword = "Mario01";
+        String ruolo = "giocatore";
+        String username = "Blanco01";
+
+        Giocatore mockGiocatore = new Giocatore();
+        mockGiocatore.setUsername("Blanco01");
+        mockGiocatore.setPassword("Mario01");
+        mockGiocatore.setNome("Giovanni");
+        mockGiocatore.setCognome("Blanco");
+        mockGiocatore.setEmail("Blanco01@gmail.com");
+
+        Giocatore mockGiocatoreGiàEsistente = new Giocatore();
+        mockGiocatoreGiàEsistente.setUsername("Blanco");
+
+        when(giocatoreRepository.findByUsername("Blanco")).thenReturn(mockGiocatoreGiàEsistente);
+        when(giocatoreRepository.findByUsername(username)).thenReturn(mockGiocatore);
+
+
+        String result = utenteService.modificaProfilo(inputUtente, confermaPassword, ruolo, username);
+
+        verify(giocatoreRepository, times(0)).save(mockGiocatore);
+
+        assertEquals("username già esistente", result);
+    }
+
+
+    @Test
+    public void testModificaProfiloEmailNonValida() {
+        Utente inputUtente = new Utente();
+        inputUtente.setUsername("Blanco");
+        inputUtente.setPassword("Mario01");
+        inputUtente.setNome("Giovanni");
+        inputUtente.setCognome("Blanco");
+        inputUtente.setEmail("Bianco01");
+        String confermaPassword = "Mario01";
+        String ruolo = "giocatore";
+        String username = "Blanco";
+
+        Giocatore mockGiocatore = new Giocatore();
+        mockGiocatore.setUsername("Blanco");
+        mockGiocatore.setPassword("Mario01");
+        mockGiocatore.setNome("Giovanni");
+        mockGiocatore.setCognome("Blanco");
+        mockGiocatore.setEmail("Bianco01@gmail.com");
+
+        when(giocatoreRepository.findByUsername("Blanco")).thenReturn(mockGiocatore);
+
+        String result = utenteService.modificaProfilo(inputUtente, confermaPassword, ruolo, username);
+
+        verify(giocatoreRepository, times(0)).save(mockGiocatore);
+
+        assertEquals("email non valida", result);
+    }
+
+    @Test
+    public void testModificaProfiloPasswordNonCorrispondono() {
+        Utente inputUtente = new Utente();
+        inputUtente.setUsername("Blanco01");
+        inputUtente.setPassword("Mario01");
+        inputUtente.setNome("Giovanni");
+        inputUtente.setCognome("Blanco");
+        inputUtente.setEmail("Bianco01@gmail.com");
+        String confermaPassword = "Mario0";
+        String ruolo = "giocatore";
+        String username = "Blanco01";
+
+        Giocatore mockGiocatore = new Giocatore();
+        mockGiocatore.setUsername("Blanco01");
+        mockGiocatore.setPassword("Mario01");
+        mockGiocatore.setNome("Giovanni");
+        mockGiocatore.setCognome("Blanco");
+        mockGiocatore.setEmail("Bianco01@gmail.com");
+
+        when(giocatoreRepository.findByUsername("Blanco01")).thenReturn(mockGiocatore);
+
+        String result = utenteService.modificaProfilo(inputUtente, confermaPassword, ruolo, username);
+
+        verify(giocatoreRepository, times(0)).save(mockGiocatore);
+
+        assertEquals("password non corrispondono", result);
+    }
+
 }

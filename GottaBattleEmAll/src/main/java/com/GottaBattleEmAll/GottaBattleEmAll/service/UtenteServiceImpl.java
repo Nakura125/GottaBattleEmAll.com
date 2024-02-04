@@ -93,7 +93,7 @@ public class UtenteServiceImpl implements UtenteService{
             if (g == null) {
                 return "utente non trovato";
             }
-            if (giocatoreRepository.findByUsername(utente.getUsername()) != null){
+            if (giocatoreRepository.findByUsername(utente.getUsername()) != null && !utente.getUsername().equals(username)){
                 return "username già esistente";
             }
 
@@ -112,7 +112,7 @@ public class UtenteServiceImpl implements UtenteService{
                 return "utente non trovato";
             }
 
-            if (organizzatoreRepository.findByUsername(utente.getUsername()) != null){
+            if (organizzatoreRepository.findByUsername(utente.getUsername()) != null && !utente.getUsername().equals(username)){
                 return "username già esistente";
             }
             o.setUsername(utente.getUsername());
