@@ -9,7 +9,7 @@ public interface UtenteService {
 
     public String login(Utente utente, String ruolo);
 
-    public String modificaProfilo(Utente utente,String confermaPassword);
+    public String modificaProfilo(Utente utente,String confermaPassword, String ruolo, String username);
 
     public void logout(Utente idUtente);
 
