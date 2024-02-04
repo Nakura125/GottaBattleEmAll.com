@@ -5,8 +5,8 @@ import com.GottaBattleEmAll.GottaBattleEmAll.entity.Organizzatore;
 
 public interface GuestService {
 
-    public boolean registrazioneGiocatore(Giocatore giocatore);
+    public String registrazioneGiocatore(Giocatore giocatore, String confermaPassword);
 
 
-    public boolean registrazioneOrganizzatore(Organizzatore organizzatore);
+    public String registrazioneOrganizzatore(Organizzatore organizzatore, String confermaPassword);
 }
