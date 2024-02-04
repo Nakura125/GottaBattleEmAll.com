@@ -25,7 +25,7 @@ public class ModeratoreServiceImpl implements ModeratoreService{
 
     @Override
     public String login(Moderatore moderatore) {
-        if ( moderatore.getUsername()== null || moderatore.getPassword() == null || moderatore.getUsername().isEmpty() || moderatore.getPassword().isEmpty() ){
+        if (moderatore.getUsername()== null || moderatore.getPassword() == null || moderatore.getUsername().isEmpty() || moderatore.getPassword().isEmpty() ){
             return "Username o password non corretti";
         }
 
