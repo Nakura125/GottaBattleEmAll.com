@@ -1,11 +1,25 @@
 package com.GottaBattleEmAll.GottaBattleEmAll.controller;
 
+import com.GottaBattleEmAll.GottaBattleEmAll.entity.Organizzatore;
+import com.GottaBattleEmAll.GottaBattleEmAll.entity.Torneo;
+import com.GottaBattleEmAll.GottaBattleEmAll.service.TorneoService;
+import jakarta.servlet.http.HttpSession;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.web.bind.annotation.PostMapping;
 
 @Controller
 public class TorneoController {
+
+    public final TorneoService torneoService;
+
+    @Autowired
+    public TorneoController(TorneoService torneoService) {
+        this.torneoService = torneoService;
+    }
 
     @GetMapping("/Giocatore/listaTornei")
     public String listaTornei(Model model) {
@@ -30,6 +44,17 @@ public class TorneoController {
 
     @GetMapping("/Organizzatore/creaTorneo")
     public String creaTorneo(Model model) {
+
+        Torneo torneo = new Torneo();
+        model.addAttribute("torneo", torneo);
+        return "creaTorneo";
+    }
+
+    @PostMapping("/Organizzatore/creaTorneo")
+    public String creaTorneoPost(@ModelAttribute Torneo torneo, HttpSession session, Model model) {
+        Organizzatore organizzatore = (Organizzatore) session.getAttribute("organizzatore");
+
+
         return "creaTorneo";
     }
 
