@@ -4,6 +4,7 @@ import com.GottaBattleEmAll.GottaBattleEmAll.entity.Organizzatore;
 import com.GottaBattleEmAll.GottaBattleEmAll.entity.StatoTorneo;
 import com.GottaBattleEmAll.GottaBattleEmAll.entity.Torneo;
 import com.GottaBattleEmAll.GottaBattleEmAll.entity.Giocatore;
+import com.GottaBattleEmAll.GottaBattleEmAll.repository.GiocatoreRepository;
 import com.GottaBattleEmAll.GottaBattleEmAll.repository.OrganizzatoreRepository;
 import com.GottaBattleEmAll.GottaBattleEmAll.repository.TorneoRepository;
 import com.GottaBattleEmAll.GottaBattleEmAll.service.TorneoServiceImpl;
@@ -30,11 +31,16 @@ public class TorneoTest {
     @Mock
     private OrganizzatoreRepository organizzatoreRepository;
 
+    @Mock
+    private GiocatoreRepository giocatoreRepository;
+
+
     @BeforeEach
     public void setUp() {
         MockitoAnnotations.initMocks(this);
         when(torneoRepository.findByNome(anyString())).thenReturn(null);
         when(organizzatoreRepository.findByUsername(anyString())).thenReturn(null);
+        when(giocatoreRepository.findByUsername(anyString())).thenReturn(null);
     }
 
     @Test
@@ -211,12 +217,36 @@ public class TorneoTest {
         mockTorneo.getGiocatoreList().add(mockGiocatore);
 
         when(torneoRepository.findByNome("TorneoGodwin")).thenReturn(mockTorneo);
+        when(giocatoreRepository.findByUsername("Paolo_Sorrentino")).thenReturn(mockGiocatore);
 
         Giocatore result = torneoService.visualizzaProfiloUtente(mockTorneo, mockGiocatore, mockOrganizzatore);
 
         assertEquals(mockGiocatore, result);
 
     }
+
+    @Test
+    public void testSeguireOrganizzatore() {
+
+        Organizzatore mockOrganizzatore = new Organizzatore();
+        mockOrganizzatore.setUsername("Ugo Vaccaro");
+
+
+        Giocatore mockGiocatore = new Giocatore();
+        mockGiocatore.setUsername("Annalisa_DeBonis");
+        mockGiocatore.setOrganizzatori(new ArrayList<>());
+
+
+        when(organizzatoreRepository.findByUsername("Ugo Vaccaro")).thenReturn(mockOrganizzatore);
+        when(giocatoreRepository.findByUsername("Annalisa_DeBonis")).thenReturn(mockGiocatore);
+
+        boolean result = torneoService.seguireOrganizzatore(mockGiocatore, mockOrganizzatore);
+
+        assertTrue(result);
+        assertTrue(mockGiocatore.getOrganizzatori().contains(mockOrganizzatore));
+
+    }
+
 
 
 }

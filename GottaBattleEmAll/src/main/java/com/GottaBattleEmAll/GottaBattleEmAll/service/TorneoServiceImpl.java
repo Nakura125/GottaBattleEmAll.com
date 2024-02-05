@@ -4,20 +4,25 @@ import com.GottaBattleEmAll.GottaBattleEmAll.entity.Giocatore;
 import com.GottaBattleEmAll.GottaBattleEmAll.entity.Organizzatore;
 import com.GottaBattleEmAll.GottaBattleEmAll.entity.StatoTorneo;
 import com.GottaBattleEmAll.GottaBattleEmAll.entity.Torneo;
+import com.GottaBattleEmAll.GottaBattleEmAll.repository.GiocatoreRepository;
 import com.GottaBattleEmAll.GottaBattleEmAll.repository.OrganizzatoreRepository;
 import com.GottaBattleEmAll.GottaBattleEmAll.repository.TorneoRepository;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageRequest;
 
 import java.util.List;
 
 public class TorneoServiceImpl implements TorneoService{
 
     private final TorneoRepository torneoRepository;
-
     private final OrganizzatoreRepository organizzatoreRepository;
 
-    public TorneoServiceImpl(TorneoRepository torneoRepository, OrganizzatoreRepository organizzatoreRepository){
+    private final GiocatoreRepository giocatoreRepository;
+
+    public TorneoServiceImpl(TorneoRepository torneoRepository, OrganizzatoreRepository organizzatoreRepository, GiocatoreRepository giocatoreRepository){
         this.torneoRepository = torneoRepository;
         this.organizzatoreRepository = organizzatoreRepository;
+        this.giocatoreRepository = giocatoreRepository;
     }
 
     @Override
@@ -139,10 +144,10 @@ public class TorneoServiceImpl implements TorneoService{
             return null;
         }
 
-        if(t.getGiocatoreList().contains(giocatore)){
-            return giocatore;
+        Giocatore g = giocatoreRepository.findByUsername(giocatore.getUsername());
+        if(g != null && t.getGiocatoreList().contains(g)) {
+            return g;
         }
-
         return null;
     }
 
@@ -153,16 +158,67 @@ public class TorneoServiceImpl implements TorneoService{
 
     @Override
     public boolean seguireOrganizzatore(Giocatore giocatore, Organizzatore organizzatore) {
+        if (giocatore == null || giocatore.getUsername() == null || organizzatore == null || organizzatore.getUsername() == null) {
+            return false;
+        }
+        if (giocatore.getUsername().isEmpty() || organizzatore.getUsername().isEmpty()) {
+            return false;
+        }
+
+        Organizzatore o = organizzatoreRepository.findByUsername(organizzatore.getUsername());
+        if(o == null){
+            return false;
+        }
+        Giocatore g = giocatoreRepository.findByUsername(giocatore.getUsername());
+        if(!g.getOrganizzatori().contains(o)){
+            g.getOrganizzatori().add(o);
+            return true;
+        }
         return false;
     }
 
     @Override
     public List<Torneo> getTorneoIscritto(Giocatore giocatore) {
-        return null;
+        if (giocatore == null || giocatore.getUsername() == null) {
+            return null;
+        }
+        if (giocatore.getUsername().isEmpty()) {
+            return null;
+        }
+
+        Giocatore g = giocatoreRepository.findByUsername(giocatore.getUsername());
+        if (g != null) {
+            Page<Torneo> pageResult = torneoRepository.findByGiocatore(g, PageRequest.of(0, 10));
+            return pageResult.getContent();
+        }
+    return null;
     }
 
     @Override
     public String iscrizioneTorneo(Giocatore giocatore, Torneo torneo) {
+        if (giocatore == null || giocatore.getUsername() == null || torneo == null || torneo.getNome() == null) {
+            return "imput nulli";
+        }
+        if (giocatore.getUsername().isEmpty() || torneo.getNome().isEmpty()) {
+            return "imput vuoti";
+        }
+
+        Torneo t = torneoRepository.findByNome(torneo.getNome());
+        Giocatore g = giocatoreRepository.findByUsername(giocatore.getUsername());
+
+        if(t == null || g == null){
+            return "torneo o giocatore non esistente";
+        }
+
+        if(t.getCapienza() == t.getGiocatoreList().size() ){
+            return "torneo non aperto";
+        }
+
+        if(t.getStatoTorneo() == StatoTorneo.ATTESAISCRIZIONI && t.getGiocatoreList().size() < t.getCapienza() &&
+                !t.getGiocatoreList().contains(g)){
+            return "iscrizione effettuata";
+        }
+
         return null;
     }
 
