@@ -17,8 +17,8 @@ public interface UtenteService {
     public Organizzatore findOrganizzatoreByUsername(String username);
 
 
-    public List<Organizzatore> findActiveOrganizzatoriPaged(int number, int size);
+    public List<Organizzatore> findOrganizzatoriPaged(int number, int size);
 
-    public List<Giocatore> findActiveGiocatoriPaged(int number, int size);
+    public List<Giocatore> findGiocatoriPaged(int number, int size);
 
 }
