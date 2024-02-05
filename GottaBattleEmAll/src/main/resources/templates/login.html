@@ -73,15 +73,14 @@
                   </div>
                   <div class="form-group">
                     <label>Password *</label>
-                    <input th:field="*{password}" type="text" class="form-control p_input">
+                    <input th:field="*{password}" type="password" class="form-control p_input">
                   </div>
 
-                  <div class="text-center">
-                      <a href="/registrazione" class="btn btn-primary btn-block enter-btn">Registrati se non hai un account</a>
-                  </div>
 
                   <div class="text-center">
                     <button type="submit" class="btn btn-primary btn-block enter-btn">Login</button>
+                  </div>
+                  <p class="sign-up text-center">Non hai un Account?<a href="/registrazione"> Registrati</a></p>
                   </div>
                 </form>
               </div>
