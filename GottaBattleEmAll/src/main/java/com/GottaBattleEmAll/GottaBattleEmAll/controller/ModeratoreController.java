@@ -1,6 +1,7 @@
 package com.GottaBattleEmAll.GottaBattleEmAll.controller;
 
 import com.GottaBattleEmAll.GottaBattleEmAll.entity.*;
+import com.GottaBattleEmAll.GottaBattleEmAll.repository.RichiestaRepository;
 import com.GottaBattleEmAll.GottaBattleEmAll.service.ModeratoreService;
 import com.GottaBattleEmAll.GottaBattleEmAll.service.UtenteService;
 import jakarta.servlet.http.HttpSession;
@@ -145,7 +146,7 @@ public class ModeratoreController {
         String result = moderatoreService.login(moderatore);
         if(result.equals("Login effettuato")){
             session.setAttribute("moderatore", moderatore);
-            return "admin";
+            return "redirect:/Moderatore/homeAdmin";
         }
         else{
             model.addAttribute("error", result);
@@ -157,6 +158,8 @@ public class ModeratoreController {
     public String homeAdmin(Model model,HttpSession session) {
 
         Moderatore moderatore=(Moderatore) session.getAttribute("moderatore");
+        List<Richiesta> richieste = moderatoreService.notifiche();
+        model.addAttribute("richieste", richieste);
         model.addAttribute("moderatore", moderatore);
         return "admin";
     }
