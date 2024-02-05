@@ -72,7 +72,7 @@ public class GuestController {
         if (risultatoRegistrazione.equals("registrazione effettuata con successo") || risultatoRegistrazione.equals("richiesta di registrazione inviata con successo")) {
 
             model.addAttribute("message", risultatoRegistrazione);
-            return "login";
+            return "redirect:/login";
         }else {
             model.addAttribute("error", risultatoRegistrazione);
             return "registrazione";

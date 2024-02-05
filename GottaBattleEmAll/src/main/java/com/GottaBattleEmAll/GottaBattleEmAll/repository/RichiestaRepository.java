@@ -8,4 +8,6 @@ import java.util.UUID;
 
 @Repository
 public interface RichiestaRepository extends JpaRepository<Richiesta, UUID> {
+
+    public Richiesta findByOrganizzatore_Id(UUID id);
 }

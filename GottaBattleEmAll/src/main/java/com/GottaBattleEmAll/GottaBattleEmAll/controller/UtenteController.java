@@ -30,7 +30,11 @@ public class UtenteController {
     }
 
     @GetMapping("/Giocatore/homePlayer")
-    public String homePlayer(Model model) {
+    public String homePlayer(Model model,HttpSession session) {
+
+        Giocatore giocatore = (Giocatore) session.getAttribute("giocatore");
+
+        model.addAttribute("giocatore", giocatore);
         return "homePlayer";
     }
 
@@ -42,7 +46,11 @@ public class UtenteController {
     }
 
     @GetMapping("/Organizzatore/homeOrganizzatore")
-    public String homeOrganizzatore( Model model) {
+    public String homeOrganizzatore( Model model,HttpSession session){
+
+        Organizzatore organizzatore = (Organizzatore) session.getAttribute("organizzatore");
+
+        model.addAttribute("organizzatore", organizzatore);
 
         return "homeOrganizzatore";
     }
@@ -65,7 +73,12 @@ public class UtenteController {
         String usernamevecchio = ((Organizzatore)session.getAttribute("organizzatore")).getUsername();
 
         //the new username is in the organizzatore object
-        String organizzatoreAggiornato = utenteService.modificaProfilo(organizzatore, confermaPassword, "organizzatore",usernamevecchio);
+        String organizzatoreAggiornato = utenteService.modificaProfilo(organizzatore, confermaPassword, "organizzatore", usernamevecchio);
+
+        if ( organizzatoreAggiornato.equals("modifica effettuata")) {
+            //if the username is changed, the session attribute must be updated
+            session.setAttribute("organizzatore", organizzatore);
+        }
 
         //if the username is changed, the session attribute must be updated
         model.addAttribute("message", organizzatoreAggiornato);
@@ -95,6 +108,11 @@ public class UtenteController {
         //the new username is in the giocatore object
         String giocatoreAggiornato = utenteService.modificaProfilo(giocatore, confermaPassword, "giocatore",usernamevecchio);
 
+        if ( giocatoreAggiornato.equals("modifica effettuata")) {
+            //if the username is changed, the session attribute must be updated
+            session.setAttribute("giocatore", giocatore);
+        }
+
         //if the username is changed, the session attribute must be updated
         model.addAttribute("message", giocatoreAggiornato);
         return "impostazioniGiocatore";
@@ -102,7 +120,11 @@ public class UtenteController {
 
 
     @GetMapping("/Giocatore/squadra")
-    public String squadra(Model model) {
+    public String squadra(Model model,HttpSession session) {
+
+        Giocatore organizzatore = (Giocatore) session.getAttribute("organizzatore");
+
+        model.addAttribute("organizzatore", organizzatore);
         return "squadra";
     }
 

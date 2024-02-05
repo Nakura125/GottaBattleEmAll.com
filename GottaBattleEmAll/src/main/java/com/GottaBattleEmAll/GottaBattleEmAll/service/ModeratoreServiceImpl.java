@@ -4,6 +4,7 @@ import com.GottaBattleEmAll.GottaBattleEmAll.entity.*;
 import com.GottaBattleEmAll.GottaBattleEmAll.repository.GiocatoreRepository;
 import com.GottaBattleEmAll.GottaBattleEmAll.repository.ModeratoreRepository;
 import com.GottaBattleEmAll.GottaBattleEmAll.repository.OrganizzatoreRepository;
+import com.GottaBattleEmAll.GottaBattleEmAll.repository.RichiestaRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -16,11 +17,15 @@ public class ModeratoreServiceImpl implements ModeratoreService{
     public final GiocatoreRepository giocatoreRepository;
     public final OrganizzatoreRepository organizzatoreRepository;
 
+    public final RichiestaRepository richiestaRepository;
+
     @Autowired
-    public ModeratoreServiceImpl(ModeratoreRepository moderatoreRepository, GiocatoreRepository giocatoreRepository, OrganizzatoreRepository organizzatoreRepository){
+    public ModeratoreServiceImpl(ModeratoreRepository moderatoreRepository, GiocatoreRepository giocatoreRepository, OrganizzatoreRepository organizzatoreRepository, RichiestaRepository richiestaRepository){
         this.moderatoreRepository = moderatoreRepository;
         this.giocatoreRepository = giocatoreRepository;
         this.organizzatoreRepository = organizzatoreRepository;
+        this.richiestaRepository = richiestaRepository;
+
     }
 
     @Override
@@ -162,6 +167,8 @@ public class ModeratoreServiceImpl implements ModeratoreService{
 
     @Override
     public List<Richiesta> notifiche(){
-        return null;
+        //prende tutte le richieste
+        return richiestaRepository.findAll();
+
     }
 }

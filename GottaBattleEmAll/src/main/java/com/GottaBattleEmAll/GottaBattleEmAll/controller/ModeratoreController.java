@@ -56,11 +56,20 @@ public class ModeratoreController {
 
         Organizzatore utente=new Organizzatore();
         utente.setUsername(username);
-        moderatoreService.bannare(moderatore, utente,"Organizzatore");
+        if(moderatoreService.bannare(moderatore, utente,"organizzatore"))
+            model.addAttribute("message", "Utente bannato: $"+ username);
+        else
+            model.addAttribute("error", "Errore nel bannare l'utente: $"+ username);
+        model.addAttribute("moderatore", moderatore);
 
 
-        model.addAttribute("message", "Utente bannato: $"+ username);
-        return "redirect:/Moderatore/listaUtenti";
+        List<Giocatore> giocatori=utenteService.findGiocatoriPaged(0,5);
+        List<Organizzatore> organizzatori=utenteService.findOrganizzatoriPaged(0,5);
+
+        model.addAttribute("giocatori", giocatori);
+        model.addAttribute("organizzatori", organizzatori);
+
+        return "listaUtenti";
     }
 
     @GetMapping("/Moderatore/sbannaOrganizzatore")
@@ -70,10 +79,21 @@ public class ModeratoreController {
 
         Organizzatore utente=new Organizzatore();
         utente.setUsername(username);
-        moderatoreService.sbannare(moderatore, utente,"Organizzatore");
+        if(moderatoreService.sbannare(moderatore, utente,"organizzatore"))
+            model.addAttribute("message", "Utente bannato: $"+ username);
+        else
+            model.addAttribute("error", "Errore nel bannare l'utente: $"+ username);
 
-        model.addAttribute("message", "Utente bannato: $"+ username);
-        return "redirect:/Moderatore/listaUtenti";
+        model.addAttribute("moderatore", moderatore);
+
+
+        List<Giocatore> giocatori=utenteService.findGiocatoriPaged(0,5);
+        List<Organizzatore> organizzatori=utenteService.findOrganizzatoriPaged(0,5);
+
+        model.addAttribute("giocatori", giocatori);
+        model.addAttribute("organizzatori", organizzatori);
+
+        return "listaUtenti";
     }
 
     @GetMapping("/Moderatore/bannaGiocatore")
@@ -84,10 +104,19 @@ public class ModeratoreController {
 
         Giocatore utente=new Giocatore();
         utente.setUsername(username);
-        moderatoreService.bannare(moderatore, utente,"Giocatore");
+        if(moderatoreService.bannare(moderatore, utente,"giocatore"))
+            model.addAttribute("message", "Utente bannato: $"+ username);
+        else
+            model.addAttribute("error", "Errore nel bannare l'utente: $"+ username);
+        model.addAttribute("moderatore", moderatore);
 
-        model.addAttribute("message", "Giocatore bannato: $"+ username);
-        return "redirect:/Moderatore/listaUtenti";
+        List<Giocatore> giocatori=utenteService.findGiocatoriPaged(0,5);
+        List<Organizzatore> organizzatori=utenteService.findOrganizzatoriPaged(0,5);
+
+        model.addAttribute("giocatori", giocatori);
+        model.addAttribute("organizzatori", organizzatori);
+
+        return "listaUtenti";
     }
 
     @GetMapping("/Moderatore/sbannaGiocatore")
@@ -97,10 +126,18 @@ public class ModeratoreController {
 
         Giocatore utente=new Giocatore();
         utente.setUsername(username);
-        moderatoreService.sbannare(moderatore, utente,"Giocatore");
+        if(moderatoreService.sbannare(moderatore, utente,"giocatore"))
+            model.addAttribute("message", "Utente bannato: $"+ username);
+        else
+            model.addAttribute("error", "Errore nel bannare l'utente: $"+ username);
+        model.addAttribute("moderatore", moderatore);
+        List<Giocatore> giocatori=utenteService.findGiocatoriPaged(0,5);
+        List<Organizzatore> organizzatori=utenteService.findOrganizzatoriPaged(0,5);
 
-        model.addAttribute("message", "Giocatore bannato: $"+ username);
-        return "redirect:/Moderatore/listaUtenti";
+        model.addAttribute("giocatori", giocatori);
+        model.addAttribute("organizzatori", organizzatori);
+
+        return "listaUtenti";
     }
 
     @PostMapping("/Moderatore/loginAdmin")
@@ -148,8 +185,8 @@ public class ModeratoreController {
         Moderatore moderatore=(Moderatore) session.getAttribute("moderatore");
         model.addAttribute("moderatore", moderatore);
 
-        List<Giocatore> giocatori=utenteService.findActiveGiocatoriPaged(0,5);
-        List<Organizzatore> organizzatori=utenteService.findActiveOrganizzatoriPaged(0,5);
+        List<Giocatore> giocatori=utenteService.findGiocatoriPaged(0,5);
+        List<Organizzatore> organizzatori=utenteService.findOrganizzatoriPaged(0,5);
 
         model.addAttribute("giocatori", giocatori);
         model.addAttribute("organizzatori", organizzatori);
@@ -168,7 +205,8 @@ public class ModeratoreController {
         moderatoreService.accettare(moderatore, organizzatore);
 
         model.addAttribute("message", "Richiesta accettata per l'utente: $"+ username);
-        return "redirect:/Moderatore/centroNotifiche";
+        model.addAttribute("moderatore", moderatore);
+        return "centroNotifiche";
     }
 
     @GetMapping("/Moderatore/rifiutareRichiesta")
@@ -181,7 +219,9 @@ public class ModeratoreController {
         moderatoreService.rifiutare(moderatore, organizzatore);
 
         model.addAttribute("message", "Richiesta rifiutata per l'utente: $"+ username);
-        return "redirect:/Moderatore/centroNotifiche";
+        model.addAttribute("moderatore", moderatore);
+
+        return "centroNotifiche";
     }
 
 }

@@ -7,6 +7,7 @@ import com.GottaBattleEmAll.GottaBattleEmAll.entity.Utente;
 import com.GottaBattleEmAll.GottaBattleEmAll.repository.GiocatoreRepository;
 import com.GottaBattleEmAll.GottaBattleEmAll.repository.OrganizzatoreRepository;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.PageRequest;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -153,13 +154,16 @@ public class UtenteServiceImpl implements UtenteService{
 
 
     @Override
-    public List<Organizzatore> findActiveOrganizzatoriPaged(int number, int size) {
-        return null;
+    public List<Organizzatore> findOrganizzatoriPaged(int number, int size) {
+
+        //find all active organizzatori and return them with pagination
+        return organizzatoreRepository.findAll(PageRequest.of(number, size)).getContent();
     }
 
     @Override
-    public List<Giocatore> findActiveGiocatoriPaged(int number, int size) {
-        return null;
+    public List<Giocatore> findGiocatoriPaged(int number, int size) {
+        //find all active giocatori and return them with pagination
+        return giocatoreRepository.findAll(PageRequest.of(number, size)).getContent();
     }
 
 
