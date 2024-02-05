@@ -1,7 +1,7 @@
 <!-- partial:partials/_navbar.html -->
 <nav class="navbar p-0 fixed-top d-flex flex-row">
     <div class="navbar-brand-wrapper d-none d-lg-flex align-items-center justify-content-center fixed-top">
-        <a class="navbar-brand brand-logo" href="index.html"><img src="../../assets/images/Logo.png" alt="logo"
+        <a class="navbar-brand brand-logo" href="/Organizzatore/homeOrganizzatore/"><img src="../../assets/images/Logo.png" alt="logo"
                                                                   style="width: max-content;" /> </a>
     </div>
     <div class="navbar-menu-wrapper flex-grow d-flex align-items-stretch">
@@ -11,8 +11,7 @@
             <li class="nav-item dropdown">
                 <a class="nav-link" id="profileDropdown" href="#" data-toggle="dropdown">
                     <div class="navbar-profile">
-                        <img class="img-xs rounded-circle" src="../../assets/images/faces/Bro.jpg" alt="">
-                        <p class="mb-0 d-none d-sm-block navbar-profile-name">Alex BROwn</p>
+                        <p class="mb-0 d-none d-sm-block navbar-profile-name" th:text="${organizzatore.getUsername()}"></p>
                         <i class="mdi mdi-menu-down d-none d-sm-block"></i>
                     </div>
                 </a>

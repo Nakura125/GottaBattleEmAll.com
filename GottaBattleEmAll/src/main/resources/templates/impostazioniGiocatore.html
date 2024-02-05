@@ -1,4 +1,4 @@
-../<!DOCTYPE html>
+<!DOCTYPE html>
 <html lang="en">
 
 <head>
@@ -34,42 +34,43 @@
                 <div class="content-wrapper">
                     <div class="card-body">
                         <h4 class="card-title">Informazioni Personali</h4>
-                        <form class="forms-sample">
-                          </div>
+                        <div class="alert " th:if="${message!=null}" th:text="${message}">  </div>
+                        <form th:object="${giocatore}"  class="forms-sample">
+
                           <div class="form-group row">
                             <label for="exampleInputEmail2" class="col-sm-3 col-form-label">Username</label>
                             <div class="col-sm-9">
-                              <input type="text" class="form-control" id="inlineFormInputUsername1" placeholder="Pippone">
+                              <input th:field="*{username}" type="text" class="form-control" id="inlineFormInputUsername1" placeholder="Pippone">
                             </div>
                           </div>
                           <div class="form-group row">
                             <label for="exampleInputEmail2" class="col-sm-3 col-form-label">Nome</label>
                             <div class="col-sm-9">
-                              <input type="text" class="form-control" id="inlineFormInputName1" placeholder="Pippo">
+                              <input th:field="*{nome}" type="text" class="form-control" id="inlineFormInputName1" placeholder="Pippo">
                             </div>
                           </div>
                           <div class="form-group row">
                             <label for="exampleInputEmail2" class="col-sm-3 col-form-label">Cognome</label>
                             <div class="col-sm-9">
-                              <input type="email" class="form-control" id="inlineFormInputName2" placeholder="Ne">
+                              <input th:field="*{cognome}" type="email" class="form-control" id="inlineFormInputName2" placeholder="Ne">
                             </div>
                           </div>
                           <div class="form-group row">
                             <label for="exampleInputEmail2" class="col-sm-3 col-form-label">Email</label>
                             <div class="col-sm-9">
-                              <input type="email" class="form-control" id="exampleInputEmail2" placeholder="pippone12@gmail.com">
+                              <input th:field="*{email}" type="email" class="form-control" id="exampleInputEmail2" placeholder="pippone12@gmail.com">
                             </div>
                           </div>
                           <div class="form-group row">
                             <label for="exampleInputPassword2" class="col-sm-3 col-form-label">Password</label>
                             <div class="col-sm-9">
-                              <input type="password" class="form-control" id="exampleInputPassword2">
+                              <input th:field="*{password}" type="password" class="form-control" id="exampleInputPassword2">
                             </div>
                           </div>
                           <div class="form-group row">
                             <label for="exampleInputConfirmPassword2" class="col-sm-3 col-form-label">Re Password</label>
                             <div class="col-sm-9">
-                              <input type="password" class="form-control" id="exampleInputConfirmPassword2">
+                              <input name="confermaPassword"  type="password" class="form-control" id="exampleInputConfirmPassword2">
                             </div>
                           </div>
                           <button type="submit" class="btn btn-primary mr-2">Submit</button>

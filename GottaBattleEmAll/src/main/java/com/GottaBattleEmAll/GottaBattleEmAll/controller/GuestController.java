@@ -21,6 +21,11 @@ public class GuestController {
         this.guestService = guestService;
     }
 
+    @GetMapping("/")
+    public String index(Model model) {
+        return "homeGuest";
+    }
+
 
     @GetMapping("/registrazione")
     public String registrazione(Model model) {
@@ -50,21 +55,29 @@ public class GuestController {
 
         System.out.println("Conferma password: " + confermaPassword);*/
 
-
+        String risultatoRegistrazione= "";
         if ("giocatore".equals(ruolo)) {
             // Chiamare il servizio di registrazione del giocatore come utente
-            String risultatoRegistrazione = guestService.registrazioneGiocatore(giocatore, confermaPassword);
+            risultatoRegistrazione = guestService.registrazioneGiocatore(giocatore, confermaPassword);
             model.addAttribute("risultatoRegistrazione", risultatoRegistrazione);
-            System.out.println("Risultato registrazione: " + risultatoRegistrazione);
+            //System.out.println("Risultato registrazione: " + risultatoRegistrazione);
         } else if ("organizzatore".equals(ruolo)) {
             // Chiamare il servizio di registrazione dell'organizzatore
-            String risultatoRegistrazione = guestService.registrazioneOrganizzatore(organizzatore, confermaPassword);
+            risultatoRegistrazione = guestService.registrazioneOrganizzatore(organizzatore, confermaPassword);
             model.addAttribute("risultatoRegistrazione", risultatoRegistrazione);
-            System.out.println("Risultato registrazione: " + risultatoRegistrazione);
+            //System.out.println("Risultato registrazione: " + risultatoRegistrazione);
         }
 
 
-        return "registrazione";
+        if (risultatoRegistrazione.equals("registrazione effettuata con successo") || risultatoRegistrazione.equals("richiesta di registrazione inviata con successo")) {
+
+            model.addAttribute("message", risultatoRegistrazione);
+            return "login";
+        }else {
+            model.addAttribute("error", risultatoRegistrazione);
+            return "registrazione";
+        }
+
     }
 }
 

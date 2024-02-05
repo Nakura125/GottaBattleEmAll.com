@@ -142,9 +142,15 @@ public class UtenteServiceImpl implements UtenteService{
     }
 
     @Override
-    public <Ruolo extends Utente> Ruolo findByUsername(String username) {
-        return null;
+    public Giocatore findGiocatoreByUsername(String username) {
+        return giocatoreRepository.findByUsername(username);
     }
+
+    @Override
+    public Organizzatore findOrganizzatoreByUsername(String username) {
+        return organizzatoreRepository.findByUsername(username);
+    }
+
 
     @Override
     public List<Organizzatore> findActiveOrganizzatoriPaged(int number, int size) {

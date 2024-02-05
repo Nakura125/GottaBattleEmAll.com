@@ -13,7 +13,8 @@ public interface UtenteService {
 
     public void logout(Utente idUtente);
 
-    public <Ruolo extends Utente>  Ruolo findByUsername(String username);
+    public  Giocatore findGiocatoreByUsername(String username);
+    public Organizzatore findOrganizzatoreByUsername(String username);
 
 
     public List<Organizzatore> findActiveOrganizzatoriPaged(int number, int size);

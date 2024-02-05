@@ -43,20 +43,24 @@
             <div class="card col-lg-4 mx-auto">
               <div class="card-body px-5 py-5">
                 <h3 class="card-title text-left mb-3">Login</h3>
-                <form>
-
+                <form th:action="@{/login}" th:object="${utente}" >
+                    <div th:if="${error!=null}" class="alert alert-danger" role="alert">
+                      <p th:text="${error}"></p></div>
+                  <div th:if="${message!=null}" class="alert alert-success" role="alert">
+                    <p th:text="${message}"></p>
+                  </div>
                 <div>
                   <div class="form-group  align-items-center justify-content-between">
                     <div class="form-check">
                       <label class="form-check-label">
-                        <input id="chkPippo" name="chkPippo" type="checkbox" value="pippo" class="form-check-input-ruolo"> Utente
+                        <input id="chkPippo" name="ruolo" type="checkbox" value="giocatore" class="form-check-input-ruolo"> Giocatore
                       </label>
                     </div>
                   </div>
                   <div class="form-check">
                     <div>
                       <label class="form-check-label">
-                        <input id="chkBro" name="chkBro" type="checkbox" value="bro" class="form-check-input-ruolo"> Organizzatore
+                        <input id="chkBro"  name="ruolo" type="checkbox" value="organizzatore" class="form-check-input-ruolo"> Organizzatore
                       </label>
                     </div>
                   </div>
@@ -64,21 +68,15 @@
 
                   
                   <div class="form-group">
-                    <label>Email *</label>
-                    <input type="text" class="form-control p_input">
+                    <label>Username *</label>
+                    <input th:field="*{username}" type="text" class="form-control p_input">
                   </div>
                   <div class="form-group">
                     <label>Password *</label>
-                    <input type="text" class="form-control p_input">
+                    <input th:field="*{password}" type="text" class="form-control p_input">
                   </div>
-                  <div class="form-group d-flex align-items-center justify-content-between">
-                    <div class="form-check">
-                      <label class="form-check-label">
-                        <input type="checkbox" class="form-check-input"> Ricordami </label>
-                    </div>
-                  </div>
-                    <a href="#" class="forgot-pass">Ho dimenticato la password</a>
-                  </div>
+
+
                   <div class="text-center">
                     <button type="submit" class="btn btn-primary btn-block enter-btn">Login</button>
                   </div>
