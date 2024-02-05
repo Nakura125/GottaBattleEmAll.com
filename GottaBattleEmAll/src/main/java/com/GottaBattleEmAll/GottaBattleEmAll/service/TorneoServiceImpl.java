@@ -181,20 +181,26 @@ public class TorneoServiceImpl implements TorneoService{
 
     @Override
     public List<Torneo> getTorneoIscritto(Giocatore giocatore) {
-        if (giocatore == null || giocatore.getUsername() == null) {
-            return null;
-        }
-        if (giocatore.getUsername().isEmpty()) {
-            return null;
-        }
-
-        Giocatore g = giocatoreRepository.findByUsername(giocatore.getUsername());
-        if (g != null) {
-            Page<Torneo> pageResult = torneoRepository.findByGiocatore(g, PageRequest.of(0, 10));
-            return pageResult.getContent();
-        }
-    return null;
+        return null;
     }
+
+
+//    @Override
+//    public List<Torneo> getTorneoIscritto(Giocatore giocatore) {
+//        if (giocatore == null || giocatore.getUsername() == null) {
+//            return null;
+//        }
+//        if (giocatore.getUsername().isEmpty()) {
+//            return null;
+//        }
+//
+//        Giocatore g = giocatoreRepository.findByUsername(giocatore.getUsername());
+//        if (g != null) {
+//            Page<Torneo> pageResult = torneoRepository.findByGiocatore(g, PageRequest.of(0, 10));
+//            return pageResult.getContent();
+//        }
+//    return null;
+//    }
 
     @Override
     public String iscrizioneTorneo(Giocatore giocatore, Torneo torneo) {

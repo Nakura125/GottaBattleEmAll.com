@@ -37,18 +37,15 @@
                 <div class="card">
                   <div class="card-body">
                     <h4 class="card-title">Impostazioni Torneo</h4>
+                    <div th:if="${error!=null}" th:text="${error}" class="alert alert-danger"></div>
                     <form method="post" th:action="@{/Organizzatore/creaTorneo}" th:object="${torneo}" class="forms-sample">
                       <div class="form-group">
                         <label for="NomeTorneo">Nome Torneo</label>
-                        <input th:field type="text" class="form-control" id="NomeTorneo" placeholder="ES. Paldea con Furore">
+                        <input th:field="*{nome}" type="text" class="form-control" id="NomeTorneo" placeholder="ES. Paldea con Furore">
                       </div>
                       <div class="form-group">
                         <label for="NomeTorneo">Data</label>
                           <input th:field="*{data}" type="date" class="form-control" placeholder="dd/mm/yyyy" />
-                      </div>
-                      <div class="form-group">
-                        <label for="NomeTorneo">Ora</label>
-                          <input th:field="*{nome}"" type="time" class="form-control"/>
                       </div>
                       <div class="form-group">
                         <label for="Regole">Regole</label>

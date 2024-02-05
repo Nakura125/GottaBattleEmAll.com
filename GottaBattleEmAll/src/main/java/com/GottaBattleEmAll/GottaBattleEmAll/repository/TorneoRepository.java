@@ -16,7 +16,7 @@ import java.util.UUID;
 public interface TorneoRepository extends JpaRepository<Torneo, UUID> {
 
     public Torneo findByNome(String nome);
-    Page<Torneo> findByGiocatore(Giocatore g, PageRequest of);
+//    Page<Torneo> findByGiocatore(Giocatore g, PageRequest of);
 
     public List<Torneo> findByOrganizzatore(Organizzatore organizzatore);
 

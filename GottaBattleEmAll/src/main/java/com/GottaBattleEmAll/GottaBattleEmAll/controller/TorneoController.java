@@ -11,6 +11,8 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 
+import java.util.Objects;
+
 @Controller
 public class TorneoController {
 
@@ -43,10 +45,13 @@ public class TorneoController {
 
 
     @GetMapping("/Organizzatore/creaTorneo")
-    public String creaTorneo(Model model) {
+    public String creaTorneo(Model model, HttpSession session) {
 
         Torneo torneo = new Torneo();
         model.addAttribute("torneo", torneo);
+
+        Organizzatore organizzatore =(Organizzatore) session.getAttribute("organizzatore");
+        model.addAttribute("organizzatore", organizzatore);
         return "creaTorneo";
     }
 
@@ -54,7 +59,12 @@ public class TorneoController {
     public String creaTorneoPost(@ModelAttribute Torneo torneo, HttpSession session, Model model) {
         Organizzatore organizzatore = (Organizzatore) session.getAttribute("organizzatore");
 
-
+        String result=torneoService.creaTorneo(torneo, organizzatore);
+        if (result.equals( "torneo creato con successo")) {
+            return "redirect:/Organizzatore/torneoInAttesa";
+        }
+        model.addAttribute("error", result);
+        model.addAttribute("organizzatore", organizzatore);
         return "creaTorneo";
     }
 
