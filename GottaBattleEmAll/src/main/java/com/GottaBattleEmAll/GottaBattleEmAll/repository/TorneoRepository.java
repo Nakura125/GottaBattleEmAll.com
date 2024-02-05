@@ -8,4 +8,6 @@ import java.util.UUID;
 
 @Repository
 public interface TorneoRepository extends JpaRepository<Torneo, UUID> {
+
+    public Torneo findByNome(String nome);
 }
