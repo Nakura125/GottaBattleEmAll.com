@@ -17,7 +17,12 @@ public class Richiesta {
     @GeneratedValue(strategy = GenerationType.UUID)
     private UUID id;
 
-    @ManyToOne
+    @OneToOne(cascade = CascadeType.REMOVE, orphanRemoval = true)
     private Organizzatore organizzatore;
+
+    @PreRemove
+    public void preRemove() {
+        organizzatore.setRichiesta(null);
+    }
 
 }

@@ -2,9 +2,11 @@ package com.GottaBattleEmAll.GottaBattleEmAll.service;
 
 import com.GottaBattleEmAll.GottaBattleEmAll.entity.Giocatore;
 import com.GottaBattleEmAll.GottaBattleEmAll.entity.Organizzatore;
+import com.GottaBattleEmAll.GottaBattleEmAll.entity.Richiesta;
 import com.GottaBattleEmAll.GottaBattleEmAll.entity.Stato;
 import com.GottaBattleEmAll.GottaBattleEmAll.repository.GiocatoreRepository;
 import com.GottaBattleEmAll.GottaBattleEmAll.repository.OrganizzatoreRepository;
+import com.GottaBattleEmAll.GottaBattleEmAll.repository.RichiestaRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -18,10 +20,13 @@ public class GuestServiceImpl implements GuestService{
     public final GiocatoreRepository giocatoreRepository;
     public final OrganizzatoreRepository organizzatoreRepository;
 
+    public  final RichiestaRepository richiestaRepository;
+
     @Autowired
-    public GuestServiceImpl(GiocatoreRepository giocatoreRepository, OrganizzatoreRepository organizzatoreRepository){
+    public GuestServiceImpl(GiocatoreRepository giocatoreRepository, OrganizzatoreRepository organizzatoreRepository, RichiestaRepository richiestaRepository){
         this.giocatoreRepository = giocatoreRepository;
         this.organizzatoreRepository = organizzatoreRepository;
+        this.richiestaRepository= richiestaRepository;
     }
 
     @Override
@@ -72,6 +77,12 @@ public class GuestServiceImpl implements GuestService{
         }
         organizzatore.setStato(Stato.INVERIFICA);
         organizzatoreRepository.save(organizzatore);
+
+        //invia la richiesta di registrazione
+        Richiesta  richiesta = new Richiesta();
+        richiesta.setOrganizzatore(organizzatore);
+        richiestaRepository.save(richiesta);
+
         return "richiesta di registrazione inviata con successo";
     }
 }

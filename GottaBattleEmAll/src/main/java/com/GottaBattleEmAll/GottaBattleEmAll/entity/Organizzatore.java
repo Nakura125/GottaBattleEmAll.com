@@ -21,4 +21,14 @@ public class Organizzatore extends Utente{
     @OneToMany(cascade = CascadeType.ALL, orphanRemoval = true)
     private List<Torneo> tornei;
 
+
+    @OneToOne(mappedBy = "organizzatore",cascade = CascadeType.ALL, orphanRemoval = true)
+    private Richiesta richiesta;
+
+    @PreRemove
+    public void preRemove() {
+        if (richiesta != null)
+            richiesta.setOrganizzatore(null);
+    }
+
 }
