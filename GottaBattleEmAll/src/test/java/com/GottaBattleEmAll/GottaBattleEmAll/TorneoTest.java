@@ -102,7 +102,7 @@ public class TorneoTest {
     }
 
     @Test
-    public void testIniziareTorneo(){
+    public void testIniziareTorneo() {
 
         Organizzatore mockOrganizzatore = new Organizzatore();
         mockOrganizzatore.setUsername("Ugo Vaccaro");
@@ -118,7 +118,7 @@ public class TorneoTest {
         mockTorneo.setOrganizzatore(mockOrganizzatore);
         mockTorneo.setStatoTorneo(StatoTorneo.ATTESAISCRIZIONI);
 
-        for(int i = 0; i < 16; i++){
+        for (int i = 0; i < 16; i++) {
             mockTorneo.getGiocatoreList().add(new Giocatore());
         }
 
@@ -135,7 +135,7 @@ public class TorneoTest {
     }
 
     @Test
-    public void testTerminareTorneo(){
+    public void testTerminareTorneo() {
 
         Organizzatore mockOrganizzatore = new Organizzatore();
         mockOrganizzatore.setUsername("Ugo Vaccaro");
@@ -247,6 +247,34 @@ public class TorneoTest {
 
     }
 
+    //fix
+    @Test
+    public void testIscrizioneTorneo() {
+
+        Giocatore mockGiocatore = new Giocatore();
+        mockGiocatore.setUsername("Ugo_Ferrari");
 
 
+        Torneo mockTorneo = new Torneo();
+        mockTorneo.setNome("TorneoUnisa");
+        mockTorneo.setCapienza(16);
+        mockTorneo.setGiocatoreList(new ArrayList<>());
+        mockTorneo.setStatoTorneo(StatoTorneo.ATTESAISCRIZIONI);
+
+        when(giocatoreRepository.findByUsername("Ugo_Ferrari")).thenReturn(mockGiocatore);
+        when(torneoRepository.findByNome("TorneoUnisa")).thenReturn(mockTorneo);
+
+        String result = torneoService.iscrizioneTorneo(mockGiocatore, mockTorneo);
+
+        assertEquals("iscrizione effettuata con successo", result);
+
+        verify(torneoRepository, times(1)).save(mockTorneo);
+        verify(giocatoreRepository, times(1)).save(mockGiocatore);
+
+        assertTrue(mockTorneo.getGiocatoreList().contains(mockGiocatore));
+        assertTrue(mockGiocatore.getTornei().contains(mockTorneo));
+    }
 }
+
+
+
