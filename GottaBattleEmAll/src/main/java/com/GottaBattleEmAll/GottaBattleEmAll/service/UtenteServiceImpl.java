@@ -140,11 +140,17 @@ public class UtenteServiceImpl implements UtenteService{
 
     @Override
     public Giocatore findGiocatoreByUsername(String username) {
-        return giocatoreRepository.findByUsername(username);
+        if (username == null || username.isEmpty()) {
+            return null;
+        }
+            return giocatoreRepository.findByUsername(username);
     }
 
     @Override
     public Organizzatore findOrganizzatoreByUsername(String username) {
+        if (username == null || username.isEmpty()) {
+            return null;
+        }
         return organizzatoreRepository.findByUsername(username);
     }
 
