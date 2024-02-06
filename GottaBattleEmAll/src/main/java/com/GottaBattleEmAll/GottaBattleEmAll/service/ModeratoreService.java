@@ -14,8 +14,6 @@ public interface ModeratoreService {
 
     public Moderatore findByUsername(String username);
 
-    public boolean logout(Moderatore moderatore);
-
     public boolean bannare(Moderatore moderatore, Utente utente, String ruolo);
     public boolean sbannare(Moderatore moderatore, Utente utente, String ruolo);
 
