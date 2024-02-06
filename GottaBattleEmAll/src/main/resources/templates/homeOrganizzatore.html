@@ -1,114 +1,123 @@
-../<!DOCTYPE html>
+<!DOCTYPE html>
 <html lang="en">
 
 <head>
 
-  <!-- Required meta tags -->
-  <meta charset="utf-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-  <title>GottaBattleEmAll</title>
-  <!-- plugins:css -->
-  <link rel="stylesheet" th:href="@{../assets/vendors/mdi/css/materialdesignicons.min.css}">
-  <link rel="stylesheet" th:href="@{../assets/vendors/css/vendor.bundle.base.css}">
-  <!-- endinject -->
-  <!-- Plugin css for this page -->
-  <link rel="stylesheet" th:href="@{../assets/vendors/jvectormap/jquery-jvectormap.css}">
-  <link rel="stylesheet" th:href="@{../assets/vendors/flag-icon-css/css/flag-icon.min.css}">
-  <link rel="stylesheet" th:href="@{../assets/vendors/owl-carousel-2/owl.carousel.min.css}">
-  <link rel="stylesheet" th:href="@{../assets/vendors/owl-carousel-2/owl.theme.default.min.css}">
-  <!-- End plugin css for this page -->
-  <!-- inject:css -->
-  <!-- endinject -->
-  <!-- Layout styles -->
-  <link rel="stylesheet" th:href="@{../assets/css/stylebro.css}">
-  <!-- End layout styles -->
-  <link rel="shortcut icon" th:href="@{../assets/images/favicon.png}" />
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <title>GottaBattleEmAll</title>
+    <!-- plugins:css -->
+    <link rel="stylesheet" th:href="@{../assets/vendors/mdi/css/materialdesignicons.min.css}">
+    <link rel="stylesheet" th:href="@{../assets/vendors/css/vendor.bundle.base.css}">
+    <!-- endinject -->
+    <!-- Plugin css for this page -->
+    <link rel="stylesheet" th:href="@{../assets/vendors/jvectormap/jquery-jvectormap.css}">
+    <link rel="stylesheet" th:href="@{../assets/vendors/flag-icon-css/css/flag-icon.min.css}">
+    <link rel="stylesheet" th:href="@{../assets/vendors/owl-carousel-2/owl.carousel.min.css}">
+    <link rel="stylesheet" th:href="@{../assets/vendors/owl-carousel-2/owl.theme.default.min.css}">
+    <!-- End plugin css for this page -->
+    <!-- inject:css -->
+    <!-- endinject -->
+    <!-- Layout styles -->
+    <link rel="stylesheet" th:href="@{../assets/css/stylebro.css}">
+    <!-- End layout styles -->
+    <link rel="shortcut icon" th:href="@{../assets/images/favicon.png}"/>
 </head>
 
 <body>
-  <div class="container-scroller">
+<div class="container-scroller">
     <div class="container-fluid">
-      <div th:insert="fragments/navbarOrganizzatore.html"></div>
+        <div th:insert="fragments/navbarOrganizzatore.html"></div>
 
 
-      <div class="main-panel">
-        <div class="content-wrapper">
-          <li class="nav-item dropdown d-lg-block">
-            <div class="col-9">
-              <div class="d-flex align-items-center grid-margin align-self-start">
-                <h3 class="mb-0">Tornei </h3>
-              </div>
-            </div>
-            <div class="row grid-margin">
-              <a class="nav-link btn btn-success" id="creaTorneo" href="/Organizzatore/creaTorneo">+ Crea
-                Torneo</a>
-              <a class="nav-link btn btn-danger" id="EliminaTorneo" href="#">- Elimina
-                Torneo</a>
-              </div>
-              <div class="row">
-              <div class="col-xl-3 col-sm-6 grid-margin stretch-card">
-                <div class="card">
-                  <div class="card-body">
+        <div class="main-panel">
+            <div class="content-wrapper">
+                <li class="nav-item dropdown d-lg-block">
+                    <div class="col-9">
+                        <div class="d-flex align-items-center grid-margin align-self-start">
+                            <h3 class="mb-0">Tornei </h3>
+                        </div>
+                    </div>
+                    <div class="row grid-margin">
+                        <a class="nav-link btn btn-success" id="creaTorneo" href="/Organizzatore/creaTorneo">+ Crea
+                            Torneo</a>
+                        <a class="nav-link btn btn-danger" id="EliminaTorneo" href="#">- Elimina
+                            Torneo</a>
+                    </div>
                     <div class="row">
-                      <div class="col-9">
-                        <div class="d-flex align-items-center align-self-start">
-                          <h3 class="mb-0">Torneo ddd</h3>
-                        </div>
-                      </div>
-                    </div>
-                    <h6 class="text-muted font-weight-normal">Finito: Vincitore:Marco B</h6>
-                    <h6 class="text-muted font-weight-normal">1 Gennaio 2024 13:00</h6>
-                  </div>
-                  <a type="button" class="btn btn-inverse-danger btn-fw">Visualizza</a>
-                </div>
-              </div>
-                <div th:if="${tornei!=null}" th:each="torneo : ${tornei}">
-                  <div class="col-xl-3 col-sm-6 grid-margin stretch-card">
-                    <div class="card">
-                      <div class="card-body">
-                        <div class="row">
-                          <div class="col-9">
-                            <div class="d-flex align-items-center align-self-start">
-                              <h3 class="mb-0" th:text="${torneo.getNome()}"></h3>
+                        <div class="col-xl-3 col-sm-6 grid-margin stretch-card">
+                            <div class="card">
+                                <div class="card-body">
+                                    <div class="row">
+                                        <div class="col-9">
+                                            <div class="d-flex align-items-center align-self-start">
+                                                <h3 class="mb-0">Arceus più forte</h3>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <h6 class="text-muted font-weight-normal">In Attesa: Utenti Iscritti 8/16</h6>
+                                    <h6 class="text-muted font-weight-normal">25 Gennaio 2024 12:00</h6>
+                                </div>
+                                <a type="button" class="btn btn-inverse-warning btn-fw"
+                                   href="/Organizzatore/torneoInCorso">Visualizza</a>
                             </div>
-                          </div>
                         </div>
-                        <h6 class="text-muted font-weight-normal">Finito: Vincitore:Marco B</h6>
-                        <h6 class="text-muted font-weight-normal" th:text="${torneo.getData().toString()}"></h6>
-                      </div>
-                    </div>
-                  </div>
-                </div>
-            </div>
-        </div>
-        <div th:insert="fragments/footer.html :: footer" ></div>
 
-      </div>
-      <!-- main-panel ends -->
+                      <div class="col-xl-3 col-sm-6 grid-margin stretch-card" th:if="${tornei!=null}" th:each="torneo: ${tornei}">
+                        <div class="card">
+                          <div class="card-body">
+                            <div class="row">
+                              <div class="col-9">
+                                <div class="d-flex align-items-center align-self-start">
+                                  <h3 class="mb-0" th:text="${torneo.getNome()}"></h3>
+                                </div>
+                              </div>
+                            </div>
+                            <h6 class="text-muted font-weight-normal">In Attesa: Utenti Iscritti 8/16</h6>
+                            <h6 class="text-muted font-weight-normal" th:text="${torneo.getData()}"></h6>
+                          </div>
+                          <a type="button" class="btn btn-inverse-danger btn-fw"
+                             th:if="${torneo.getStatoTorneo().toString()=='INCORSO'}" th:href="@{'/Organizzatore/torneoInCorso?name='+ ${torneo.getNome()}}">Visualizza</a>
+                            <a th:if="${torneo.getStatoTorneo().toString()=='ATTESAISCRIZIONI'}" type="button" class="btn btn-inverse-warning btn-fw"
+                               th:href="@{'/Organizzatore/torneoInAttesa?name='+ ${torneo.getNome()}}" >Visualizza</a>
+                            <a th:if="${torneo.getStatoTorneo().toString()=='TORNEOCOMPLETATO'}" type="button" class="btn btn-inverse-success btn-fw"
+                               th:href="@{'/Organizzatore/torneoFinitoBro?name='+ ${torneo.getNome()}}" >Visualizza</a>
+                        </div>
+
+                      </div>
+
+
+                    </div>
+            </div>
+            <div th:insert="fragments/footer.html :: footer"></div>
+
+        </div>
+        <!-- main-panel ends -->
     </div>
     <!-- page-body-wrapper ends -->
-  </div>
-  <!-- container-scroller -->
-  <!-- plugins:js -->
-  <script th:src="@{../assets/vendors/js/vendor.bundle.base.js}"></script>
-  <!-- endinject -->
-  <!-- Plugin js for this page -->
-  <script th:src="@{../assets/vendors/chart.js/Chart.min.js}"></script>
-  <script th:src="@{../assets/vendors/progressbar.js/progressbar.min.js}"></script>
-  <script th:src="@{../assets/vendors/jvectormap/jquery-jvectormap.min.js}"></script>
-  <script th:src="@{../assets/vendors/jvectormap/jquery-jvectormap-world-mill-en.js}"></script>
-  <script th:src="@{../assets/vendors/owl-carousel-2/owl.carousel.min.js}"></script>
-  <!-- End plugin js for this page -->
-  <!-- inject:js -->
-  <script th:src="@{../assets/js/hoverable-collapse.js}"></script>
-  <script th:src="@{../assets/js/misc.js}"></script>
-  <script th:src="@{../assets/js/off-canvas.js}"></script>
-  <script th:src="@{../assets/js/settings.js}"></script>
-  <script th:src="@{../assets/js/todolist.js}"></script>
-  <!-- endinject -->
-  <!-- Custom js for this page -->
-  <script th:src="@{../assets/js/dashboard.js}"></script>
-  <!-- End custom js for this page -->
+</div>
+<!-- container-scroller -->
+<!-- plugins:js -->
+<script th:src="@{../assets/vendors/js/vendor.bundle.base.js}"></script>
+<!-- endinject -->
+<!-- Plugin js for this page -->
+<script th:src="@{../assets/vendors/chart.js/Chart.min.js}"></script>
+<script th:src="@{../assets/vendors/progressbar.js/progressbar.min.js}"></script>
+<script th:src="@{../assets/vendors/jvectormap/jquery-jvectormap.min.js}"></script>
+<script th:src="@{../assets/vendors/jvectormap/jquery-jvectormap-world-mill-en.js}"></script>
+<script th:src="@{../assets/vendors/owl-carousel-2/owl.carousel.min.js}"></script>
+<!-- End plugin js for this page -->
+<!-- inject:js -->
+<script th:src="@{../assets/js/hoverable-collapse.js}"></script>
+<script th:src="@{../assets/js/misc.js}"></script>
+<script th:src="@{../assets/js/off-canvas.js}"></script>
+<script th:src="@{../assets/js/settings.js}"></script>
+<script th:src="@{../assets/js/todolist.js}"></script>
+<!-- endinject -->
+<!-- Custom js for this page -->
+<script th:src="@{../assets/js/dashboard.js}"></script>
+<!-- End custom js for this page -->
 </body>
 
 </html>

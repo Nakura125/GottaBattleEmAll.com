@@ -7,6 +7,4 @@ import com.GottaBattleEmAll.GottaBattleEmAll.entity.Torneo;
 public interface PartitaService {
 
     public boolean aggiungereRisultato(String risultato, Partita partita, Torneo torneo, Organizzatore organizzatore);
-
-
 }
