@@ -20,4 +20,6 @@ public interface TorneoRepository extends JpaRepository<Torneo, UUID> {
 
     public List<Torneo> findByOrganizzatore(Organizzatore organizzatore);
 
+    public List<Torneo> findByNomeContainingIgnoreCase(String nome);
+
 }
