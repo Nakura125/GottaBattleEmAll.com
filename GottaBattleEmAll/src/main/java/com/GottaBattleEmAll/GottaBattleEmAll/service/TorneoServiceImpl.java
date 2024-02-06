@@ -192,10 +192,7 @@ public class TorneoServiceImpl implements TorneoService{
         }
 
         Giocatore g = giocatoreRepository.findByUsername(giocatore.getUsername());
-        if (g != null) {
-            Page<Torneo> pageResult = torneoRepository.findByGiocatore(g, PageRequest.of(0, 10));
-            return pageResult.getContent();
-        }
+
     return null;
     }
 
@@ -222,7 +219,7 @@ public class TorneoServiceImpl implements TorneoService{
             return "iscrizioni piene";
         }
 
-        if(g.getTornei() != null && g.getTornei().contains(t)){
+        if(g.getTornei().contains(t)){
             return "iscrizione torneo rifiutata";
         }
 
@@ -230,9 +227,12 @@ public class TorneoServiceImpl implements TorneoService{
                 !t.getGiocatoreList().contains(g)){
             t.getGiocatoreList().add(g);
             g.getTornei().add(t);
+            if (t.getGiocatoreList().size() == t.getCapienza()){
+                t.setStatoTorneo(StatoTorneo.ISCRIZIONICOMPLETATE);
+            }
             torneoRepository.save(t);
             giocatoreRepository.save(g);
-            return "iscrizione effettuata";
+            return "iscrizione effettuata con successo";
         }
         return null;
     }
