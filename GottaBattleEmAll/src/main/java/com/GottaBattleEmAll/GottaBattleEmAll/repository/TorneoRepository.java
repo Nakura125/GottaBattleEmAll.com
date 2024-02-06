@@ -1,12 +1,10 @@
 package com.GottaBattleEmAll.GottaBattleEmAll.repository;
 
-import com.GottaBattleEmAll.GottaBattleEmAll.entity.Giocatore;
 import com.GottaBattleEmAll.GottaBattleEmAll.entity.Organizzatore;
 import com.GottaBattleEmAll.GottaBattleEmAll.entity.Torneo;
-import org.springframework.data.domain.Page;
-import org.springframework.data.domain.PageRequest;
-import org.springframework.data.domain.Pageable;
 import org.springframework.data.jpa.repository.JpaRepository;
+import org.springframework.data.jpa.repository.Query;
+import org.springframework.data.repository.query.Param;
 import org.springframework.stereotype.Repository;
 
 import java.util.List;
@@ -20,6 +18,7 @@ public interface TorneoRepository extends JpaRepository<Torneo, UUID> {
 
     public List<Torneo> findByOrganizzatore(Organizzatore organizzatore);
 
-    public List<Torneo> findByNomeContainingIgnoreCase(String nome);
+    @Query("SELECT p FROM Torneo p WHERE p.nome LIKE %:keyword%")
+    public List<Torneo> findByNomeLike(@Param("keyword") String nome);
 
 }

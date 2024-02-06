@@ -7,8 +7,6 @@ import com.GottaBattleEmAll.GottaBattleEmAll.entity.Torneo;
 import com.GottaBattleEmAll.GottaBattleEmAll.repository.GiocatoreRepository;
 import com.GottaBattleEmAll.GottaBattleEmAll.repository.OrganizzatoreRepository;
 import com.GottaBattleEmAll.GottaBattleEmAll.repository.TorneoRepository;
-import org.springframework.data.domain.Page;
-import org.springframework.data.domain.PageRequest;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -157,7 +155,7 @@ public class TorneoServiceImpl implements TorneoService {
     }
 
     @Override
-    public List<Giocatore> getTorneoIscritti(Torneo torneo){
+    public List<Giocatore> getPartecipanti(Torneo torneo){
         int size=torneo.getGiocatoreList().size();
         return torneo.getGiocatoreList();
     }
@@ -165,9 +163,9 @@ public class TorneoServiceImpl implements TorneoService {
     @Override
     public Torneo findByName(String nome) {
         if (nome == null || nome.isEmpty()) {
-            return torneoRepository.findByNome(nome);
+            return null;
         }
-        return null;
+        return torneoRepository.findByNome(nome);
     }
 
     @Override
@@ -248,7 +246,7 @@ public class TorneoServiceImpl implements TorneoService {
     @Override
     public List<Torneo> cercareTorneo(String nome) {
         if (nome != null && !nome.isEmpty()) {
-            return torneoRepository.findByNomeContainingIgnoreCase(nome);
+            return torneoRepository.findByNomeLike(nome);
         }
         return null;
     }

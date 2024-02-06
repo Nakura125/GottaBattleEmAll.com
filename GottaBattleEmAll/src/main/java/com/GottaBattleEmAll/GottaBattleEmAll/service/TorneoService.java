@@ -19,7 +19,7 @@ public interface TorneoService {
 
     public Giocatore visualizzaProfiloUtente(Torneo torneo,Giocatore giocatore, Organizzatore organizzatore);
 
-    public List<Giocatore> getTorneoIscritti(Torneo torneo);
+    public List<Giocatore> getPartecipanti(Torneo torneo);
 
     public Torneo findByName(String nome);
 
