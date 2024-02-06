@@ -14,14 +14,14 @@ import org.springframework.stereotype.Service;
 import java.util.List;
 
 @Service
-public class TorneoServiceImpl implements TorneoService{
+public class TorneoServiceImpl implements TorneoService {
 
     private final TorneoRepository torneoRepository;
     private final OrganizzatoreRepository organizzatoreRepository;
 
     private final GiocatoreRepository giocatoreRepository;
 
-    public TorneoServiceImpl(TorneoRepository torneoRepository, OrganizzatoreRepository organizzatoreRepository, GiocatoreRepository giocatoreRepository){
+    public TorneoServiceImpl(TorneoRepository torneoRepository, OrganizzatoreRepository organizzatoreRepository, GiocatoreRepository giocatoreRepository) {
         this.torneoRepository = torneoRepository;
         this.organizzatoreRepository = organizzatoreRepository;
         this.giocatoreRepository = giocatoreRepository;
@@ -33,7 +33,7 @@ public class TorneoServiceImpl implements TorneoService{
             return "input nulli";
         }
 
-        if(torneo.getNome().isEmpty() || organizzatore.getUsername().isEmpty()){
+        if (torneo.getNome().isEmpty() || organizzatore.getUsername().isEmpty()) {
             return "input vuoti";
         }
 
@@ -67,10 +67,10 @@ public class TorneoServiceImpl implements TorneoService{
         Torneo t = torneoRepository.findByNome(torneo.getNome());
 
 
-        if(t == null || !organizzatore.equals(t.getOrganizzatore())){
+        if (t == null || !organizzatore.equals(t.getOrganizzatore())) {
             return false;
         }
-        if(t.getStatoTorneo() != StatoTorneo.ATTESAISCRIZIONI){
+        if (t.getStatoTorneo() != StatoTorneo.ATTESAISCRIZIONI) {
             return false;
         }
         if (t.getGiocatoreList() == null || t.getGiocatoreList().size() != t.getCapienza()) {
@@ -94,11 +94,11 @@ public class TorneoServiceImpl implements TorneoService{
 
         Torneo t = torneoRepository.findByNome(torneo.getNome());
 
-        if(t == null || !organizzatore.equals(t.getOrganizzatore())){
+        if (t == null || !organizzatore.equals(t.getOrganizzatore())) {
             return false;
         }
 
-        if(t.getStatoTorneo() != StatoTorneo.INCORSO){
+        if (t.getStatoTorneo() != StatoTorneo.INCORSO) {
             return false;
         }
 
@@ -120,11 +120,11 @@ public class TorneoServiceImpl implements TorneoService{
         Torneo t = torneoRepository.findByNome(torneo.getNome());
         Giocatore g = giocatoreRepository.findByUsername(giocatore.getUsername());
 
-        if(t == null || !organizzatore.equals(t.getOrganizzatore())){
+        if (t == null || !organizzatore.equals(t.getOrganizzatore())) {
             return "torneo non esistente";
         }
 
-        if(t.getStatoTorneo() == StatoTorneo.ATTESAISCRIZIONI && t.getGiocatoreList().contains(giocatore)){
+        if (t.getStatoTorneo() == StatoTorneo.ATTESAISCRIZIONI && t.getGiocatoreList().contains(giocatore)) {
             t.getGiocatoreList().remove(g);
             torneoRepository.save(t);
             return "giocatore rimosso con successo";
@@ -145,12 +145,12 @@ public class TorneoServiceImpl implements TorneoService{
 
         Torneo t = torneoRepository.findByNome(torneo.getNome());
 
-        if(t == null || !organizzatore.equals(t.getOrganizzatore())){
+        if (t == null || !organizzatore.equals(t.getOrganizzatore())) {
             return null;
         }
 
         Giocatore g = giocatoreRepository.findByUsername(giocatore.getUsername());
-        if(g != null && t.getGiocatoreList().contains(g)) {
+        if (g != null && t.getGiocatoreList().contains(g)) {
             return g;
         }
         return null;
@@ -158,7 +158,10 @@ public class TorneoServiceImpl implements TorneoService{
 
     @Override
     public Torneo findByName(String nome) {
-        return torneoRepository.findByNome(nome);
+        if (nome == null || nome.isEmpty()) {
+            return torneoRepository.findByNome(nome);
+        }
+        return null;
     }
 
     @Override
@@ -171,11 +174,11 @@ public class TorneoServiceImpl implements TorneoService{
         }
 
         Organizzatore o = organizzatoreRepository.findByUsername(organizzatore.getUsername());
-        if(o == null){
+        if (o == null) {
             return false;
         }
         Giocatore g = giocatoreRepository.findByUsername(giocatore.getUsername());
-        if(!g.getOrganizzatori().contains(o)){
+        if (!g.getOrganizzatori().contains(o)) {
             g.getOrganizzatori().add(o);
             return true;
         }
@@ -193,7 +196,7 @@ public class TorneoServiceImpl implements TorneoService{
 
         Giocatore g = giocatoreRepository.findByUsername(giocatore.getUsername());
 
-    return null;
+        return null;
     }
 
 
@@ -210,24 +213,23 @@ public class TorneoServiceImpl implements TorneoService{
         Giocatore g = giocatoreRepository.findByUsername(giocatore.getUsername());
 
 
-
-        if(t == null || g == null){
+        if (t == null || g == null) {
             return "torneo o giocatore non esistente";
         }
 
-        if(t.getCapienza() == t.getGiocatoreList().size() ){
+        if (t.getCapienza() == t.getGiocatoreList().size()) {
             return "iscrizioni piene";
         }
 
-        if(g.getTornei().contains(t)){
+        if (g.getTornei().contains(t)) {
             return "iscrizione torneo rifiutata";
         }
 
-        if(t.getStatoTorneo() == StatoTorneo.ATTESAISCRIZIONI && t.getGiocatoreList().size() < t.getCapienza() &&
-                !t.getGiocatoreList().contains(g)){
+        if (t.getStatoTorneo() == StatoTorneo.ATTESAISCRIZIONI && t.getGiocatoreList().size() < t.getCapienza() &&
+                !t.getGiocatoreList().contains(g)) {
             t.getGiocatoreList().add(g);
             g.getTornei().add(t);
-            if (t.getGiocatoreList().size() == t.getCapienza()){
+            if (t.getGiocatoreList().size() == t.getCapienza()) {
                 t.setStatoTorneo(StatoTorneo.ISCRIZIONICOMPLETATE);
             }
             torneoRepository.save(t);
@@ -239,6 +241,9 @@ public class TorneoServiceImpl implements TorneoService{
 
     @Override
     public List<Torneo> cercareTorneo(String nome) {
-        return torneoRepository.findByNomeContainingIgnoreCase(nome);
+        if (nome != null && !nome.isEmpty()) {
+            return torneoRepository.findByNomeContainingIgnoreCase(nome);
+        }
+        return null;
     }
 }
