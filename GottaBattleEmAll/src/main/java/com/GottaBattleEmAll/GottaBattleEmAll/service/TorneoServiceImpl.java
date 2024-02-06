@@ -157,6 +157,12 @@ public class TorneoServiceImpl implements TorneoService{
     }
 
     @Override
+    public List<Giocatore> getTorneoIscritti(Torneo torneo){
+        int size=torneo.getGiocatoreList().size();
+        return torneo.getGiocatoreList();
+    }
+
+    @Override
     public Torneo findByName(String nome) {
         return torneoRepository.findByNome(nome);
     }

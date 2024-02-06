@@ -36,76 +36,33 @@
                 <li class="nav-item dropdown d-lg-block">
                     <div class="col-9">
                         <div class="d-flex align-items-center grid-margin align-self-start">
-                            <h3 class="mb-0">Tornei con all'interno "Paldea"</h3>
+                            <h3 class="mb-0">Tornei con all'interno <span th:text="${nomeTorneo}"></span></h3>
                         </div>
                     </div>
                     <div class="row">
-                        <div class="col-xl-3 col-sm-6 grid-margin stretch-card">
+                        <div th:if="${tornei!=null}" th:each="torneo: ${tornei}" class="col-xl-3 col-sm-6 grid-margin stretch-card">
                             <div class="card">
                                 <div class="card-body">
                                     <div class="row">
                                         <div class="col-9">
                                             <div class="d-flex align-items-center align-self-start">
-                                                <h3 class="mb-0">Paldea Con Furore</h3>
+                                                <h3 class="mb-0" th:text="${torneo.getNome()}"></h3>
                                             </div>
                                         </div>
                                     </div>
-                                    <h6 class="text-muted font-weight-normal">Finito Vincitore:LuisSteel392</h6>
-                                    <h6 class="text-muted font-weight-normal">12 Gennaio 2024 12:00</h6>
+                                    <h6 class="text-muted font-weight-normal" th:text="${torneo.getStatoTorneo().toString()}"></h6>
+                                    <h6 class="text-muted font-weight-normal" th:text="${torneo.getData()}"></h6>
                                 </div>
                                 <a type="button" class="btn btn-inverse-danger btn-fw"
-                                   href="TorneoFinitoBro.html">Visualizza</a>
+                                   th:if="${torneo.getStatoTorneo().toString()=='INCORSO'}" th:href="@{'/Organizzatore/torneoInCorso?name='+ ${torneo.getNome()}}">Visualizza</a>
+                                <a th:if="${torneo.getStatoTorneo().toString()=='ATTESAISCRIZIONI'}" type="button" class="btn btn-inverse-warning btn-fw"
+                                   th:href="@{'/Organizzatore/torneoInAttesa?name='+ ${torneo.getNome()}}" >Visualizza</a>
+                                <a th:if="${torneo.getStatoTorneo().toString()=='TORNEOCOMPLETATO'}" type="button" class="btn btn-inverse-success btn-fw"
+                                   th:href="@{'/Organizzatore/torneoFinitoBro?name='+ ${torneo.getNome()}}" >Visualizza</a>
                             </div>
                         </div>
-                        <div class="col-xl-3 col-sm-6 grid-margin stretch-card">
-                            <div class="card">
-                                <div class="card-body">
-                                    <div class="row">
-                                        <div class="col-9">
-                                            <div class="d-flex align-items-center align-self-start">
-                                                <h3 class="mb-0">La più bella: Paldea</h3>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <h6 class="text-muted font-weight-normal">Utenti Iscritti 8/16</h6>
-                                    <h6 class="text-muted font-weight-normal">25 Gennaio 2024 12:00</h6>
-                                </div>
-                                <a type="button" class="btn btn-inverse-warning btn-fw"
-                                   href="TorneoInCorso.html">Visualizza</a>
-                            </div>
-                        </div>
-                        <div class="col-xl-3 col-sm-6 grid-margin stretch-card">
-                            <div class="card">
-                                <div class="card-body">
-                                    <div class="row">
-                                        <div class="col-9">
-                                            <div class="d-flex align-items-center align-self-start">
-                                                <h3 class="mb-0">Paldeanesi</h3>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <h6 class="text-muted font-weight-normal">Finito Vincitore:Marco B</h6>
-                                    <h6 class="text-muted font-weight-normal">1 Gennaio 2024 13:00</h6>
-                                </div>
-                                <a type="button" class="btn btn-inverse-danger btn-fw">Visualizza</a>
-                            </div>
-                        </div>
-                        <div class="col-xl-3 col-sm-6 grid-margin stretch-card">
-                            <div class="card">
-                                <div class="card-body">
-                                    <div class="row">
-                                        <div class="col-9">
-                                            <div class="d-flex align-items-center align-self-start">
-                                                <h3 class="mb-0">Impaldeabili</h3>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <h6 class="text-muted font-weight-normal">In Corso</h6>
-                                    <h6 class="text-muted font-weight-normal">20 Maggio 2024 12:00</h6>
-                                </div>
-                                <a type="button" class="btn btn-inverse-success btn-fw">Visualizza</a>
-                            </div>
-                        </div>
+
+                        <h1 th:if="${tornei==null || tornei.isEmpty()}" th:text="' non esistono tornei col nome:'+${nomeTorneo}"></h1>
                     </div>
             </div>
             <div th:insert="fragments/footer.html :: footer"></div>

@@ -1,5 +1,6 @@
 package com.GottaBattleEmAll.GottaBattleEmAll.controller;
 
+import com.GottaBattleEmAll.GottaBattleEmAll.entity.Giocatore;
 import com.GottaBattleEmAll.GottaBattleEmAll.entity.Organizzatore;
 import com.GottaBattleEmAll.GottaBattleEmAll.entity.Torneo;
 import com.GottaBattleEmAll.GottaBattleEmAll.service.TorneoService;
@@ -13,6 +14,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
 import java.util.Objects;
+import java.util.List;
 
 @Controller
 public class TorneoController {
@@ -30,17 +32,61 @@ public class TorneoController {
     }
 
     @GetMapping("/Organizzatore/torneoInAttesa")
-    public String torneoInAttesa(@RequestParam(name="name") String nome, Model model) {
+    public String torneoInAttesa(@RequestParam(name="name") String nome, HttpSession session,Model model) {
+        Torneo torneo = torneoService.findByName(nome);
+        System.out.println(torneo);
+
+        if (Objects.isNull(torneo)) {
+            return "redirect:/Organizzatore/creaTorneo";
+        }
+
+        model.addAttribute("torneo", torneo);
+
+        Organizzatore organizzatore = (Organizzatore) session.getAttribute("organizzatore");
+        model.addAttribute("organizzatore", organizzatore);
+
+        List<Giocatore> giocatori = torneoService.getTorneoIscritti(torneo);
+        model.addAttribute("giocatori", giocatori);
         return "torneoInAttesa";
     }
 
     @GetMapping("/Organizzatore/torneoInCorso")
-    public String torneoInCorso(Model model) {
+    public String torneoInCorso(@RequestParam(name="name") String nome ,HttpSession session,Model model) {
+        Torneo torneo = torneoService.findByName(nome);
+        System.out.println(torneo);
+
+        if (Objects.isNull(torneo)) {
+            return "redirect:/Organizzatore/creaTorneo";
+        }
+
+        model.addAttribute("torneo", torneo);
+
+        Organizzatore organizzatore = (Organizzatore) session.getAttribute("organizzatore");
+        model.addAttribute("organizzatore", organizzatore);
+
+        List<Giocatore> giocatori = torneoService.getTorneoIscritti(torneo);
+        model.addAttribute("giocatori", giocatori);
+
         return "torneoInCorso";
     }
 
     @GetMapping("/Organizzatore/torneoConcluso")
-    public String torneoConcluso(Model model) {
+    public String torneoConcluso(@RequestParam(name="name") String nome,HttpSession session,Model model) {
+
+        Torneo torneo = torneoService.findByName(nome);
+        System.out.println(torneo);
+
+        if (Objects.isNull(torneo)) {
+            return "redirect:/Organizzatore/creaTorneo";
+        }
+
+        model.addAttribute("torneo", torneo);
+
+        Organizzatore organizzatore = (Organizzatore) session.getAttribute("organizzatore");
+        model.addAttribute("organizzatore", organizzatore);
+
+        List<Giocatore> giocatori = torneoService.getTorneoIscritti(torneo);
+        model.addAttribute("giocatori", giocatori);
         return "torneoFinitoBro";
     }
 
@@ -70,13 +116,40 @@ public class TorneoController {
     }
 
     @GetMapping("Giocatore/ricercaTornei")
-    public String ricercaTornei(Model model) {
+    public String ricercaTornei(@RequestParam(name="nomeTorneo")String nome ,HttpSession session,Model model)
+    {
+        List<Torneo> tornei=torneoService.cercareTorneo(nome);
+
+        System.out.println("Tornei trovati:");
+        tornei.forEach(System.out::println);
+        System.out.println("Fine tornei trovati");
+
+        model.addAttribute("tornei", tornei);
+
+        Giocatore giocatore = (Giocatore) session.getAttribute("giocatore");
+        model.addAttribute("giocatore", giocatore);
+
+        model.addAttribute("nomeTorneo", nome);
         return "ricercaTornei";
     }
 
 
+    @GetMapping("/Giocatore/iscrizioneTorneo")
+    public String iscrizioneTorneo(@RequestParam(name="name") String nome, HttpSession session, Model model) {
+        Torneo torneo = torneoService.findByName(nome);
+        System.out.println(torneo);
 
+        if (Objects.isNull(torneo)) {
+            return "redirect:/Giocatore/ricercaTornei";
+        }
 
+        model.addAttribute("torneo", torneo);
+
+        Giocatore giocatore = (Giocatore) session.getAttribute("giocatore");
+        model.addAttribute("giocatore", giocatore);
+
+        return "iscrizioneTorneo";
+    }
 
 
 }

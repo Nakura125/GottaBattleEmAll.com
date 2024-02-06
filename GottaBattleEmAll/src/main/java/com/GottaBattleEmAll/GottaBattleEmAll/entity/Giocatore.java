@@ -20,14 +20,14 @@ public class Giocatore extends Utente{
 
 
 
-    @ManyToMany
+    @ManyToMany(cascade = CascadeType.DETACH)
     @JoinTable(
             name = "squadra",
             joinColumns = @JoinColumn(name = "giocatore_id"),
             inverseJoinColumns = @JoinColumn(name = "pokemon_id"))
     private List<Pokemon> pokemons;
 
-    @ManyToMany(mappedBy = "giocatoreList")
+    @ManyToMany(mappedBy = "giocatoreList",cascade = CascadeType.REMOVE)
     private List<Torneo> tornei;
 
     @OneToMany(cascade = CascadeType.DETACH, orphanRemoval = true)

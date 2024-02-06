@@ -118,7 +118,10 @@ public class DatabasePopulator {
         torneo1.setRegole("Regole");
         torneo1.setPremi("Premi");
         torneo1.setStatoTorneo(StatoTorneo.ATTESAISCRIZIONI);
+        torneo1.setOrganizzazione("2 vs 2");
         torneo1.setOrganizzatore(organizzatore);
+
+        torneo1.addGiocatore(giocatore);
 
         torneoRepository.save(torneo1);
     }

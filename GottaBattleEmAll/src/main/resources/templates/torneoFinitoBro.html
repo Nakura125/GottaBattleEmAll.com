@@ -133,11 +133,11 @@
                 <div class="col12 grid-margin stretch-card">
                     <div class="card">
                         <div class="card-body">
-                            <h4 class="card-title">Paldea con furore</h4><label
+                            <h4 class="card-title"th:text="${torneo.getNome()}" ></h4><label
                                 class="badge badge-danger">Finito</label>
                             <ol class="breadcrumb">
-                                <li class="text-muted breadcrumb-item active">Capienza :16</li>
-                                <li class="text-muted breadcrumb-item active">(1 VS 1)</li>
+                                <li class="text-muted breadcrumb-item active" th:text="${torneo.getCapienza()}"></li>
+                                <li class="text-muted breadcrumb-item active" th:text="${torneo.getOrganizzazione()}"></li>
                             </ol>
 
                             <div class="grid-margin">
@@ -181,8 +181,7 @@
                                     <div class="preview-item-content d-sm-flex flex-grow">
                                         <div class="flex-grow">
                                             <h6 class="preview-subject">Regole</h6>
-                                            <p class="text-muted mb-0">Si possono usare solo Pokèmon della regione di
-                                                Paldea</p>
+                                            <p class="text-muted mb-0" th:text="${torneo.getRegole()}"></p>
                                         </div>
                                     </div>
                                 </div>
@@ -195,7 +194,7 @@
                                     <div class="preview-item-content d-sm-flex flex-grow">
                                         <div class="flex-grow">
                                             <h6 class="preview-subject">Premi</h6>
-                                            <p class="text-muted mb-0">1 BTC</p>
+                                            <p class="text-muted mb-0" th:text="${torneo.getPremi()}"></p>
                                         </div>
                                     </div>
                                 </div>
