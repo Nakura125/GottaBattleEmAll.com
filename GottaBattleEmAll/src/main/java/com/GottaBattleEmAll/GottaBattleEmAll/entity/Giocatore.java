@@ -29,4 +29,7 @@ public class Giocatore extends Utente{
 
     @ManyToMany(mappedBy = "giocatoreList")
     private List<Torneo> tornei;
+
+    @OneToMany(cascade = CascadeType.DETACH, orphanRemoval = true)
+    List<Organizzatore> organizzatori;
 }

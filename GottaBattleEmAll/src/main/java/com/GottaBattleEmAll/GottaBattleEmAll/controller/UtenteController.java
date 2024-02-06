@@ -2,7 +2,9 @@ package com.GottaBattleEmAll.GottaBattleEmAll.controller;
 
 import com.GottaBattleEmAll.GottaBattleEmAll.entity.Giocatore;
 import com.GottaBattleEmAll.GottaBattleEmAll.entity.Organizzatore;
+import com.GottaBattleEmAll.GottaBattleEmAll.entity.Torneo;
 import com.GottaBattleEmAll.GottaBattleEmAll.entity.Utente;
+import com.GottaBattleEmAll.GottaBattleEmAll.repository.TorneoRepository;
 import com.GottaBattleEmAll.GottaBattleEmAll.service.UtenteService;
 import jakarta.servlet.http.HttpSession;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -12,15 +14,18 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
+import java.util.List;
 
 @Controller
 public class UtenteController {
 
     public final UtenteService utenteService;
+    public final TorneoRepository torneoRepository;
 
     @Autowired
-    public UtenteController(UtenteService utenteService) {
+    public UtenteController(UtenteService utenteService, TorneoRepository torneoRepository) {
         this.utenteService = utenteService;
+        this.torneoRepository = torneoRepository;
     }
 
 
@@ -50,6 +55,9 @@ public class UtenteController {
 
         Organizzatore organizzatore = (Organizzatore) session.getAttribute("organizzatore");
 
+        List<Torneo> tornei = torneoRepository.findByOrganizzatore(organizzatore);
+
+        model.addAttribute("tornei", tornei);
         model.addAttribute("organizzatore", organizzatore);
 
         return "homeOrganizzatore";

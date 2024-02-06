@@ -137,18 +137,20 @@ public class UtenteServiceImpl implements UtenteService{
         return matcher.matches();
     }
 
-    @Override
-    public void logout(Utente idUtente) {
-
-    }
 
     @Override
     public Giocatore findGiocatoreByUsername(String username) {
-        return giocatoreRepository.findByUsername(username);
+        if (username == null || username.isEmpty()) {
+            return null;
+        }
+            return giocatoreRepository.findByUsername(username);
     }
 
     @Override
     public Organizzatore findOrganizzatoreByUsername(String username) {
+        if (username == null || username.isEmpty()) {
+            return null;
+        }
         return organizzatoreRepository.findByUsername(username);
     }
 

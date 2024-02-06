@@ -56,10 +56,6 @@ public class ModeratoreServiceImpl implements ModeratoreService{
         return moderatoreRepository.findByUsername(username);
     }
 
-    @Override
-    public boolean logout(Moderatore moderatore) {
-        return false;
-    }
 
     @Override
     public boolean bannare(Moderatore moderatore, Utente utente, String ruolo) {
