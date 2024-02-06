@@ -159,9 +159,9 @@ public class TorneoServiceImpl implements TorneoService {
     @Override
     public Torneo findByName(String nome) {
         if (nome == null || nome.isEmpty()) {
-            return torneoRepository.findByNome(nome);
-        }
-        return null;
+            return null;
+    }
+        return torneoRepository.findByNome(nome);
     }
 
     @Override
