@@ -350,13 +350,13 @@ public class TorneoTest {
             tornei.add(t);
         }
 
-        when(torneoRepository.findByNomeContainingIgnoreCase("TorneoUnisa")).thenReturn(tornei);
+        when(torneoRepository.findByNomeLike("TorneoUnisa")).thenReturn(tornei);
 
         List<Torneo> result = torneoService.cercareTorneo("TorneoUnisa");
 
         assertEquals(5, result.size());
 
-        verify(torneoRepository, times(1)).findByNomeContainingIgnoreCase("TorneoUnisa");
+        verify(torneoRepository, times(1)).findByNomeLike("TorneoUnisa");
 
         for (Torneo t : result) {
             assertTrue(t.getNome().toLowerCase().contains("TorneoUnisa".toLowerCase()));

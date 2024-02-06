@@ -22,7 +22,7 @@ public class Organizzatore extends Utente{
     private List<Torneo> tornei;
 
 
-    @OneToOne(mappedBy = "organizzatore",cascade = CascadeType.ALL, orphanRemoval = true)
+    @OneToOne(mappedBy = "organizzatore",cascade = CascadeType.DETACH)
     private Richiesta richiesta;
 
     @PreRemove

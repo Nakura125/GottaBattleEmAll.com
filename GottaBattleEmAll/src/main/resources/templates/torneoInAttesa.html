@@ -134,12 +134,12 @@
                 <div class="col12 grid-margin stretch-card">
                     <div class="card">
                         <div class="card-body">
-                            <h4 class="card-title">Arceus più forte</h4>
+                            <h4 class="card-title" th:text="${torneo.getNome()}"></h4>
                             <label class="badge badge-warning">In Attesa</label>
                             <label class="badge btn-inverse-success">Avvia</label>
                             <ol class="breadcrumb">
-                                <li class="text-muted breadcrumb-item active">Capienza: 16</li>
-                                <li class="text-muted breadcrumb-item active">(1 VS 1)</li>
+                                <li class="text-muted breadcrumb-item active" th:text="${torneo.getCapienza()}"></li>
+                                <li class="text-muted breadcrumb-item active" th:text="(${torneo.getOrganizzazione()})"></li>
                             </ol>
 
                             <div class="grid-margin">
@@ -155,6 +155,23 @@
                             <!--<div>
                               <img src="../../assets/images/Bracket/360_F_221708834_nq4b44iq4mPfZxT3OxF3JY8DhQC5ETor.jpg" style="width: fit-content; height: fit-content;">
                             </div>-->
+                            <div th:if="${giocatori!=null}" th:each="giocatore: ${giocatori}" class="d-flex py-4">
+                                <div class="preview-list w-100">
+                                    <div class="preview-item p-0">
+                                        <div class="preview-thumbnail">
+                                            <img src="../../assets/images/faces/Bro.jpg" class="rounded-circle" alt="">
+                                        </div>
+                                        <div class="preview-item-content d-flex flex-grow">
+                                            <div class="flex-grow">
+                                                <div class="d-flex d-md-block d-xl-flex justify-content-between">
+                                                    <h6 class="preview-subject" th:text="${giocatore.getNome()}"></h6>
+                                                </div>
+                                                <p class="text-muted" th:text="${torneo.getData()}"></p>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
                             <div class="d-flex py-4">
                                 <div class="preview-list w-100">
                                     <div class="preview-item p-0">
@@ -165,9 +182,8 @@
                                             <div class="flex-grow">
                                                 <div class="d-flex d-md-block d-xl-flex justify-content-between">
                                                     <h6 class="preview-subject">Alex BROwn</h6>
-                                                    <p class="text-muted text-small">12:00</p>
                                                 </div>
-                                                <p class="text-muted">20/05/2023</p>
+                                                <p class="text-muted" th:text="${torneo.getData()}"></p>
                                             </div>
                                         </div>
                                     </div>
@@ -183,7 +199,7 @@
                                     <div class="preview-item-content d-sm-flex flex-grow">
                                         <div class="flex-grow">
                                             <h6 class="preview-subject">Regole</h6>
-                                            <p class="text-muted mb-0">Si possono usare solo Arceus</p>
+                                            <p class="text-muted mb-0" th:text="${torneo.getRegole()}"></p>
                                         </div>
                                     </div>
                                 </div>
@@ -196,7 +212,7 @@
                                     <div class="preview-item-content d-sm-flex flex-grow">
                                         <div class="flex-grow">
                                             <h6 class="preview-subject">Premi</h6>
-                                            <p class="text-muted mb-0">1 BTC</p>
+                                            <p class="text-muted mb-0" th:text="${torneo.getPremi()}"></p>
                                         </div>
                                     </div>
                                 </div>

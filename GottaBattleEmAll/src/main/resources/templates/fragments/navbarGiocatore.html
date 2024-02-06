@@ -8,8 +8,9 @@
 
         <ul class="navbar-nav w-100">
             <li class="nav-item w-100">
-                <form class="nav-link mt-2 mt-md-0 d-none d-lg-flex search">
-                    <input type="text" class="form-control" placeholder="Cerca">
+                <form th:action="@{/Giocatore/ricercaTornei}"  class="nav-link mt-2 mt-md-0 d-none d-lg-flex search">
+                    <input th:if="${nomeTorneo==null}" name="nomeTorneo" type="text" class="form-control" placeholder="Cerca">
+                    <input th:if="${nomeTorneo!=null}" th:value="${nomeTorneo}" name="nomeTorneo" type="text" class="form-control" placeholder="Cerca">
                 </form>
             </li>
         </ul>
