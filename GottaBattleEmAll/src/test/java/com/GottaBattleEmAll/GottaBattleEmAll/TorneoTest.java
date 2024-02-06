@@ -16,6 +16,7 @@ import org.mockito.MockitoAnnotations;
 
 import java.time.LocalDate;
 import java.util.ArrayList;
+import java.util.List;
 
 import static org.junit.jupiter.api.Assertions.*;
 import static org.mockito.ArgumentMatchers.anyString;
@@ -247,7 +248,7 @@ public class TorneoTest {
 
     }
 
-    //fix
+
     @Test
     public void testIscrizioneTorneo() {
 
@@ -339,6 +340,28 @@ public class TorneoTest {
         assertTrue(mockGiocatore.getTornei().contains(mockTorneo));
     }
 
+    @Test
+    public void testCercareTorneo () {
+
+        List<Torneo> tornei = new ArrayList<>();
+        for (int i = 0; i < 5; i++) {
+            Torneo t = new Torneo();
+            t.setNome("TorneoUnisaGG");
+            tornei.add(t);
+        }
+
+        when(torneoRepository.findByNomeContainingIgnoreCase("TorneoUnisa")).thenReturn(tornei);
+
+        List<Torneo> result = torneoService.cercareTorneo("TorneoUnisa");
+
+        assertEquals(5, result.size());
+
+        verify(torneoRepository, times(1)).findByNomeContainingIgnoreCase("TorneoUnisa");
+
+        for (Torneo t : result) {
+            assertTrue(t.getNome().toLowerCase().contains("TorneoUnisa".toLowerCase()));
+        }
+    }
 
 
 }

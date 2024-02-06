@@ -30,11 +30,11 @@ public class TorneoServiceImpl implements TorneoService{
     @Override
     public String creaTorneo(Torneo torneo, Organizzatore organizzatore) {
         if (torneo == null || torneo.getNome() == null || organizzatore == null || organizzatore.getUsername() == null) {
-            return "imput nulli";
+            return "input nulli";
         }
 
         if(torneo.getNome().isEmpty() || organizzatore.getUsername().isEmpty()){
-            return "imput vuoti";
+            return "input vuoti";
         }
 
         if (torneoRepository.findByNome(torneo.getNome()) != null) {
@@ -110,11 +110,11 @@ public class TorneoServiceImpl implements TorneoService{
     @Override
     public String toglierePartecipanti(Torneo torneo, Giocatore giocatore, Organizzatore organizzatore) {
         if (torneo == null || torneo.getNome() == null || giocatore == null || giocatore.getUsername() == null || organizzatore == null || organizzatore.getUsername() == null) {
-            return "imput nulli";
+            return "input nulli";
         }
 
         if (torneo.getNome().isEmpty() || giocatore.getUsername().isEmpty() || organizzatore.getUsername().isEmpty()) {
-            return "imput vuoti";
+            return "input vuoti";
         }
 
         Torneo t = torneoRepository.findByNome(torneo.getNome());
@@ -196,14 +196,14 @@ public class TorneoServiceImpl implements TorneoService{
     return null;
     }
 
-    //test
+
     @Override
     public String iscrizioneTorneo(Giocatore giocatore, Torneo torneo) {
         if (giocatore == null || giocatore.getUsername() == null || torneo == null || torneo.getNome() == null) {
-            return "imput nulli";
+            return "input nulli";
         }
         if (giocatore.getUsername().isEmpty() || torneo.getNome().isEmpty()) {
-            return "imput vuoti";
+            return "input vuoti";
         }
 
         Torneo t = torneoRepository.findByNome(torneo.getNome());
@@ -239,6 +239,6 @@ public class TorneoServiceImpl implements TorneoService{
 
     @Override
     public List<Torneo> cercareTorneo(String nome) {
-        return null;
+        return torneoRepository.findByNomeContainingIgnoreCase(nome);
     }
 }
