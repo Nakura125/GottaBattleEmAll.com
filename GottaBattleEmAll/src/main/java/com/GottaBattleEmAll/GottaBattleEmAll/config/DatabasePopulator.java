@@ -1,15 +1,14 @@
 package com.GottaBattleEmAll.GottaBattleEmAll.config;
 
 import com.GottaBattleEmAll.GottaBattleEmAll.entity.*;
-import com.GottaBattleEmAll.GottaBattleEmAll.repository.GiocatoreRepository;
-import com.GottaBattleEmAll.GottaBattleEmAll.repository.ModeratoreRepository;
-import com.GottaBattleEmAll.GottaBattleEmAll.repository.OrganizzatoreRepository;
-import com.GottaBattleEmAll.GottaBattleEmAll.repository.RichiestaRepository;
+import com.GottaBattleEmAll.GottaBattleEmAll.repository.*;
 import jakarta.annotation.PostConstruct;
 import jakarta.annotation.PreDestroy;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 import org.springframework.stereotype.Controller;
+
+import java.time.LocalDate;
 
 @Component
 public class DatabasePopulator {
@@ -22,14 +21,17 @@ public class DatabasePopulator {
 
     private  final RichiestaRepository richiestaRepository;
 
+    private final TorneoRepository torneoRepository;
+
 
 
     @Autowired
-    public DatabasePopulator(ModeratoreRepository moderatoreRepository, GiocatoreRepository giocatoreRepository, OrganizzatoreRepository organizzatoreRepository, RichiestaRepository richiestaRepository) {
+    public DatabasePopulator(ModeratoreRepository moderatoreRepository, GiocatoreRepository giocatoreRepository, OrganizzatoreRepository organizzatoreRepository, RichiestaRepository richiestaRepository,TorneoRepository torneoRepository) {
         this.moderatoreRepository = moderatoreRepository;
         this.giocatoreRepository = giocatoreRepository;
         this.organizzatoreRepository = organizzatoreRepository;
         this.richiestaRepository = richiestaRepository;
+        this.torneoRepository = torneoRepository;
 
     }
 
@@ -109,6 +111,16 @@ public class DatabasePopulator {
         richiestaRepository.save(richiesta3);
 
 
+        Torneo torneo1=new Torneo();
+        torneo1.setNome("Torneo1");
+        torneo1.setCapienza(10);
+        torneo1.setData(LocalDate.now());
+        torneo1.setRegole("Regole");
+        torneo1.setPremi("Premi");
+        torneo1.setStatoTorneo(StatoTorneo.ATTESAISCRIZIONI);
+        torneo1.setOrganizzatore(organizzatore);
+
+        torneoRepository.save(torneo1);
     }
 
 
@@ -117,6 +129,7 @@ public class DatabasePopulator {
         moderatoreRepository.deleteAll();
         giocatoreRepository.deleteAll();
         richiestaRepository.deleteAll();
+        torneoRepository.deleteAll();
         organizzatoreRepository.deleteAll();
     }
 }

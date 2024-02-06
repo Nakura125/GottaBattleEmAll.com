@@ -1,4 +1,4 @@
-../<!DOCTYPE html>
+<!DOCTYPE html>
 <html lang="en">
 
 <head>
@@ -52,23 +52,6 @@
                                     <div class="row">
                                         <div class="col-9">
                                             <div class="d-flex align-items-center align-self-start">
-                                                <h3 class="mb-0">Paldea Con Furore</h3>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <h6 class="text-muted font-weight-normal">Finito: Vincitore:LuisSteel392</h6>
-                                    <h6 class="text-muted font-weight-normal">12 Gennaio 2024 12:00</h6>
-                                </div>
-                                <a type="button" class="btn btn-inverse-danger btn-fw"
-                                   href="/Organizzatore/torneoConcluso">Visualizza</a>
-                            </div>
-                        </div>
-                        <div class="col-xl-3 col-sm-6 grid-margin stretch-card">
-                            <div class="card">
-                                <div class="card-body">
-                                    <div class="row">
-                                        <div class="col-9">
-                                            <div class="d-flex align-items-center align-self-start">
                                                 <h3 class="mb-0">Arceus più forte</h3>
                                             </div>
                                         </div>
@@ -80,38 +63,27 @@
                                    href="/Organizzatore/torneoInCorso">Visualizza</a>
                             </div>
                         </div>
-                        <div class="col-xl-3 col-sm-6 grid-margin stretch-card">
-                            <div class="card">
-                                <div class="card-body">
-                                    <div class="row">
-                                        <div class="col-9">
-                                            <div class="d-flex align-items-center align-self-start">
-                                                <h3 class="mb-0">Torneo ddd</h3>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <h6 class="text-muted font-weight-normal">Finito: Vincitore:Marco B</h6>
-                                    <h6 class="text-muted font-weight-normal">1 Gennaio 2024 13:00</h6>
+
+                      <div class="col-xl-3 col-sm-6 grid-margin stretch-card" th:if="${tornei!=null}" th:each="torneo: ${tornei}">
+                        <div class="card">
+                          <div class="card-body">
+                            <div class="row">
+                              <div class="col-9">
+                                <div class="d-flex align-items-center align-self-start">
+                                  <h3 class="mb-0" th:text="${torneo.getNome()}"></h3>
                                 </div>
-                                <a type="button" class="btn btn-inverse-danger btn-fw">Visualizza</a>
+                              </div>
                             </div>
+                            <h6 class="text-muted font-weight-normal">In Attesa: Utenti Iscritti 8/16</h6>
+                            <h6 class="text-muted font-weight-normal" th:text="${torneo.getData()}"></h6>
+                          </div>
+                          <a type="button" class="btn btn-inverse-warning btn-fw"
+                             href="/Organizzatore/torneoInCorso">Visualizza</a>
                         </div>
-                        <div class="col-xl-3 col-sm-6 grid-margin stretch-card">
-                            <div class="card">
-                                <div class="card-body">
-                                    <div class="row">
-                                        <div class="col-9">
-                                            <div class="d-flex align-items-center align-self-start">
-                                                <h3 class="mb-0">Torneo eee</h3>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <h6 class="text-muted font-weight-normal">In Corso</h6>
-                                    <h6 class="text-muted font-weight-normal">20 Maggio 2024 12:00</h6>
-                                </div>
-                                <a type="button" class="btn btn-inverse-success btn-fw">Visualizza</a>
-                            </div>
-                        </div>
+
+                      </div>
+
+
                     </div>
             </div>
             <div th:insert="fragments/footer.html :: footer"></div>

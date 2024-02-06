@@ -10,6 +10,7 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 
 import java.util.Objects;
 
@@ -29,7 +30,7 @@ public class TorneoController {
     }
 
     @GetMapping("/Organizzatore/torneoInAttesa")
-    public String torneoInAttesa(Model model) {
+    public String torneoInAttesa(@RequestParam(name="name") String nome, Model model) {
         return "torneoInAttesa";
     }
 
