@@ -3,18 +3,21 @@ package com.GottaBattleEmAll.GottaBattleEmAll;
 
 import com.GottaBattleEmAll.GottaBattleEmAll.entity.Giocatore;
 import com.GottaBattleEmAll.GottaBattleEmAll.entity.Organizzatore;
+import com.GottaBattleEmAll.GottaBattleEmAll.entity.Richiesta;
 import com.GottaBattleEmAll.GottaBattleEmAll.entity.Stato;
 import com.GottaBattleEmAll.GottaBattleEmAll.repository.GiocatoreRepository;
 import com.GottaBattleEmAll.GottaBattleEmAll.repository.OrganizzatoreRepository;
 import com.GottaBattleEmAll.GottaBattleEmAll.service.GuestServiceImpl;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
+import org.mockito.ArgumentCaptor;
 import org.mockito.InjectMocks;
 import org.mockito.Mock;
 import org.mockito.MockitoAnnotations;
+import org.springframework.security.crypto.bcrypt.BCrypt;
+import org.springframework.security.crypto.password.PasswordEncoder;
 
-import static org.junit.jupiter.api.Assertions.assertEquals;
-import static org.junit.jupiter.api.Assertions.assertNull;
+import static org.junit.jupiter.api.Assertions.*;
 import static org.mockito.ArgumentMatchers.anyString;
 import static org.mockito.Mockito.*;
 
@@ -23,6 +26,8 @@ public class GuestTest {
     @InjectMocks
     private GuestServiceImpl guestService;
 
+    @Mock
+    private PasswordEncoder passwordEncoder;
     @Mock
     private GiocatoreRepository giocatoreRepository;
     @Mock
@@ -33,6 +38,12 @@ public class GuestTest {
         MockitoAnnotations.initMocks(this);
         when(giocatoreRepository.findByUsername(anyString())).thenReturn(null);
         when(organizzatoreRepository.findByUsername(anyString())).thenReturn(null);
+
+        // Configura il comportamento del mock passwordEncoder
+        when(passwordEncoder.encode(any(CharSequence.class))).thenAnswer(invocation -> {
+            CharSequence rawPassword = invocation.getArgument(0);
+            return BCrypt.hashpw(rawPassword.toString(), BCrypt.gensalt());
+        });
     }
 
     @Test
@@ -49,9 +60,12 @@ public class GuestTest {
 
         String result = guestService.registrazioneGiocatore(inputGiocatore, "password1243");
 
+        ArgumentCaptor<Giocatore> argument = ArgumentCaptor.forClass(Giocatore.class);
+        verify(giocatoreRepository).save(argument.capture());
+        assertTrue(BCrypt.checkpw("password1243", argument.getValue().getPassword()));
+
         assertEquals(Stato.ATTIVO, inputGiocatore.getStato());
 
-        verify(giocatoreRepository, times(1)).save(inputGiocatore);
 
         assertEquals("registrazione avvenuta con successo", result);
     }
@@ -124,6 +138,7 @@ public class GuestTest {
     }
 
 
+    //Ri-Testare tutto registrazione siccome è stata aggiunta richiesta e hashPassword
     @Test
     public void testRegistrazioneOrganizzatore() {
 
@@ -133,6 +148,11 @@ public class GuestTest {
         inputOrganizzatore.setCognome("Bronte");
         inputOrganizzatore.setEmail("Ugo.bronte69@studenti.unica.it");
         inputOrganizzatore.setPassword("password1243");
+
+/*        Richiesta mockRichiesta = new Richiesta();
+        mockRichiesta.setOrganizzatore(inputOrganizzatore);*/
+
+
 
         when(organizzatoreRepository.findByUsername("Ugo_Bronte")).thenReturn(null);
 
