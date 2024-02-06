@@ -62,6 +62,53 @@ public class DatabasePopulator {
 
         organizzatoreRepository.save(organizzatore);
 
+        Organizzatore organizzatore1=new Organizzatore();
+
+        organizzatore1.setUsername("organizzatore1");
+        organizzatore1.setPassword("organizzatore1");
+        organizzatore1.setNome("organizzatore1");
+        organizzatore1.setCognome("organizzatore1");
+        organizzatore1.setEmail("organizzatore1@email.com");
+        organizzatore1.setStato(Stato.INVERIFICA);
+
+        organizzatoreRepository.save(organizzatore1);
+
+        Organizzatore organizzatore2=new Organizzatore();
+
+        organizzatore2.setUsername("organizzatore2");
+        organizzatore2.setPassword("organizzatore2");
+        organizzatore2.setNome("organizzatore2");
+        organizzatore2.setCognome("organizzatore2");
+        organizzatore2.setEmail("organizzatore2@email.com");
+        organizzatore2.setStato(Stato.INVERIFICA);
+
+        organizzatoreRepository.save(organizzatore2);
+
+        Organizzatore organizzatore3=new Organizzatore();
+
+        organizzatore3.setUsername("organizzatore3");
+        organizzatore3.setPassword("organizzatore3");
+        organizzatore3.setNome("organizzatore3");
+        organizzatore3.setCognome("organizzatore3");
+        organizzatore3.setEmail("organizzatore3@email.com");
+        organizzatore3.setStato(Stato.INVERIFICA);
+
+        organizzatoreRepository.save(organizzatore3);
+
+
+        Richiesta richiesta1=new Richiesta();
+        richiesta1.setOrganizzatore(organizzatore1);
+        richiestaRepository.save(richiesta1);
+
+        Richiesta richiesta2=new Richiesta();
+        richiesta2.setOrganizzatore(organizzatore2);
+        richiestaRepository.save(richiesta2);
+
+        Richiesta richiesta3=new Richiesta();
+        richiesta3.setOrganizzatore(organizzatore3);
+        richiestaRepository.save(richiesta3);
+
+
     }
 
 

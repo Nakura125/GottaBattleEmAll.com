@@ -4,7 +4,9 @@ import com.GottaBattleEmAll.GottaBattleEmAll.entity.Giocatore;
 import com.GottaBattleEmAll.GottaBattleEmAll.entity.Pokemon;
 import com.GottaBattleEmAll.GottaBattleEmAll.entity.Stato;
 import com.GottaBattleEmAll.GottaBattleEmAll.repository.GiocatoreRepository;
+import org.springframework.stereotype.Service;
 
+@Service
 public class GiocatoreServiceImpl implements GiocatoreService {
 
     public final GiocatoreRepository giocatoreRepository;
