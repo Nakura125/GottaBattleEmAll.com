@@ -11,8 +11,6 @@ public interface UtenteService {
 
     public String modificaProfilo(Utente utente,String confermaPassword, String ruolo, String username);
 
-    public void logout(Utente idUtente);
-
     public  Giocatore findGiocatoreByUsername(String username);
     public Organizzatore findOrganizzatoreByUsername(String username);
 
