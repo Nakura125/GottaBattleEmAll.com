@@ -39,8 +39,7 @@ public class Torneo {
             inverseJoinColumns = @JoinColumn(name = "giocatore_id"))
     List<Giocatore> giocatoreList;
 
-    @ManyToOne
-    @JoinColumn(name = "organizzatore_id")
+    @ManyToOne(cascade = CascadeType.DETACH)
     Organizzatore organizzatore;
 
     @Enumerated(EnumType.STRING)
