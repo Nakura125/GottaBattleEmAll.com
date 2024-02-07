@@ -47,7 +47,7 @@ public class DatabasePopulator {
         for (int i = 0; i < 20; i++) {
             Giocatore giocatore = new Giocatore();
             giocatore.setUsername("giocatore" + i);
-            giocatore.setPassword("giocatore" + i);
+            giocatore.setPassword(passwordEncoder.encode("giocatore" + i));
             giocatore.setNome("giocatore" + i);
             giocatore.setCognome("giocatore" + i);
             giocatore.setEmail("giocatore" + i + "@email.com");
@@ -136,7 +136,7 @@ public class DatabasePopulator {
         torneo2.setData(LocalDate.now());
         torneo2.setRegole("Regole");
         torneo2.setPremi("Premi");
-        torneo2.setStatoTorneo(StatoTorneo.INCORSO);
+        torneo2.setStatoTorneo(StatoTorneo.ATTESAISCRIZIONI);
         torneo2.setOrganizzazione("2 vs 2");
         torneo2.setOrganizzatore(organizzatore);
 

@@ -70,7 +70,7 @@ public class TorneoServiceImpl implements TorneoService {
         if (t == null || !organizzatore.equals(t.getOrganizzatore())) {
             return false;
         }
-        if (t.getStatoTorneo() != StatoTorneo.ATTESAISCRIZIONI) {
+        if (t.getStatoTorneo() != StatoTorneo.ISCRIZIONICOMPLETATE) {
             return false;
         }
         if (t.getGiocatoreList() == null || t.getGiocatoreList().size() != t.getCapienza()) {
@@ -124,8 +124,9 @@ public class TorneoServiceImpl implements TorneoService {
             return "torneo non esistente";
         }
 
-        if (t.getStatoTorneo() == StatoTorneo.ATTESAISCRIZIONI && t.getGiocatoreList().contains(giocatore)) {
+        if ((t.getStatoTorneo() == StatoTorneo.ATTESAISCRIZIONI || t.getStatoTorneo() == StatoTorneo.ISCRIZIONICOMPLETATE) && t.getGiocatoreList().contains(giocatore)) {
             t.getGiocatoreList().remove(g);
+            t.setStatoTorneo(StatoTorneo.ATTESAISCRIZIONI);
             torneoRepository.save(t);
             return "giocatore rimosso con successo";
         }
