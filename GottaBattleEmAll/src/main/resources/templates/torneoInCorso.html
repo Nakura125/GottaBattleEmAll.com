@@ -4,23 +4,23 @@
 <head>
     <style>
         .g_gracket {
-          width: 2000px;
+          width: 100%;
           padding: 55px 15px 5px;
           line-height: 100%;
           position: relative;
           overflow: hidden;
         }
-    
+
         .g_round {
           float: left;
           margin-right: 70px;
         }
-    
+
         .g_game {
           position: relative;
           margin-bottom: 15px;
         }
-    
+
         .g_gracket h3 {
           margin: 30;
           padding: 2px;
@@ -29,33 +29,33 @@
           font-weight: normal;
           color: #fff
         }
-    
+
         .g_team {
-          background: #0011ff;
-          width: 300px;
+          background: #00008B;
+          width: 100%;
         }
-    
+
         .g_team:last-child {
-          background: #09ff00;
+          background: #006400;
         }
-    
+
         .g_round:last-child {
           margin-right: 20px;
         }
-    
+
         .g_winner {
-          background: red;
+          background: #8B0000;
         }
-    
+
         .g_winner .g_team {
           background: none;
         }
-    
+
         .g_current {
           cursor: pointer;
           background: #A0B43C !important;
         }
-    
+
         .g_round_label {
           top: 5px;
           font-weight: normal;
@@ -63,7 +63,19 @@
           text-align: center;
           font-size: 30px;
         }
+
+        @media (max-width: 600px) {
+          .g_round {
+            float: none;
+            margin-right: 0;
+          }
+
+          .g_team, .g_winner .g_team {
+            width: 100%;
+          }
+        }
     </style>
+
 
     <script src="https://code.jquery.com/jquery-3.3.1.min.js"
             integrity="sha384-tsQFqpEReu7ZLhBV2VZlAu7zcOV+rXbYlF2cqB8txI/8aZajjp4Bqd+V6D5IgvKT"
@@ -74,20 +86,10 @@
                 [{ "name": "LuisSteel392", "id": "luis-steel-392", "seed": 1 }, { "name": "Franco2", "id": "franco-2", "seed": 2 }],
                 [{ "name": "Franco3", "id": "franco-3", "seed": 3 }, { "name": "Franco4", "id": "franco-4", "seed": 4 }],
                 [{ "name": "Franco5", "id": "franco-5", "seed": 5 }, { "name": "Franco6", "id": "franco-6", "seed": 6 }],
-                [{ "name": "Franco7", "id": "franco-7", "seed": 7 }, { "name": "Franco8", "id": "franco-8", "seed": 8 }],
-                [{ "name": "Franco9", "id": "franco-9", "seed": 9 }, { "name": "Franco10", "id": "franco-10", "seed": 10 }],
-                [{ "name": "Franco11", "id": "franco.11", "seed": 1 }, { "name": "Franco11", "id": "franco-12", "seed": 12 }],
-                [{ "name": "Franco13", "id": "franco-13", "seed": 13 }, { "name": "Franco14", "id": "franco-14", "seed": 14 }],
                 [{ "name": "Franco15", "id": "franco-15", "seed": 15 }, { "name": "Franco16", "id": "franco-16", "seed": 16 }]
             ],
             [
                 [{ "name": "LuisSteel392", "id": "luis-steel-392", "seed": 1 }, { "name": "Franco3", "id": "franco-3", "seed": 3 }],
-                [{ "name": "Franco5", "id": "franco-5", "seed": 5 }, { "name": "Franco8", "id": "franco-8", "seed": 8 }],
-                [{ "name": "", "id": "" }, { "name": "", "id": "" }],
-                [{ "name": "", "id": "" }, { "name": "", "id": "" }]
-            ],
-            [
-                [{ "name": "", "id": "" }, { "name": "", "id": "" }],
                 [{ "name": "", "id": "" }, { "name": "", "id": "" }]
             ],
             [
@@ -100,6 +102,8 @@
     </script>
     <script th:src="@{../assets/js/Single-Elimation-Tournament-Bracket-Generator-Gracket/jquery.gracket.js}"></script>
 
+    //Chiedi ad angelo per il vettore
+    
 
     <!-- Required meta tags -->
     <meta charset="utf-8">
