@@ -17,7 +17,7 @@ import org.junit.runner.RunWith;
 import org.mockito.InjectMocks;
 import org.mockito.Mock;
 import org.mockito.MockitoAnnotations;
-import org.mockito.junit.MockitoJUnitRunner;
+import org.springframework.security.crypto.password.PasswordEncoder;import org.mockito.junit.MockitoJUnitRunner;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.boot.test.mock.mockito.MockBean;
 import org.springframework.test.context.ActiveProfiles;
@@ -33,6 +33,9 @@ public class ModeratoreTest {
 
     @InjectMocks
     private ModeratoreServiceImpl moderatoreService;
+
+    @Mock
+    private PasswordEncoder passwordEncoder;
     @Mock
     private ModeratoreRepository moderatoreRepository;
 
@@ -56,6 +59,7 @@ public class ModeratoreTest {
         mockModeratore.setPassword("testPassword");
 
         when(moderatoreRepository.findByUsername("testUser")).thenReturn(mockModeratore);
+        when(passwordEncoder.matches("testPassword", mockModeratore.getPassword())).thenReturn(true);
 
         Moderatore inputModeratore = new Moderatore();
         inputModeratore.setUsername("testUser");
@@ -86,6 +90,7 @@ public class ModeratoreTest {
         mockModeratore.setPassword("testPassword");
 
         when(moderatoreRepository.findByUsername("testUser")).thenReturn(mockModeratore);
+        when(passwordEncoder.matches("testPassword", mockModeratore.getPassword())).thenReturn(true);
 
         Moderatore inputModeratore = new Moderatore();
         inputModeratore.setUsername("testUser");
