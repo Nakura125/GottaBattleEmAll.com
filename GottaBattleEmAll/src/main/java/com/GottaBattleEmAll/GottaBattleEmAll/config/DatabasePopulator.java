@@ -145,7 +145,7 @@ public class DatabasePopulator {
 
         Torneo torneo3=new Torneo();
         torneo3.setNome("Torneo3");
-        torneo3.setCapienza(4);
+        torneo3.setCapienza(8);
         torneo3.setData(LocalDate.now());
         torneo3.setRegole("Regole");
         torneo3.setPremi("Premi");
@@ -153,7 +153,7 @@ public class DatabasePopulator {
         torneo3.setOrganizzazione("2 vs 2");
         torneo3.setOrganizzatore(organizzatore);
 
-        for (int i = 0; i < 4; i++) {
+        for (int i = 0; i < 8; i++) {
             torneo3.addGiocatore(giocatoreRepository.findByUsername("giocatore" + i));
         }
 
