@@ -5,6 +5,7 @@ import com.GottaBattleEmAll.GottaBattleEmAll.entity.Organizzatore;
 import com.GottaBattleEmAll.GottaBattleEmAll.entity.StatoTorneo;
 import com.GottaBattleEmAll.GottaBattleEmAll.entity.Torneo;
 import com.GottaBattleEmAll.GottaBattleEmAll.service.TorneoService;
+import com.GottaBattleEmAll.GottaBattleEmAll.service.UtenteService;
 import jakarta.servlet.http.HttpSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -22,10 +23,12 @@ import java.util.List;
 public class TorneoController {
 
     public final TorneoService torneoService;
+    public final UtenteService userService;
 
     @Autowired
-    public TorneoController(TorneoService torneoService) {
+    public TorneoController(TorneoService torneoService, UtenteService userService) {
         this.torneoService = torneoService;
+        this.userService = userService;
     }
 
 
@@ -220,6 +223,107 @@ public class TorneoController {
         }
         model.addAttribute("error", "torneo non iniziabile");
         return "torneoInAttesa";
+    }
+
+    @GetMapping("/Organizzatore/AvviaTorneo")
+    public String iscriviti(@RequestParam(name="name") String nome, HttpSession session, Model model) {
+        Torneo torneo = torneoService.findByName(nome);
+        System.out.println(torneo);
+
+        if (Objects.isNull(torneo)) {
+            return "redirect:/Organizzatore/creaTorneo";
+        }
+
+        Organizzatore organizzatore = (Organizzatore) session.getAttribute("organizzatore");
+        organizzatore= userService.findOrganizzatoreByUsername(organizzatore.getUsername());
+
+        boolean iniziare=torneoService.iniziareTorneo(torneo, organizzatore);
+
+        if(iniziare)
+            return "redirect:/Organizzatore/torneoInCorso?name="+nome;
+
+        model.addAttribute("torneo", torneo);
+        model.addAttribute("organizzatore", organizzatore);
+        model.addAttribute("giocatori", torneoService.getPartecipanti(torneo));
+        model.addAttribute("error", "torneo non iniziabile giocatori insufficienti");
+        return "torneoInAttesa";
+    }
+
+    @GetMapping("/Organizzatore/terminaTorneo")
+    public String termina(@RequestParam(name="name") String nome, HttpSession session, Model model) {
+        Torneo torneo = torneoService.findByName(nome);
+        System.out.println(torneo);
+
+        if (Objects.isNull(torneo)) {
+            return "redirect:/Organizzatore/creaTorneo";
+        }
+
+        Organizzatore organizzatore = (Organizzatore) session.getAttribute("organizzatore");
+        organizzatore= userService.findOrganizzatoreByUsername(organizzatore.getUsername());
+
+        boolean terminare=torneoService.terminareTorneo(torneo, organizzatore);
+
+        if(terminare)
+            return "redirect:/Organizzatore/torneoConcluso?name="+nome;
+
+        model.addAttribute("torneo", torneo);
+        model.addAttribute("organizzatore", organizzatore);
+        model.addAttribute("giocatori", torneoService.getPartecipanti(torneo));
+        model.addAttribute("error", "torneo non concludibile");
+        return "torneoInCorso";
+    }
+
+
+    @GetMapping("/Organizzatore/rimuoviPartecipante")
+    public String rimuoviPartecipante(@RequestParam(name="name") String nome,@RequestParam(name="giocatore")String username, HttpSession session, Model model) {
+        Torneo torneo = torneoService.findByName(nome);
+        System.out.println(torneo);
+
+        if (Objects.isNull(torneo)) {
+            return "redirect:/Organizzatore/creaTorneo";
+        }
+
+        Organizzatore organizzatore = (Organizzatore) session.getAttribute("organizzatore");
+        organizzatore= userService.findOrganizzatoreByUsername(organizzatore.getUsername());
+
+        Giocatore giocatore = userService.findGiocatoreByUsername(username);
+
+        String rimozione=torneoService.toglierePartecipanti(torneo, giocatore,organizzatore);
+
+        if(rimozione.equals("giocatore rimosso con successo"))
+            return "redirect:/Organizzatore/torneoInAttesa?name="+nome;
+
+        model.addAttribute("torneo", torneo);
+        model.addAttribute("organizzatore", organizzatore);
+        model.addAttribute("giocatori", torneoService.getPartecipanti(torneo));
+        model.addAttribute("error", rimozione);
+        return "torneoInAttesa";
+    }
+
+
+    @GetMapping("/Organizzatore/visualizzaProfiloGiocatore")
+    public String visualizzaProfiloGiocatore(@RequestParam(name="name") String nome,@RequestParam(name="giocatore")String username, HttpSession session, Model model) {
+        Torneo torneo = torneoService.findByName(nome);
+        System.out.println(torneo);
+
+        if (Objects.isNull(torneo)) {
+            return "redirect:/Organizzatore/creaTorneo";
+        }
+
+        Organizzatore organizzatore = (Organizzatore) session.getAttribute("organizzatore");
+        organizzatore= userService.findOrganizzatoreByUsername(organizzatore.getUsername());
+
+        Giocatore giocatore = userService.findGiocatoreByUsername(username);
+
+        Giocatore g=torneoService.visualizzaProfiloUtente(torneo, giocatore,organizzatore);
+
+        if(g==null)
+            return "redirect:/Organizzatore/homeOrganizzatore";
+
+        model.addAttribute("torneo", torneo);
+        model.addAttribute("organizzatore", organizzatore);
+        model.addAttribute("giocatore", g);
+        return "profiloUtente";
     }
 
 

@@ -140,7 +140,7 @@
                         <div class="card-body">
                             <h4 class="card-title" th:text="${torneo.getNome()}"></h4>
                             <label class="badge badge-success">In Corso</label>
-                            <label class="badge btn-inverse-danger">Termina</label>
+                            <a th:href="@{'/Organizzatore/terminaTorneo?name='+${torneo.getNome()}}" class="badge btn-inverse-danger">Termina</a>
                             <ol class="breadcrumb">
                                 <li class="text-muted breadcrumb-item active" th:text="${torneo.getCapienza()}"></li>
                                 <li class="text-muted breadcrumb-item active" th:text="${torneo.getOrganizzazione()}"></li>

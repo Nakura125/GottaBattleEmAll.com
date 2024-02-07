@@ -130,13 +130,13 @@
 
         <div class="main-panel">
             <div class="content-wrapper">
-
+                <div th:if="${error!=null}" th:text="${error}"> </div>
                 <div class="col12 grid-margin stretch-card">
                     <div class="card">
                         <div class="card-body">
                             <h4 class="card-title" th:text="${torneo.getNome()}"></h4>
                             <label class="badge badge-warning">In Attesa</label>
-                            <label class="badge btn-inverse-success">Avvia</label>
+                            <a th:href="@{'/Organizzatore/AvviaTorneo?name='+${torneo.getNome()}}" class="badge btn-inverse-success">Avvia</a>
                             <ol class="breadcrumb">
                                 <li class="text-muted breadcrumb-item active" th:text="${torneo.getCapienza()}"></li>
                                 <li class="text-muted breadcrumb-item active" th:text="(${torneo.getOrganizzazione()})"></li>
@@ -164,9 +164,10 @@
                                         <div class="preview-item-content d-flex flex-grow">
                                             <div class="flex-grow">
                                                 <div class="d-flex d-md-block d-xl-flex justify-content-between">
-                                                    <h6 class="preview-subject" th:text="${giocatore.getNome()}"></h6>
+                                                    <h6 class="preview-subject" > <a th:href="@{'/Organizzatore/visualizzaProfiloGiocatore?name='+${torneo.getNome()}+'&giocatore='+${giocatore.getUsername()}}" th:text="${giocatore.getUsername()}"></a></h6>
                                                 </div>
                                                 <p class="text-muted" th:text="${torneo.getData()}"></p>
+                                                <a th:href="@{'/Organizzatore/rimuoviPartecipante?name='+${torneo.getNome()}+'&giocatore='+${giocatore.getUsername()}}" class="text-muted" >remove</a>
                                             </div>
                                         </div>
                                     </div>

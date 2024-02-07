@@ -79,7 +79,7 @@
                           </div>
                           <a type="button" class="btn btn-inverse-danger btn-fw"
                              th:if="${torneo.getStatoTorneo().toString()=='INCORSO'}" th:href="@{'/Organizzatore/torneoInCorso?name='+ ${torneo.getNome()}}">Visualizza</a>
-                            <a th:if="${torneo.getStatoTorneo().toString()=='ATTESAISCRIZIONI'}" type="button" class="btn btn-inverse-warning btn-fw"
+                            <a th:if="${torneo.getStatoTorneo().toString()=='ATTESAISCRIZIONI' || torneo.getStatoTorneo().toString()=='ISCRIZIONICOMPLETATE'}" type="button" class="btn btn-inverse-warning btn-fw"
                                th:href="@{'/Organizzatore/torneoInAttesa?name='+ ${torneo.getNome()}}" >Visualizza</a>
                             <a th:if="${torneo.getStatoTorneo().toString()=='TORNEOCOMPLETATO'}" type="button" class="btn btn-inverse-success btn-fw"
                                th:href="@{'/Organizzatore/torneoFinitoBro?name='+ ${torneo.getNome()}}" >Visualizza</a>

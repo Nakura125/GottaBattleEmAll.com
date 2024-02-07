@@ -61,7 +61,7 @@ public class DatabasePopulator {
         Organizzatore organizzatore=new Organizzatore();
 
         organizzatore.setUsername("organizzatore");
-        organizzatore.setPassword("organizzatore");
+        organizzatore.setPassword(passwordEncoder.encode("organizzatore"));
         organizzatore.setNome("organizzatore");
         organizzatore.setCognome("organizzatore");
         organizzatore.setEmail("organizzatore@email.com");
@@ -72,7 +72,7 @@ public class DatabasePopulator {
         Organizzatore organizzatore1=new Organizzatore();
 
         organizzatore1.setUsername("organizzatore1");
-        organizzatore1.setPassword("organizzatore1");
+        organizzatore1.setPassword(passwordEncoder.encode("organizzatore1"));
         organizzatore1.setNome("organizzatore1");
         organizzatore1.setCognome("organizzatore1");
         organizzatore1.setEmail("organizzatore1@email.com");
@@ -83,7 +83,7 @@ public class DatabasePopulator {
         Organizzatore organizzatore2=new Organizzatore();
 
         organizzatore2.setUsername("organizzatore2");
-        organizzatore2.setPassword("organizzatore2");
+        organizzatore2.setPassword(passwordEncoder.encode("organizzatore2"));
         organizzatore2.setNome("organizzatore2");
         organizzatore2.setCognome("organizzatore2");
         organizzatore2.setEmail("organizzatore2@email.com");
@@ -94,7 +94,7 @@ public class DatabasePopulator {
         Organizzatore organizzatore3=new Organizzatore();
 
         organizzatore3.setUsername("organizzatore3");
-        organizzatore3.setPassword("organizzatore3");
+        organizzatore3.setPassword(passwordEncoder.encode("organizzatore3"));
         organizzatore3.setNome("organizzatore3");
         organizzatore3.setCognome("organizzatore3");
         organizzatore3.setEmail("organizzatore3@email.com");
@@ -142,6 +142,24 @@ public class DatabasePopulator {
 
 
         torneoRepository.save(torneo2);
+
+        Torneo torneo3=new Torneo();
+        torneo3.setNome("Torneo3");
+        torneo3.setCapienza(4);
+        torneo3.setData(LocalDate.now());
+        torneo3.setRegole("Regole");
+        torneo3.setPremi("Premi");
+        torneo3.setStatoTorneo(StatoTorneo.ISCRIZIONICOMPLETATE);
+        torneo3.setOrganizzazione("2 vs 2");
+        torneo3.setOrganizzatore(organizzatore);
+
+        for (int i = 0; i < 4; i++) {
+            torneo3.addGiocatore(giocatoreRepository.findByUsername("giocatore" + i));
+        }
+
+        torneoRepository.save(torneo3);
+
+
     }
 
 
