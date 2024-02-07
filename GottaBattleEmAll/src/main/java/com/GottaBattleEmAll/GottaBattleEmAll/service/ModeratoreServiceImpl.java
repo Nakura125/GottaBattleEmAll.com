@@ -6,6 +6,7 @@ import com.GottaBattleEmAll.GottaBattleEmAll.repository.ModeratoreRepository;
 import com.GottaBattleEmAll.GottaBattleEmAll.repository.OrganizzatoreRepository;
 import com.GottaBattleEmAll.GottaBattleEmAll.repository.RichiestaRepository;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -13,6 +14,7 @@ import java.util.List;
 @Service
 public class ModeratoreServiceImpl implements ModeratoreService{
 
+    public final PasswordEncoder passwordEncoder;
     public final ModeratoreRepository moderatoreRepository;
     public final GiocatoreRepository giocatoreRepository;
     public final OrganizzatoreRepository organizzatoreRepository;
@@ -20,7 +22,8 @@ public class ModeratoreServiceImpl implements ModeratoreService{
     public final RichiestaRepository richiestaRepository;
 
     @Autowired
-    public ModeratoreServiceImpl(ModeratoreRepository moderatoreRepository, GiocatoreRepository giocatoreRepository, OrganizzatoreRepository organizzatoreRepository, RichiestaRepository richiestaRepository){
+    public ModeratoreServiceImpl(PasswordEncoder passwordEncoder, ModeratoreRepository moderatoreRepository, GiocatoreRepository giocatoreRepository, OrganizzatoreRepository organizzatoreRepository, RichiestaRepository richiestaRepository){
+        this.passwordEncoder = passwordEncoder;
         this.moderatoreRepository = moderatoreRepository;
         this.giocatoreRepository = giocatoreRepository;
         this.organizzatoreRepository = organizzatoreRepository;
@@ -40,7 +43,7 @@ public class ModeratoreServiceImpl implements ModeratoreService{
             return "Username o password non corretti";
         }
 
-        if(mod.getPassword().equals(moderatore.getPassword())){
+        if(passwordEncoder.matches(moderatore.getPassword(),mod.getPassword())){
             return "Login effettuato";
         }
         else{

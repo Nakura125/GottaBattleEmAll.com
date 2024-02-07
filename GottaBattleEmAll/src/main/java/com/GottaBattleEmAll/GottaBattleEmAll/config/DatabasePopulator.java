@@ -5,6 +5,7 @@ import com.GottaBattleEmAll.GottaBattleEmAll.repository.*;
 import jakarta.annotation.PostConstruct;
 import jakarta.annotation.PreDestroy;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Component;
 import org.springframework.stereotype.Controller;
 
@@ -23,34 +24,38 @@ public class DatabasePopulator {
 
     private final TorneoRepository torneoRepository;
 
+    private final PasswordEncoder passwordEncoder;
+
 
 
     @Autowired
-    public DatabasePopulator(ModeratoreRepository moderatoreRepository, GiocatoreRepository giocatoreRepository, OrganizzatoreRepository organizzatoreRepository, RichiestaRepository richiestaRepository,TorneoRepository torneoRepository) {
+    public DatabasePopulator(ModeratoreRepository moderatoreRepository, GiocatoreRepository giocatoreRepository, OrganizzatoreRepository organizzatoreRepository, RichiestaRepository richiestaRepository, TorneoRepository torneoRepository, PasswordEncoder passwordEncoder) {
         this.moderatoreRepository = moderatoreRepository;
         this.giocatoreRepository = giocatoreRepository;
         this.organizzatoreRepository = organizzatoreRepository;
         this.richiestaRepository = richiestaRepository;
         this.torneoRepository = torneoRepository;
-
+        this.passwordEncoder = passwordEncoder;
     }
 
     @PostConstruct
     public void populate() {
         // Popolamento del database con un moderatore di default
-        moderatoreRepository.save(new Moderatore("admin", "admin"));
+        moderatoreRepository.save(new Moderatore("admin", passwordEncoder.encode("admin")));
 
         //Popolamento del database con un giocatore di default
-        Giocatore giocatore=new Giocatore();
-        giocatore.setUsername("giocatore");
-        giocatore.setPassword("giocatore");
-        giocatore.setNome("giocatore");
-        giocatore.setCognome("giocatore");
-        giocatore.setEmail("giocatore@email.com");
-        giocatore.setStato(Stato.ATTIVO);
+        for (int i = 0; i < 20; i++) {
+            Giocatore giocatore = new Giocatore();
+            giocatore.setUsername("giocatore" + i);
+            giocatore.setPassword("giocatore" + i);
+            giocatore.setNome("giocatore" + i);
+            giocatore.setCognome("giocatore" + i);
+            giocatore.setEmail("giocatore" + i + "@email.com");
+            giocatore.setStato(Stato.ATTIVO);
+            giocatoreRepository.save(giocatore);
+        }
 
 
-        giocatoreRepository.save(giocatore);
 
         //Popolamento del database con un organizzatore di default
         Organizzatore organizzatore=new Organizzatore();
@@ -121,7 +126,7 @@ public class DatabasePopulator {
         torneo1.setOrganizzazione("2 vs 2");
         torneo1.setOrganizzatore(organizzatore);
 
-        torneo1.addGiocatore(giocatore);
+        torneo1.addGiocatore(giocatoreRepository.findByUsername("giocatore1"));
 
         torneoRepository.save(torneo1);
 
