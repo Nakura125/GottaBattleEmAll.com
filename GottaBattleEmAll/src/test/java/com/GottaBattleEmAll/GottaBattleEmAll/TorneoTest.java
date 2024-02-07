@@ -117,7 +117,7 @@ public class TorneoTest {
         mockTorneo.setCapienza(16);
         mockTorneo.setGiocatoreList(new ArrayList<>());
         mockTorneo.setOrganizzatore(mockOrganizzatore);
-        mockTorneo.setStatoTorneo(StatoTorneo.ATTESAISCRIZIONI);
+        mockTorneo.setStatoTorneo(StatoTorneo.ISCRIZIONICOMPLETATE);
 
         for (int i = 0; i < 16; i++) {
             mockTorneo.getGiocatoreList().add(new Giocatore());
@@ -290,7 +290,7 @@ public class TorneoTest {
         mockTorneo.setNome("TorneoSinnoh");
         mockTorneo.setCapienza(2);
         mockTorneo.setGiocatoreList(new ArrayList<>());
-        mockTorneo.setStatoTorneo(StatoTorneo.ATTESAISCRIZIONI);
+        mockTorneo.setStatoTorneo(StatoTorneo.ISCRIZIONICOMPLETATE);
 
         for (int i = 0; i < 2; i++) {
             mockTorneo.getGiocatoreList().add(new Giocatore());
