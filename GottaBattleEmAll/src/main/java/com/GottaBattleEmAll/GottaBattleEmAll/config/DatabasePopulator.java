@@ -132,11 +132,11 @@ public class DatabasePopulator {
 
         Torneo torneo2=new Torneo();
         torneo2.setNome("Torneo2");
-        torneo2.setCapienza(10);
+        torneo2.setCapienza(4);
         torneo2.setData(LocalDate.now());
         torneo2.setRegole("Regole");
         torneo2.setPremi("Premi");
-        torneo2.setStatoTorneo(StatoTorneo.ATTESAISCRIZIONI);
+        torneo2.setStatoTorneo(StatoTorneo.INCORSO);
         torneo2.setOrganizzazione("2 vs 2");
         torneo2.setOrganizzatore(organizzatore);
 
