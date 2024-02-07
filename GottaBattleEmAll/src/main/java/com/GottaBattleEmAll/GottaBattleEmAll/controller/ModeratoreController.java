@@ -3,6 +3,7 @@ package com.GottaBattleEmAll.GottaBattleEmAll.controller;
 import com.GottaBattleEmAll.GottaBattleEmAll.entity.*;
 import com.GottaBattleEmAll.GottaBattleEmAll.repository.RichiestaRepository;
 import com.GottaBattleEmAll.GottaBattleEmAll.service.ModeratoreService;
+import com.GottaBattleEmAll.GottaBattleEmAll.service.TorneoService;
 import com.GottaBattleEmAll.GottaBattleEmAll.service.UtenteService;
 import jakarta.servlet.http.HttpSession;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -22,10 +23,13 @@ public class ModeratoreController {
 
     public final UtenteService utenteService;
 
+    public final TorneoService torneoService;
+
     @Autowired
-    public ModeratoreController(ModeratoreService moderatoreService, UtenteService utenteService){
+    public ModeratoreController(ModeratoreService moderatoreService, UtenteService utenteService, TorneoService torneoService){
         this.moderatoreService = moderatoreService;
         this.utenteService = utenteService;
+        this.torneoService = torneoService;
     }
 
     @GetMapping("/Moderatore/")
@@ -159,8 +163,20 @@ public class ModeratoreController {
 
         Moderatore moderatore=(Moderatore) session.getAttribute("moderatore");
         List<Richiesta> richieste = moderatoreService.notifiche();
+        int countUtentiIscritti = utenteService.countUtentiTotali();
+        int countGiocatori = utenteService.countGiocatoriTotali();
+        int countOrganizzatori = utenteService.countOrganizzatoriTotali();
+        int countTornei = torneoService.countTorneiTotali();
+
+
         model.addAttribute("richieste", richieste);
         model.addAttribute("moderatore", moderatore);
+        model.addAttribute("countUtentiIscritti", countUtentiIscritti);
+        model.addAttribute("countGiocatori", countGiocatori);
+        model.addAttribute("countOrganizzatori", countOrganizzatori);
+        model.addAttribute("countTornei", countTornei);
+
+
         return "admin";
     }
 

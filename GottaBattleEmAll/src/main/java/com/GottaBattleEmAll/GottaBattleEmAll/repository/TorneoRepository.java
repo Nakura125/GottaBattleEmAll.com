@@ -23,4 +23,7 @@ public interface TorneoRepository extends JpaRepository<Torneo, UUID> {
     @Query("SELECT p FROM Torneo p WHERE p.nome LIKE %:keyword%")
     public List<Torneo> findByNomeLike(@Param("keyword") String nome);
 
+    @Query("SELECT COUNT(t) FROM Torneo t")
+    public int countTorneiTotali();
+
 }

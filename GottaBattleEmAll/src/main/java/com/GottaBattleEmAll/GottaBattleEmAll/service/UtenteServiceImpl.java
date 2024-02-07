@@ -173,5 +173,20 @@ public class UtenteServiceImpl implements UtenteService{
         return giocatoreRepository.findAll(PageRequest.of(number, size)).getContent();
     }
 
+    @Override
+    public int countGiocatoriTotali() {
+        return giocatoreRepository.countGiocatoriTotali();
+    }
+
+    @Override
+    public int countOrganizzatoriTotali() {
+        return organizzatoreRepository.countOrganizzatoriTotali();
+    }
+
+    @Override
+    public int countUtentiTotali() {
+        return giocatoreRepository.countGiocatoriTotali() + organizzatoreRepository.countOrganizzatoriTotali();
+    }
+
 
 }

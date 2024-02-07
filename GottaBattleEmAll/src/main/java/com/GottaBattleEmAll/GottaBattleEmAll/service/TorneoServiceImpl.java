@@ -253,4 +253,9 @@ public class TorneoServiceImpl implements TorneoService {
         }
         return null;
     }
+
+    @Override
+    public int countTorneiTotali() {
+        return torneoRepository.countTorneiTotali();
+    }
 }

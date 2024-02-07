@@ -19,4 +19,10 @@ public interface UtenteService {
 
     public List<Giocatore> findGiocatoriPaged(int number, int size);
 
+    public int countGiocatoriTotali();
+
+    public int countOrganizzatoriTotali();
+
+    public int countUtentiTotali();
+
 }

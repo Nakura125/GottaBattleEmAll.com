@@ -30,4 +30,6 @@ public interface TorneoService {
     public String iscrizioneTorneo(Giocatore giocatore, Torneo torneo);
 
     public List<Torneo> cercareTorneo(String nome);
+
+    public int countTorneiTotali();
 }

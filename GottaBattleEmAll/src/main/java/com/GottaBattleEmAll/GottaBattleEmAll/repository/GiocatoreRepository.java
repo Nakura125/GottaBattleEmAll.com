@@ -21,4 +21,6 @@ public interface GiocatoreRepository extends JpaRepository<Giocatore, UUID>{
 
     public Page<Giocatore> findAll(Pageable pageable);
 
+    @Query("SELECT COUNT(g) FROM Giocatore g")
+    public int countGiocatoriTotali();
 }

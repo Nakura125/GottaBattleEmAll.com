@@ -27,7 +27,4 @@ public class GiocatoreServiceImpl implements GiocatoreService {
 
         return "Pokemon sostituito con successo";
     }
-
-
-
 }
