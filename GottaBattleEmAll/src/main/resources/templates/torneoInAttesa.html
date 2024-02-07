@@ -167,7 +167,7 @@
                                                     <h6 class="preview-subject" > <a th:href="@{'/Organizzatore/visualizzaProfiloGiocatore?name='+${torneo.getNome()}+'&giocatore='+${giocatore.getUsername()}}" th:text="${giocatore.getUsername()}"></a></h6>
                                                 </div>
                                                 <p class="text-muted" th:text="${torneo.getData()}"></p>
-                                                <a th:href="@{'/Organizzatore/rimuoviPartecipante?name='+${torneo.getNome()}+'&giocatore='+${giocatore.getUsername()}}" class="text-muted" >remove</a>
+                                                <i class="mdi mdi-bitbucket text-danger"></i><a th:href="@{'/Organizzatore/rimuoviPartecipante?name='+${torneo.getNome()}+'&giocatore='+${giocatore.getUsername()}}" class="text-danger">Remove</a>
                                             </div>
                                         </div>
                                     </div>
