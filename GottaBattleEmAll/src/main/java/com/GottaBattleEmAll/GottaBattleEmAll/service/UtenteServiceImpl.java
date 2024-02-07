@@ -8,6 +8,7 @@ import com.GottaBattleEmAll.GottaBattleEmAll.repository.GiocatoreRepository;
 import com.GottaBattleEmAll.GottaBattleEmAll.repository.OrganizzatoreRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.PageRequest;
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -16,11 +17,15 @@ import java.util.regex.Pattern;
 
 @Service
 public class UtenteServiceImpl implements UtenteService{
+
+    public final PasswordEncoder passwordEncoder;
+
     public final GiocatoreRepository giocatoreRepository;
     public final OrganizzatoreRepository organizzatoreRepository;
 
     @Autowired
-    public UtenteServiceImpl(GiocatoreRepository giocatoreRepository, OrganizzatoreRepository organizzatoreRepository) {
+    public UtenteServiceImpl(PasswordEncoder passwordEncoder, GiocatoreRepository giocatoreRepository, OrganizzatoreRepository organizzatoreRepository) {
+        this.passwordEncoder = passwordEncoder;
         this.giocatoreRepository = giocatoreRepository;
         this.organizzatoreRepository = organizzatoreRepository;
     }
@@ -42,7 +47,7 @@ public class UtenteServiceImpl implements UtenteService{
                 return "account bannato";
             }
             if (g.getStato() == Stato.ATTIVO) {
-                if (g.getPassword().equals(utente.getPassword())) {
+                if (passwordEncoder.matches(utente.getPassword(), g.getPassword())) {
                     return "login effettuato";
                 }
             }
@@ -60,7 +65,7 @@ public class UtenteServiceImpl implements UtenteService{
                 return "account bannato";
             }
             if (o.getStato() == Stato.ATTIVO) {
-                if (o.getPassword().equals(utente.getPassword())) {
+                if (passwordEncoder.matches(utente.getPassword(), o.getPassword())) {
                     return "login effettuato";
                 }
             }
@@ -102,7 +107,7 @@ public class UtenteServiceImpl implements UtenteService{
             g.setNome(utente.getNome());
             g.setCognome(utente.getCognome());
             g.setEmail(utente.getEmail());
-            g.setPassword(utente.getPassword());
+            g.setPassword(passwordEncoder.encode(utente.getPassword()));
             giocatoreRepository.save(g);
             return "modifica effettuata";
         }
@@ -120,7 +125,7 @@ public class UtenteServiceImpl implements UtenteService{
             o.setNome(utente.getNome());
             o.setCognome(utente.getCognome());
             o.setEmail(utente.getEmail());
-            o.setPassword(utente.getPassword());
+            o.setPassword(passwordEncoder.encode(utente.getPassword()));
             organizzatoreRepository.save(o);
             return "modifica effettuata";
         }

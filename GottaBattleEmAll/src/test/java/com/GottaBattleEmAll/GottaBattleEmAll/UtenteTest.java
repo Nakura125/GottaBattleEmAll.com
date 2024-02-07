@@ -9,11 +9,15 @@ import com.GottaBattleEmAll.GottaBattleEmAll.repository.OrganizzatoreRepository;
 import com.GottaBattleEmAll.GottaBattleEmAll.service.UtenteServiceImpl;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
+import org.mockito.ArgumentCaptor;
 import org.mockito.InjectMocks;
 import org.mockito.Mock;
 import org.mockito.MockitoAnnotations;
+import org.springframework.security.crypto.bcrypt.BCrypt;
+import org.springframework.security.crypto.password.PasswordEncoder;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertTrue;
 import static org.mockito.ArgumentMatchers.anyString;
 import static org.mockito.Mockito.*;
 
@@ -26,6 +30,10 @@ public class UtenteTest {
     private GiocatoreRepository giocatoreRepository;
     @Mock
     private OrganizzatoreRepository organizzatoreRepository;
+
+    @Mock
+    private PasswordEncoder passwordEncoder;
+
 
     @BeforeEach
     public void setUp() {
@@ -48,8 +56,10 @@ public class UtenteTest {
         mockOrganizzatore.setStato(Stato.ATTIVO);
 
         when(organizzatoreRepository.findByUsername("Ugo_Ferrari")).thenReturn(mockOrganizzatore);
+        when(passwordEncoder.matches("password1243", mockOrganizzatore.getPassword())).thenReturn(true);
 
         String result = utenteService.login(inputUtente, ruolo);
+
 
         assertEquals("login effettuato", result);
     }

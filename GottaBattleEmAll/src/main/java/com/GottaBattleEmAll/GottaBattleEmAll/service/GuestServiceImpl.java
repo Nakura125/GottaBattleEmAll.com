@@ -9,6 +9,7 @@ import com.GottaBattleEmAll.GottaBattleEmAll.repository.OrganizzatoreRepository;
 import com.GottaBattleEmAll.GottaBattleEmAll.repository.RichiestaRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.security.crypto.password.PasswordEncoder;
 
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
@@ -17,13 +18,16 @@ import java.util.regex.Pattern;
 public class GuestServiceImpl implements GuestService{
 
 
+    public final PasswordEncoder passwordEncoder;
+
     public final GiocatoreRepository giocatoreRepository;
     public final OrganizzatoreRepository organizzatoreRepository;
 
     public  final RichiestaRepository richiestaRepository;
 
     @Autowired
-    public GuestServiceImpl(GiocatoreRepository giocatoreRepository, OrganizzatoreRepository organizzatoreRepository, RichiestaRepository richiestaRepository){
+    public GuestServiceImpl(PasswordEncoder passwordEncoder, GiocatoreRepository giocatoreRepository, OrganizzatoreRepository organizzatoreRepository, RichiestaRepository richiestaRepository){
+        this.passwordEncoder = passwordEncoder;
         this.giocatoreRepository = giocatoreRepository;
         this.organizzatoreRepository = organizzatoreRepository;
         this.richiestaRepository= richiestaRepository;
@@ -44,6 +48,7 @@ public class GuestServiceImpl implements GuestService{
         if(giocatoreRepository.findByUsername(giocatore.getUsername()) !=null) return "username già esistente";
 
         giocatore.setStato(Stato.ATTIVO);
+        giocatore.setPassword(passwordEncoder.encode(giocatore.getPassword())); // Hash della password
         giocatoreRepository.save(giocatore);
         return "registrazione avvenuta con successo";
     }
@@ -76,6 +81,7 @@ public class GuestServiceImpl implements GuestService{
             return "username già esistente";
         }
         organizzatore.setStato(Stato.INVERIFICA);
+        organizzatore.setPassword(passwordEncoder.encode(organizzatore.getPassword())); // Hash della password
         organizzatoreRepository.save(organizzatore);
 
         //invia la richiesta di registrazione

@@ -363,6 +363,20 @@ public class TorneoTest {
         }
     }
 
+    @Test
+    public void testFindByName(){
+        Torneo t = new Torneo();
+        t.setNome("TorneoUnisa");
+
+        when(torneoRepository.findByNome("TorneoUnisa")).thenReturn(t);
+
+        Torneo result = torneoService.findByName("TorneoUnisa");
+
+        assertEquals(t, result);
+
+        verify(torneoRepository, times(1)).findByNome("TorneoUnisa");
+    }
+
 
 }
 
