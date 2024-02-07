@@ -2,11 +2,17 @@
 <html lang="en">
 
 <head>
-
     <script>
         document.addEventListener('DOMContentLoaded', function () {
           var checkboxes = document.querySelectorAll('.form-check-input-ruolo');
           var ruoloField = document.getElementById("ruolo");
+
+          var urlParams = new URLSearchParams(window.location.search);
+  var ruoloParam = urlParams.get('ruolo');
+  if (ruoloParam) {
+    document.querySelector('.form-check-input-ruolo[value="' + ruoloParam + '"]').checked = true;
+    ruoloField.value = ruoloParam;
+  }
 
           checkboxes.forEach(function (checkbox) {
             checkbox.addEventListener('change', function () {
@@ -24,7 +30,6 @@
           });
         });
     </script>
-
     <!-- Required meta tags -->
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
