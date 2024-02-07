@@ -74,7 +74,7 @@
                                 </div>
                               </div>
                             </div>
-                            <h6 class="text-muted font-weight-normal">In Attesa: Utenti Iscritti 8/16</h6>
+                            <h6 class="text-muted font-weight-normal" th:text="${torneo.getStatoTorneo()}+':'+ ' Capienza:' +${torneo.getCapienza()}">In Attesa: Utenti Iscritti 8/16</h6>
                             <h6 class="text-muted font-weight-normal" th:text="${torneo.getData()}"></h6>
                           </div>
                           <a type="button" class="btn btn-inverse-danger btn-fw"

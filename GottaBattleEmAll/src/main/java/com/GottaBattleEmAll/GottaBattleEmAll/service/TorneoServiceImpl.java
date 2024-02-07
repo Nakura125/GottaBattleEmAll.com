@@ -7,6 +7,8 @@ import com.GottaBattleEmAll.GottaBattleEmAll.entity.Torneo;
 import com.GottaBattleEmAll.GottaBattleEmAll.repository.GiocatoreRepository;
 import com.GottaBattleEmAll.GottaBattleEmAll.repository.OrganizzatoreRepository;
 import com.GottaBattleEmAll.GottaBattleEmAll.repository.TorneoRepository;
+import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -198,9 +200,10 @@ public class TorneoServiceImpl implements TorneoService {
             return null;
         }
 
-        Giocatore g = giocatoreRepository.findByUsername(giocatore.getUsername());
 
-        return null;
+        Pageable pageable = PageRequest.of(0, 10);
+
+        return giocatoreRepository.getTorneiPartecipanti(giocatore.getUsername(),pageable).getContent();
     }
 
 

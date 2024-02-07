@@ -197,5 +197,30 @@ public class TorneoController {
         return "listaTornei";
     }
 
+    @GetMapping("/Organizzatore/iniziaTorneo")
+    public String iniziaTorneo(@RequestParam(name="name") String nome, HttpSession session, Model model) {
+        Torneo torneo = torneoService.findByName(nome);
+        System.out.println(torneo);
+
+        if (Objects.isNull(torneo)) {
+            return "redirect:/Organizzatore/creaTorneo";
+        }
+
+        model.addAttribute("torneo", torneo);
+
+        Organizzatore organizzatore = (Organizzatore) session.getAttribute("organizzatore");
+        model.addAttribute("organizzatore", organizzatore);
+
+        List<Giocatore> giocatori = torneoService.getPartecipanti(torneo);
+        model.addAttribute("giocatori", giocatori);
+
+        boolean result=torneoService.iniziareTorneo(torneo, organizzatore);
+        if (result) {
+            return "redirect:/Organizzatore/torneoInCorso?name="+nome;
+        }
+        model.addAttribute("error", "torneo non iniziabile");
+        return "torneoInAttesa";
+    }
+
 
 }
