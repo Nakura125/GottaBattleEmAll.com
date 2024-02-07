@@ -1,6 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>//1
+<head>
     <!-- Required meta tags -->
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
@@ -97,15 +97,12 @@
                             <div class="dropdown-divider"></div>
                             <div style="display: flex; justify-content: center;">
                                 <div class="btn-group" role="group" aria-label="Basic example">
-                                    <button type="button" class="btn btn-outline-secondary">
+                                    <a th:href="@{'/Moderatore/listaUtenti?page1='+${pageBack1}+'&page2=0'}" type="button" class="btn btn-outline-secondary">
                                         <i class="mdi mdi-arrow-left text-secondary"></i>
-                                    </button>
-                                    <button type="button" class="btn btn-outline-secondary"> 1 </button>
-                                    <button type="button" class="btn btn-outline-secondary"> 2 </button>
-                                    <button type="button" class="btn btn-outline-secondary"> 3 </button>
-                                    <button type="button" class="btn btn-outline-secondary">
+                                    </a>
+                                    <a th:href="@{'/Moderatore/listaUtenti?page1='+${pageForward1}+'&page2=0'}" type="button" class="btn btn-outline-secondary">
                                         <i class="mdi mdi-arrow-right text-secondary"></i>
-                                    </button>
+                                    </a>
                                 </div>
                             </div>
                         </div>

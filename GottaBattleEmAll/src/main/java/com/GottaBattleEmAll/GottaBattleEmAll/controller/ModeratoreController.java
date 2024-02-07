@@ -7,6 +7,7 @@ import com.GottaBattleEmAll.GottaBattleEmAll.service.TorneoService;
 import com.GottaBattleEmAll.GottaBattleEmAll.service.UtenteService;
 import jakarta.servlet.http.HttpSession;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.repository.query.Param;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -200,15 +201,32 @@ public class ModeratoreController {
     }
 
     @GetMapping("/Moderatore/listaUtenti")
-    public String listaUtenti(Model model,HttpSession session) {
+    public String listaUtenti(@RequestParam(defaultValue = "0",name="page1")String page1, @RequestParam(defaultValue = "0",name="page2")String page2, Model model, HttpSession session) {
         Moderatore moderatore=(Moderatore) session.getAttribute("moderatore");
         model.addAttribute("moderatore", moderatore);
+        int giocatorpage=0;
+        int organizzatorpage=0;
 
-        List<Giocatore> giocatori=utenteService.findGiocatoriPaged(0,5);
-        List<Organizzatore> organizzatori=utenteService.findOrganizzatoriPaged(0,5);
+        if(page1!=null) {
+            giocatorpage=Integer.parseInt(page1);
+        }
+
+        if(page2!=null) {
+            organizzatorpage=Integer.parseInt(page2);
+        }
+
+        model.addAttribute("pageBack1", giocatorpage-1==-1 ? giocatorpage : giocatorpage-1);
+        model.addAttribute("pageForward1", giocatorpage+1);
+        model.addAttribute("pageBack2", organizzatorpage-1 ==-1 ? organizzatorpage : organizzatorpage-1);
+        model.addAttribute("pageForward2", organizzatorpage+1);
+
+
+        List<Giocatore> giocatori=utenteService.findGiocatoriPaged(giocatorpage,5);
+        List<Organizzatore> organizzatori=utenteService.findOrganizzatoriPaged(organizzatorpage,5);
 
         model.addAttribute("giocatori", giocatori);
         model.addAttribute("organizzatori", organizzatori);
+
 
         return "listaUtenti";
     }
