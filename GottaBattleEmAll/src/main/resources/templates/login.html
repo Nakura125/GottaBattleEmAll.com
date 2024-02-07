@@ -2,21 +2,40 @@
 <html lang="en">
 <head>
     <script>
-        document.addEventListener('DOMContentLoaded', function() {
-      var checkboxes = document.querySelectorAll('.form-check-input-ruolo');
+        document.addEventListener('DOMContentLoaded',
+        function() {
+          var checkboxes = document.querySelectorAll('.form-check-input-ruolo');
 
-      checkboxes.forEach(function(checkbox) {
-          checkbox.addEventListener('change', function() {
+          checkboxes.forEach(function(checkbox) {
+            checkbox.addEventListener('change',
+            function() {
               checkboxes.forEach(function(otherCheckbox) {
-                  if (otherCheckbox !== checkbox) {
-                      otherCheckbox.checked = false;
-                  }
+                if (otherCheckbox !== checkbox) {
+                  otherCheckbox.checked = false;
+                }
               });
+            });
           });
-      });
-  });
-    </script>
+          var form = document.getElementById('login');
+          var warningMessage = document.getElementById('warning-message');
+          form.addEventListener('submit',
+          function(event) {
+            var checkedCount = 0;
+            checkboxes.forEach(function(checkbox) {
+              if (checkbox.checked) {
+                checkedCount++;
+              }
+            });
 
+            if (checkedCount !== 1) {
+              event.preventDefault();
+              warningMessage.style.display = 'block';
+            } else {
+              warningMessage.style.display = 'none';
+            }
+          });
+        });
+    </script>
 
     <!-- Required meta tags -->
     <meta charset="utf-8">
@@ -43,13 +62,16 @@
                 <div class="card col-lg-4 mx-auto">
                     <div class="card-body px-5 py-5">
                         <h3 class="card-title text-left mb-3">Login</h3>
-                        <form method="post" th:action="@{/login}" th:object="${utente}">
+                        <form id="login" method="post" th:action="@{/login}" th:object="${utente}">
                             <div th:if="${error!=null}" class="alert alert-danger" role="alert">
                                 <p th:text="${error}"></p></div>
                             <div th:if="${message!=null}" class="alert alert-success" role="alert">
                                 <p th:text="${message}"></p>
                             </div>
                             <div>
+                                <div id="warning-message" style="display: none; color: red;">
+                                    Si prega di selezionare esattamente una delle due opzioni.
+                                </div>
                                 <div class="form-group  align-items-center justify-content-between">
                                     <div class="form-check">
                                         <label class="form-check-label">
@@ -67,8 +89,6 @@
                                     </div>
                                 </div>
                             </div>
-
-
                             <div class="form-group">
                                 <label>Username *</label>
                                 <input th:field="*{username}" type="text" class="form-control p_input">
@@ -77,8 +97,6 @@
                                 <label>Password *</label>
                                 <input th:field="*{password}" type="password" class="form-control p_input">
                             </div>
-
-
                             <div class="text-center">
                                 <button type="submit" class="btn btn-primary btn-block enter-btn">Login</button>
                             </div>
