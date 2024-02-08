@@ -133,8 +133,8 @@
                 <div class="col12 grid-margin stretch-card">
                     <div class="card">
                         <div class="card-body">
-                            <h4 class="card-title"th:text="${torneo.getNome()}" ></h4><label
-                                class="badge badge-danger">Finito</label>
+                            <h4 class="card-title"th:text="${torneo.getNome()}" ></h4>
+                            <label class="badge badge-danger" th:text="${torneo.getStatoTorneo()}"></label>
                             <ol class="breadcrumb">
                                 <li class="text-muted breadcrumb-item active" th:text="${torneo.getCapienza()}"></li>
                                 <li class="text-muted breadcrumb-item active" th:text="${torneo.getOrganizzazione()}"></li>
