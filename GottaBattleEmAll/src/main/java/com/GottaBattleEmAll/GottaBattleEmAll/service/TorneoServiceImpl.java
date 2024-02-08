@@ -82,7 +82,7 @@ public class TorneoServiceImpl implements TorneoService {
         t.setStatoTorneo(StatoTorneo.INCORSO);
 
         for (int i = 0; i < t.getGiocatoreList().size(); i += 2) {
-            partitaService.creaPartita(t.getGiocatoreList().get(i), t.getGiocatoreList().get(i + 1));
+            partitaService.creaPartita(t.getGiocatoreList().get(i), t.getGiocatoreList().get(i + 1),t);
         }
 
         torneoRepository.save(t);

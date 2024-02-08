@@ -26,5 +26,5 @@ public class Partita {
             inverseJoinColumns = @JoinColumn(name = "giocatore_id"))
     List<Giocatore> giocatoreList=new ArrayList<>();
 
-    Long idVincitore;
+    Integer idVincitore;
 }

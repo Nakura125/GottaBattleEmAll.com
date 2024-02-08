@@ -168,11 +168,11 @@ public class DatabasePopulator {
 
     @PreDestroy
     public  void destroy(){
-        partitaRepository.deleteAll();
         moderatoreRepository.deleteAll();
         giocatoreRepository.deleteAll();
         richiestaRepository.deleteAll();
         torneoRepository.deleteAll();
+        partitaRepository.deleteAll();
         organizzatoreRepository.deleteAll();
     }
 }

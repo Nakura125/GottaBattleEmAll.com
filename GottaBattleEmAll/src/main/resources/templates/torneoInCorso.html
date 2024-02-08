@@ -148,23 +148,8 @@
 
                             <div class="grid-margin">
                                 <div class="my_gracket g_gracket">
-                                    <h5  class="g_round_label" style="position: absolute; left: 713.718px;">
-                                        Round 4
-                                    </h5>
-                                    <h5 class="g_round_label" style="position: absolute; left: 480.812px;">
-                                        Round 3
-                                    </h5>
-                                    <h5 class="g_round_label" style="position: absolute; left: 247.906px;">
-                                        Round 2
-                                    </h5>
-                                    <h5 class="g_round_label" style="position: absolute; left: 15px;">
-                                        Round 1
-                                    </h5>
-                                    <canvas id="g_canvas_1707343780828" class="g_canvas" height="448" style="position: absolute; left: 0px; top: 0px; right: auto; height: 448px; width: 1788px; z-index: 1; pointer-events: none;"
-                                            width="1788">
-                                    </canvas>
-                                    <div class="g_round">
-                                        <div class="g_game">
+                                    <div th:each="partite: ${partiteround}" class="g_round">
+                                        <div th:each="partita: ${partite}" class="g_game">
                                             <div class="g_team luis-steel-392">
                                                 <div class="col-xl-auto" style="padding: 0%;">
                                                     <div class="table-responsive">
@@ -173,18 +158,18 @@
                                                             <tr>
                                                                 <th>
                                                                     <h3>
-                        <span class="g_seed">
-                          1
-                        </span>
-                                                                        &nbsp;&nbsp;
+                                                                        <span class="g_seed">
+                                                                            1
+                                                                        </span>
+                                                                        <p th:if="${partita.getGiocatoreList().size()!=0}" th:text="${partita.getGiocatoreList().get(0).getUsername()}"></p>
                                                                         <small>
                                                                         </small>
                                                                     </h3>
                                                                 </th>
                                                                 <th>
-                                                                    <button class="btn btn-primary btn-sm">
+                                                                    <a th:href="@{'/Organizzatore/aggiungereRisultato?partita_id='+${partita.getId()}+'&nomeTorneo='+${torneo.getNome()}+'&risultato='+${0}}" class="btn btn-primary btn-sm">
                                                                         Res
-                                                                    </button>
+                                                                    </a>
                                                                 </th>
                                                             </tr>
                                                             </tbody>
@@ -200,360 +185,18 @@
                                                             <tr>
                                                                 <th>
                                                                     <h3>
-                        <span class="g_seed">
-                          2
-                        </span>
-                                                                        &nbsp;Franco2&nbsp;
+                                                                        <span class="g_seed">
+                                                                            2
+                                                                        </span>
+                                                                        <p th:if="${partita.getGiocatoreList().size()!=0}" th:text="${partita.getGiocatoreList().get(1).getUsername()}"></p>
                                                                         <small>
                                                                         </small>
                                                                     </h3>
                                                                 </th>
                                                                 <th>
-                                                                    <button class="btn btn-primary btn-sm">
+                                                                    <a th:href="@{'/Organizzatore/aggiungereRisultato?partita_id='+${partita.getId()}+'&nomeTorneo='+${torneo.getNome()}+'&risultato='+${1}}" class="btn btn-primary btn-sm">
                                                                         Res
-                                                                    </button>
-                                                                </th>
-                                                            </tr>
-                                                            </tbody>
-                                                        </table>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        </div>
-                                        <div class="g_game">
-                                            <div class="g_team franco-3">
-                                                <div class="col-xl-auto" style="padding: 0%;">
-                                                    <div class="table-responsive">
-                                                        <table class="table">
-                                                            <tbody>
-                                                            <tr>
-                                                                <th>
-                                                                    <h3>
-                        <span class="g_seed">
-                          3
-                        </span>
-                                                                        &nbsp;Franco3&nbsp;
-                                                                        <small>
-                                                                        </small>
-                                                                    </h3>
-                                                                </th>
-                                                                <th>
-                                                                    <button class="btn btn-primary btn-sm">
-                                                                        Res
-                                                                    </button>
-                                                                </th>
-                                                            </tr>
-                                                            </tbody>
-                                                        </table>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                            <div class="g_team franco-4">
-                                                <div class="col-xl-auto" style="padding: 0%;">
-                                                    <div class="table-responsive">
-                                                        <table class="table">
-                                                            <tbody>
-                                                            <tr>
-                                                                <th>
-                                                                    <h3>
-                        <span class="g_seed">
-                          4
-                        </span>
-                                                                        &nbsp;Franco4&nbsp;
-                                                                        <small>
-                                                                        </small>
-                                                                    </h3>
-                                                                </th>
-                                                                <th>
-                                                                    <button class="btn btn-primary btn-sm">
-                                                                        Res
-                                                                    </button>
-                                                                </th>
-                                                            </tr>
-                                                            </tbody>
-                                                        </table>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        </div>
-                                        <div class="g_game">
-                                            <div class="g_team franco-5">
-                                                <div class="col-xl-auto" style="padding: 0%;">
-                                                    <div class="table-responsive">
-                                                        <table class="table">
-                                                            <tbody>
-                                                            <tr>
-                                                                <th>
-                                                                    <h3>
-                        <span class="g_seed">
-                          5
-                        </span>
-                                                                        &nbsp;Franco5&nbsp;
-                                                                        <small>
-                                                                        </small>
-                                                                    </h3>
-                                                                </th>
-                                                                <th>
-                                                                    <button class="btn btn-primary btn-sm">
-                                                                        Res
-                                                                    </button>
-                                                                </th>
-                                                            </tr>
-                                                            </tbody>
-                                                        </table>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                            <div class="g_team franco-6">
-                                                <div class="col-xl-auto" style="padding: 0%;">
-                                                    <div class="table-responsive">
-                                                        <table class="table">
-                                                            <tbody>
-                                                            <tr>
-                                                                <th>
-                                                                    <h3>
-                        <span class="g_seed">
-                          6
-                        </span>
-                                                                        &nbsp;Franco6&nbsp;
-                                                                        <small>
-                                                                        </small>
-                                                                    </h3>
-                                                                </th>
-                                                                <th>
-                                                                    <button class="btn btn-primary btn-sm">
-                                                                        Res
-                                                                    </button>
-                                                                </th>
-                                                            </tr>
-                                                            </tbody>
-                                                        </table>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        </div>
-                                        <div class="g_game">
-                                            <div class="g_team franco-15">
-                                                <div class="col-xl-auto" style="padding: 0%;">
-                                                    <div class="table-responsive">
-                                                        <table class="table">
-                                                            <tbody>
-                                                            <tr>
-                                                                <th>
-                                                                    <h3>
-                        <span class="g_seed">
-                          15
-                        </span>
-                                                                        &nbsp;Franco15&nbsp;
-                                                                        <small>
-                                                                        </small>
-                                                                    </h3>
-                                                                </th>
-                                                                <th>
-                                                                    <button class="btn btn-primary btn-sm">
-                                                                        Res
-                                                                    </button>
-                                                                </th>
-                                                            </tr>
-                                                            </tbody>
-                                                        </table>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                            <div class="g_team franco-16">
-                                                <div class="col-xl-auto" style="padding: 0%;">
-                                                    <div class="table-responsive">
-                                                        <table class="table">
-                                                            <tbody>
-                                                            <tr>
-                                                                <th>
-                                                                    <h3>
-                        <span class="g_seed">
-                          16
-                        </span>
-                                                                        &nbsp;Franco16&nbsp;
-                                                                        <small>
-                                                                        </small>
-                                                                    </h3>
-                                                                </th>
-                                                                <th>
-                                                                    <button class="btn btn-primary btn-sm">
-                                                                        Res
-                                                                    </button>
-                                                                </th>
-                                                            </tr>
-                                                            </tbody>
-                                                        </table>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <div class="g_round">
-                                        <div class="g_spacer" style="height: 48.5px;">
-                                        </div>
-                                        <div class="g_game">
-                                            <div class="g_team luis-steel-392">
-                                                <div class="col-xl-auto" style="padding: 0%;">
-                                                    <div class="table-responsive">
-                                                        <table class="table">
-                                                            <tbody>
-                                                            <tr>
-                                                                <th>
-                                                                    <h3>
-                        <span class="g_seed">
-                          1
-                        </span>
-                                                                        &nbsp;LuisSteel392&nbsp;
-                                                                        <small>
-                                                                        </small>
-                                                                    </h3>
-                                                                </th>
-                                                                <th>
-                                                                    <button class="btn btn-primary btn-sm">
-                                                                        Res
-                                                                    </button>
-                                                                </th>
-                                                            </tr>
-                                                            </tbody>
-                                                        </table>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                            <div class="g_team franco-3">
-                                                <div class="col-xl-auto" style="padding: 0%;">
-                                                    <div class="table-responsive">
-                                                        <table class="table">
-                                                            <tbody>
-                                                            <tr>
-                                                                <th>
-                                                                    <h3>
-                        <span class="g_seed">
-                          3
-                        </span>
-                                                                        &nbsp;Franco3&nbsp;
-                                                                        <small>
-                                                                        </small>
-                                                                    </h3>
-                                                                </th>
-                                                                <th>
-                                                                    <button class="btn btn-primary btn-sm">
-                                                                        Res
-                                                                    </button>
-                                                                </th>
-                                                            </tr>
-                                                            </tbody>
-                                                        </table>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        </div>
-                                        <div class="g_spacer" style="height: 97px;">
-                                        </div>
-                                        <div class="g_game">
-                                            <div class="g_team id_null">
-                                                <div class="col-xl-auto" style="padding: 0%;">
-                                                    <div class="table-responsive">
-                                                        <table class="table">
-                                                            <tbody>
-                                                            <tr>
-                                                                <th>
-                                                                    <h3>
-                        <span class="g_seed">
-                        </span>
-                                                                        &nbsp;&nbsp;
-                                                                        <small>
-                                                                        </small>
-                                                                    </h3>
-                                                                </th>
-                                                                <th>
-                                                                    <button class="btn btn-primary btn-sm">
-                                                                        Res
-                                                                    </button>
-                                                                </th>
-                                                            </tr>
-                                                            </tbody>
-                                                        </table>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                            <div class="g_team id_null">
-                                                <div class="col-xl-auto" style="padding: 0%;">
-                                                    <div class="table-responsive">
-                                                        <table class="table">
-                                                            <tbody>
-                                                            <tr>
-                                                                <th>
-                                                                    <h3>
-                        <span class="g_seed">
-                        </span>
-                                                                        &nbsp;&nbsp;
-                                                                        <small>
-                                                                        </small>
-                                                                    </h3>
-                                                                </th>
-                                                                <th>
-                                                                    <button class="btn btn-primary btn-sm">
-                                                                        Res
-                                                                    </button>
-                                                                </th>
-                                                            </tr>
-                                                            </tbody>
-                                                        </table>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <div class="g_round">
-                                        <div class="g_spacer" style="height: 145.5px;">
-                                        </div>
-                                        <div class="g_game">
-                                            <div class="g_team id_null">
-                                                <div class="col-xl-auto" style="padding: 0%;">
-                                                    <div class="table-responsive">
-                                                        <table class="table">
-                                                            <tbody>
-                                                            <tr>
-                                                                <th>
-                                                                    <h3>
-                        <span class="g_seed">
-                        </span>
-                                                                        &nbsp;&nbsp;
-                                                                        <small>
-                                                                        </small>
-                                                                    </h3>
-                                                                </th>
-                                                                <th>
-                                                                    <button class="btn btn-primary btn-sm">
-                                                                        Res
-                                                                    </button>
-                                                                </th>
-                                                            </tr>
-                                                            </tbody>
-                                                        </table>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                            <div class="g_team id_null">
-                                                <div class="col-xl-auto" style="padding: 0%;">
-                                                    <div class="table-responsive">
-                                                        <table class="table">
-                                                            <tbody>
-                                                            <tr>
-                                                                <th>
-                                                                    <h3>
-                        <span class="g_seed">
-                        </span>
-                                                                        &nbsp;&nbsp;
-                                                                        <small>
-                                                                        </small>
-                                                                    </h3>
-                                                                </th>
-                                                                <th>
-                                                                    <button class="btn btn-primary btn-sm">
-                                                                        Res
-                                                                    </button>
+                                                                    </a>
                                                                 </th>
                                                             </tr>
                                                             </tbody>
@@ -595,15 +238,6 @@
                                     </div>
                                 </div>
                             </div>
-
-                            <div class="grid-margin">
-                                <div class="my_gracket"></div>
-                            </div>
-                            <script>
-                                $(".my_gracket").gracket({
-                                    src: myData
-                                });
-                            </script>
 
 
                             <!--<div>
