@@ -172,15 +172,12 @@
                             <div class="dropdown-divider"></div>
                             <div style="display: flex; justify-content: center;">
                                 <div class="btn-group" role="group" aria-label="Basic example">
-                                    <button type="button" class="btn btn-outline-secondary">
+                                    <a th:href="@{'/Moderatore/listaUtenti?page1=0'+'&page2='+${pageBack2}}" type="button" class="btn btn-outline-secondary">
                                         <i class="mdi mdi-arrow-left text-secondary"></i>
-                                    </button>
-                                    <button type="button" class="btn btn-outline-secondary"> 1 </button>
-                                    <button type="button" class="btn btn-outline-secondary"> 2 </button>
-                                    <button type="button" class="btn btn-outline-secondary"> 3 </button>
-                                    <button type="button" class="btn btn-outline-secondary">
+                                    </a>
+                                    <a th:href="@{'/Moderatore/listaUtenti?page1=0'+'&page2='+${pageForward2}}" type="button" class="btn btn-outline-secondary">
                                         <i class="mdi mdi-arrow-right text-secondary"></i>
-                                    </button>
+                                    </a>
                                 </div>
                             </div>
                         </div>

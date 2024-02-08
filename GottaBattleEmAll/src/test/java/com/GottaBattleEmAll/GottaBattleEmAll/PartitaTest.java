@@ -102,12 +102,11 @@ class PartitaTest {
 
         when(partitaRepository.save(any(Partita.class))).thenReturn(mockPartita);
 
-        String result = String.valueOf(partitaService.aggiungereRisultato("1", mockPartita, mockTorneo, mockOrganizzatore));
+        String result = String.valueOf(partitaService.aggiungereRisultato(1L, mockPartita, mockTorneo, mockOrganizzatore));
 
         verify(partitaRepository, times(1)).save(mockPartita);
 
         assertTrue(result.equals("true"));
-
 
     }
 }

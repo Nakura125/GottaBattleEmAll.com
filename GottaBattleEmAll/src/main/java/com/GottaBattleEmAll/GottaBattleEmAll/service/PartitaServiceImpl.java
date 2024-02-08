@@ -44,4 +44,13 @@ public class PartitaServiceImpl implements PartitaService {
         partitaRepository.save(partita);
         return true;
     }
+
+    public Partita creaPartita(Giocatore giocatore1, Giocatore giocatore2){
+        Partita partita = new Partita();
+        partita.getGiocatoreList().add(giocatore1);
+        partita.getGiocatoreList().add(giocatore2);
+        partitaRepository.save(partita);
+        return partita;
+    }
+
 }
