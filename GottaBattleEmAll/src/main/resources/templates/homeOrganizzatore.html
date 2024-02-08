@@ -42,8 +42,8 @@
                     <div class="row grid-margin">
                         <a class="nav-link btn btn-success" id="creaTorneo" href="/Organizzatore/creaTorneo">+ Crea
                             Torneo</a>
-                        <a class="nav-link btn btn-danger" id="EliminaTorneo" href="#">- Elimina
-                            Torneo</a>
+<!--                        <a class="nav-link btn btn-danger" id="EliminaTorneo" href="#">- Elimina-->
+<!--                            Torneo</a>-->
                     </div>
                     <div class="row">
                         <div class="col-xl-3 col-sm-6 grid-margin stretch-card">
@@ -82,7 +82,7 @@
                             <a th:if="${torneo.getStatoTorneo().toString()=='ATTESAISCRIZIONI' || torneo.getStatoTorneo().toString()=='ISCRIZIONICOMPLETATE'}" type="button" class="btn btn-inverse-warning btn-fw"
                                th:href="@{'/Organizzatore/torneoInAttesa?name='+ ${torneo.getNome()}}" >Visualizza</a>
                             <a th:if="${torneo.getStatoTorneo().toString()=='TORNEOCOMPLETATO'}" type="button" class="btn btn-inverse-success btn-fw"
-                               th:href="@{'/Organizzatore/torneoFinitoBro?name='+ ${torneo.getNome()}}" >Visualizza</a>
+                               th:href="@{'/Organizzatore/torneoConcluso?name='+ ${torneo.getNome()}}" >Visualizza</a>
                         </div>
 
                       </div>

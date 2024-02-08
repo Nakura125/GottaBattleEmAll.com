@@ -139,7 +139,7 @@ public class DatabasePopulator {
         torneo2.setData(LocalDate.now());
         torneo2.setRegole("Regole");
         torneo2.setPremi("Premi");
-        torneo2.setStatoTorneo(StatoTorneo.ATTESAISCRIZIONI);
+        torneo2.setStatoTorneo(StatoTorneo.TORNEOCOMPLETATO);
         torneo2.setOrganizzazione("2 vs 2");
         torneo2.setOrganizzatore(organizzatore);
 
@@ -161,6 +161,19 @@ public class DatabasePopulator {
         }
 
         torneoRepository.save(torneo3);
+
+        Torneo torneo4=new Torneo();
+        torneo4.setNome("Torneo4");
+        torneo4.setCapienza(4);
+        torneo4.setData(LocalDate.now());
+        torneo4.setRegole("Regole");
+        torneo4.setPremi("Premi");
+        torneo4.setStatoTorneo(StatoTorneo.INCORSO);
+        torneo4.setOrganizzazione("2 vs 2");
+        torneo4.setOrganizzatore(organizzatore);
+
+
+        torneoRepository.save(torneo4);
 
 
     }
