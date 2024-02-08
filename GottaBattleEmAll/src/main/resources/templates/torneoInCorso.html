@@ -167,7 +167,7 @@
                                                                     </h3>
                                                                 </th>
                                                                 <th>
-                                                                    <a th:href="@{'/Organizzatore/aggiungereRisultato?partita_id='+${partita.getId()}+'&nomeTorneo='+${torneo.getNome()}+'&risultato='+${0}}" class="btn btn-primary btn-sm">
+                                                                    <a th:if="${partita.getIdVincitore()==null}" th:href="@{'/Organizzatore/aggiungereRisultato?partita_id='+${partita.getId()}+'&nomeTorneo='+${torneo.getNome()}+'&risultato='+${0}}" class="btn btn-primary btn-sm">
                                                                         Res
                                                                     </a>
                                                                 </th>
@@ -194,7 +194,7 @@
                                                                     </h3>
                                                                 </th>
                                                                 <th>
-                                                                    <a th:href="@{'/Organizzatore/aggiungereRisultato?partita_id='+${partita.getId()}+'&nomeTorneo='+${torneo.getNome()}+'&risultato='+${1}}" class="btn btn-primary btn-sm">
+                                                                    <a th:if="${partita.getIdVincitore()==null}" th:href="@{'/Organizzatore/aggiungereRisultato?partita_id='+${partita.getId()}+'&nomeTorneo='+${torneo.getNome()}+'&risultato='+${1}}" class="btn btn-primary btn-sm">
                                                                         Res
                                                                     </a>
                                                                 </th>

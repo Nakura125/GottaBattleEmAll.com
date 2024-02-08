@@ -55,14 +55,12 @@ public class PartitaServiceImpl implements PartitaService {
                 if (torneo.getPartite().get(idPartita + 1).getIdVincitore() != null) {
                     Partita partita1 = creaPartita(torneo.getPartite().get(idPartita).getGiocatoreList().get(risultato), torneo.getPartite().get(idPartita + 1).getGiocatoreList().get(torneo.getPartite().get(idPartita + 1).getIdVincitore()),torneo);
                     partitaRepository.save(partita1);
-                    torneo.getPartite().add(partita1);
                 }
             } else {
                 if (torneo.getPartite().get(idPartita - 1).getIdVincitore() != null) {
                     Partita partita1 =
                             creaPartita(torneo.getPartite().get(idPartita).getGiocatoreList().get(risultato), torneo.getPartite().get(idPartita - 1).getGiocatoreList().get(torneo.getPartite().get(idPartita - 1).getIdVincitore()),torneo);
                     partitaRepository.save(partita1);
-                    torneo.getPartite().add(partita1);
                 }
             }
         }
@@ -74,6 +72,7 @@ public class PartitaServiceImpl implements PartitaService {
         Partita partita = new Partita();
         partita.getGiocatoreList().add(giocatore1);
         partita.getGiocatoreList().add(giocatore2);
+        partita.setNome(giocatore1.getUsername() + " vs " + giocatore2.getUsername());
         partitaRepository.save(partita);
 
         torneo.getPartite().add(partita);

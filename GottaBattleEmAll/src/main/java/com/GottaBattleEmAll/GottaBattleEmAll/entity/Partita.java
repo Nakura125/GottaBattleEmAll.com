@@ -19,6 +19,8 @@ public class Partita {
     @GeneratedValue(strategy = GenerationType.UUID)
     private UUID id;
 
+    String nome;
+
     @ManyToMany(cascade = CascadeType.DETACH)
     @JoinTable(
             name = "partita_giocatore",

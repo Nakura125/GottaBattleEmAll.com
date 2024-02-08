@@ -39,6 +39,10 @@ public class UtenteController {
 
         Giocatore giocatore = (Giocatore) session.getAttribute("giocatore");
 
+        List<Torneo> torneos= torneoRepository.findAll().subList(0, 3);
+
+        model.addAttribute("tornei", torneos);
+
         model.addAttribute("giocatore", giocatore);
         return "homePlayer";
     }

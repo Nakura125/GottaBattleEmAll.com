@@ -79,38 +79,58 @@ public class TorneoController {
 
         List<List<Partita>> partiteRound = new ArrayList<>();
 
-        for (int i=0; i< partite.size();i++){
+        int numPartite = partite.size();
+        int numRound = 1;
+        while (numPartite > 0) {
             List<Partita> partiteRoundI = new ArrayList<>();
-            for(int j=0;j<partite.size()/2; j++,i++){
-                partiteRoundI.add(partite.get(i));
-                if(!partite.get(i).getGiocatoreList().isEmpty())
-                    System.out.println(partite.get(i).getGiocatoreList().get(0).getUsername());
+            int partitePerRound = Math.max(1, numPartite / 2); // Numero di partite per round (almeno una)
+
+            for (int i = 0; i < partitePerRound; i++) {
+                Partita partita = partite.remove(0); // Rimuove e ottiene la prima partita dalla lista delle partite
+                partiteRoundI.add(partita);
+                if (!partita.getGiocatoreList().isEmpty()) {
+                    System.out.println(partita.getGiocatoreList().get(0).getUsername());
+                }
             }
             partiteRound.add(partiteRoundI);
-
-
-            List<Partita> partiteRoundI2 = new ArrayList<>();
-            for(int j=0;j<partite.size()/4; j++,i++){
-                partiteRoundI2.add(partite.get(i));
-            }
-            partiteRound.add(partiteRoundI2);
-
-
-            List<Partita> partiteRoundI3 = new ArrayList<>();
-            for(int j=0;j<partite.size()/8; j++,i++){
-                partiteRoundI3.add(partite.get(i));
-            }
-            partiteRound.add(partiteRoundI3);
-
-            List<Partita> partiteRoundI4 = new ArrayList<>();
-            for(int j=0;j<partite.size()/16; j++,i++){
-                partiteRoundI4.add(partite.get(i));
-            }
-            partiteRound.add(partiteRoundI4);
-
+            numRound++;
+            numPartite -= partitePerRound;
         }
 
         model.addAttribute("partiteround", partiteRound);
+
+//        for (int i=0; i< partite.size();i++){
+//            List<Partita> partiteRoundI = new ArrayList<>();
+//            for(int j=0;j<partite.size()/2; j++,i++){
+//                partiteRoundI.add(partite.get(i));
+//                if(!partite.get(i).getGiocatoreList().isEmpty())
+//                    System.out.println(partite.get(i).getGiocatoreList().get(0).getUsername());
+//            }
+//            partiteRound.add(partiteRoundI);
+//
+//
+//            List<Partita> partiteRoundI2 = new ArrayList<>();
+//            for(int j=0;j<partite.size()/4; j++,i++){
+//                partiteRoundI2.add(partite.get(i));
+//            }
+//            partiteRound.add(partiteRoundI2);
+//
+//
+//            List<Partita> partiteRoundI3 = new ArrayList<>();
+//            for(int j=0;j<partite.size()/8; j++,i++){
+//                partiteRoundI3.add(partite.get(i));
+//            }
+//            partiteRound.add(partiteRoundI3);
+//
+//            List<Partita> partiteRoundI4 = new ArrayList<>();
+//            for(int j=0;j<partite.size()/16; j++,i++){
+//                partiteRoundI4.add(partite.get(i));
+//            }
+//            partiteRound.add(partiteRoundI4);
+//
+//        }
+//
+//        model.addAttribute("partiteround", partiteRound);
 
         Organizzatore organizzatore = (Organizzatore) session.getAttribute("organizzatore");
         model.addAttribute("organizzatore", organizzatore);

@@ -2,6 +2,8 @@ package com.GottaBattleEmAll.GottaBattleEmAll.controller;
 
 import com.GottaBattleEmAll.GottaBattleEmAll.entity.Giocatore;
 import com.GottaBattleEmAll.GottaBattleEmAll.entity.Organizzatore;
+import com.GottaBattleEmAll.GottaBattleEmAll.entity.Torneo;
+import com.GottaBattleEmAll.GottaBattleEmAll.repository.TorneoRepository;
 import com.GottaBattleEmAll.GottaBattleEmAll.service.GuestService;
 import jakarta.servlet.http.HttpServletRequest;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -9,20 +11,31 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.List;
+
 import java.util.Enumeration;
+
+import static org.antlr.v4.runtime.tree.xpath.XPath.findAll;
 
 @Controller
 public class GuestController {
 
     private final GuestService guestService;
 
+    private final TorneoRepository torneoRepository;
+
     @Autowired
-    public GuestController(GuestService guestService){
+    public GuestController(GuestService guestService, TorneoRepository torneoRepository) {
         this.guestService = guestService;
+        this.torneoRepository = torneoRepository;
     }
 
     @GetMapping("/")
     public String index(Model model) {
+
+        List<Torneo> tornei =torneoRepository.findAll().subList(0,3);
+
+        model.addAttribute("tornei", tornei);
         return "homeGuest";
     }
 
