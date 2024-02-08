@@ -80,10 +80,10 @@
     <script src="https://code.jquery.com/jquery-3.3.1.min.js"
             integrity="sha384-tsQFqpEReu7ZLhBV2VZlAu7zcOV+rXbYlF2cqB8txI/8aZajjp4Bqd+V6D5IgvKT"
             crossorigin="anonymous"></script>
-    <script>
+    <script th:inline="javascript">
         myData = [
             [
-                [{ "name": "LuisSteel392", "id": "luis-steel-392", "seed": 1 }, { "name": "Franco2", "id": "franco-2", "seed": 2 }],
+                [{ "name": '', "id": "luis-steel-392", "seed": 1 }, { "name": "Franco2", "id": "franco-2", "seed": 2 }],
                 [{ "name": "Franco3", "id": "franco-3", "seed": 3 }, { "name": "Franco4", "id": "franco-4", "seed": 4 }],
                 [{ "name": "Franco5", "id": "franco-5", "seed": 5 }, { "name": "Franco6", "id": "franco-6", "seed": 6 }],
                 [{ "name": "Franco15", "id": "franco-15", "seed": 15 }, { "name": "Franco16", "id": "franco-16", "seed": 16 }]
@@ -147,13 +147,97 @@
                             </ol>
 
                             <div class="grid-margin">
-                                <div class="my_gracket"></div>
+                                <div class="my_gracket g_gracket">
+                                    <div th:each="partite: ${partiteround}" class="g_round">
+                                        <div th:each="partita: ${partite}" class="g_game">
+                                            <div class="g_team luis-steel-392">
+                                                <div class="col-xl-auto" style="padding: 0%;">
+                                                    <div class="table-responsive">
+                                                        <table class="table">
+                                                            <tbody>
+                                                            <tr>
+                                                                <th>
+                                                                    <h3>
+                                                                        <span class="g_seed">
+                                                                            1
+                                                                        </span>
+                                                                        <p th:if="${partita.getGiocatoreList().size()!=0}" th:text="${partita.getGiocatoreList().get(0).getUsername()}"></p>
+                                                                        <small>
+                                                                        </small>
+                                                                    </h3>
+                                                                </th>
+                                                                <th>
+                                                                    <a th:href="@{'/Organizzatore/aggiungereRisultato?partita_id='+${partita.getId()}+'&nomeTorneo='+${torneo.getNome()}+'&risultato='+${0}}" class="btn btn-primary btn-sm">
+                                                                        Res
+                                                                    </a>
+                                                                </th>
+                                                            </tr>
+                                                            </tbody>
+                                                        </table>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="g_team franco-2">
+                                                <div class="col-xl-auto" style="padding: 0%;">
+                                                    <div class="table-responsive">
+                                                        <table class="table">
+                                                            <tbody>
+                                                            <tr>
+                                                                <th>
+                                                                    <h3>
+                                                                        <span class="g_seed">
+                                                                            2
+                                                                        </span>
+                                                                        <p th:if="${partita.getGiocatoreList().size()!=0}" th:text="${partita.getGiocatoreList().get(1).getUsername()}"></p>
+                                                                        <small>
+                                                                        </small>
+                                                                    </h3>
+                                                                </th>
+                                                                <th>
+                                                                    <a th:href="@{'/Organizzatore/aggiungereRisultato?partita_id='+${partita.getId()}+'&nomeTorneo='+${torneo.getNome()}+'&risultato='+${1}}" class="btn btn-primary btn-sm">
+                                                                        Res
+                                                                    </a>
+                                                                </th>
+                                                            </tr>
+                                                            </tbody>
+                                                        </table>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="g_round">
+                                        <div class="g_game g_winner" style="margin-top: 166px;">
+                                            <div class="g_team id_null">
+                                                <div class="col-xl-auto" style="padding: 0%;">
+                                                    <div class="table-responsive">
+                                                        <table class="table">
+                                                            <tbody>
+                                                            <tr>
+                                                                <th>
+                                                                    <h3>
+                        <span class="g_seed">
+                        </span>
+                                                                        &nbsp;&nbsp;
+                                                                        <small>
+                                                                        </small>
+                                                                    </h3>
+                                                                </th>
+                                                                <th>
+                                                                    <button class="btn btn-primary btn-sm">
+                                                                        Res
+                                                                    </button>
+                                                                </th>
+                                                            </tr>
+                                                            </tbody>
+                                                        </table>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
                             </div>
-                            <script>
-                                $(".my_gracket").gracket({
-                                    src: myData
-                                });
-                            </script>
 
 
                             <!--<div>

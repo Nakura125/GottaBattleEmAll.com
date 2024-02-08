@@ -20,11 +20,13 @@ public class TorneoServiceImpl implements TorneoService {
     private final OrganizzatoreRepository organizzatoreRepository;
 
     private final GiocatoreRepository giocatoreRepository;
+    private final PartitaService partitaService;
 
-    public TorneoServiceImpl(TorneoRepository torneoRepository, OrganizzatoreRepository organizzatoreRepository, GiocatoreRepository giocatoreRepository) {
+    public TorneoServiceImpl(TorneoRepository torneoRepository, OrganizzatoreRepository organizzatoreRepository, GiocatoreRepository giocatoreRepository,PartitaService partitaService) {
         this.torneoRepository = torneoRepository;
         this.organizzatoreRepository = organizzatoreRepository;
         this.giocatoreRepository = giocatoreRepository;
+        this.partitaService=partitaService;
     }
 
     @Override
@@ -78,7 +80,11 @@ public class TorneoServiceImpl implements TorneoService {
         }
 
         t.setStatoTorneo(StatoTorneo.INCORSO);
-        //crea partite
+
+        for (int i = 0; i < t.getGiocatoreList().size(); i += 2) {
+            partitaService.creaPartita(t.getGiocatoreList().get(i), t.getGiocatoreList().get(i + 1),t);
+        }
+
         torneoRepository.save(t);
         return true;
     }

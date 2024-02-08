@@ -24,18 +24,21 @@ public class DatabasePopulator {
 
     private final TorneoRepository torneoRepository;
 
+    private final PartitaRepository partitaRepository;
+
     private final PasswordEncoder passwordEncoder;
 
 
 
     @Autowired
-    public DatabasePopulator(ModeratoreRepository moderatoreRepository, GiocatoreRepository giocatoreRepository, OrganizzatoreRepository organizzatoreRepository, RichiestaRepository richiestaRepository, TorneoRepository torneoRepository, PasswordEncoder passwordEncoder) {
+    public DatabasePopulator(ModeratoreRepository moderatoreRepository, GiocatoreRepository giocatoreRepository, OrganizzatoreRepository organizzatoreRepository, RichiestaRepository richiestaRepository, TorneoRepository torneoRepository,PartitaRepository partitaRepository ,PasswordEncoder passwordEncoder) {
         this.moderatoreRepository = moderatoreRepository;
         this.giocatoreRepository = giocatoreRepository;
         this.organizzatoreRepository = organizzatoreRepository;
         this.richiestaRepository = richiestaRepository;
         this.torneoRepository = torneoRepository;
         this.passwordEncoder = passwordEncoder;
+        this.partitaRepository=partitaRepository;
     }
 
     @PostConstruct
@@ -169,6 +172,7 @@ public class DatabasePopulator {
         giocatoreRepository.deleteAll();
         richiestaRepository.deleteAll();
         torneoRepository.deleteAll();
+        partitaRepository.deleteAll();
         organizzatoreRepository.deleteAll();
     }
 }

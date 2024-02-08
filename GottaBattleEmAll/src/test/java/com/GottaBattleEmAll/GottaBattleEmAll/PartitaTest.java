@@ -29,6 +29,8 @@ class PartitaTest {
 
     @Mock
     private PartitaRepository partitaRepository;
+    @Mock
+    private TorneoRepository torneoRepository;
 
     @BeforeEach
     public void setUp() {
@@ -83,9 +85,10 @@ class PartitaTest {
 
         Partita mockPartita = new Partita();
         mockPartita.setGiocatoreList(giocatoreList);
-        mockPartita.setIdVincitore(1L);
+        mockPartita.setIdVincitore(1);
 
         List<Partita> partite = new ArrayList<>();
+        partite.add(mockPartita);
         partite.add(mockPartita);
 
         Torneo mockTorneo = new Torneo();
@@ -100,14 +103,15 @@ class PartitaTest {
         mockTorneo.setPartite(partite);
 
 
+        when(torneoRepository.save(any(Torneo.class))).thenReturn(mockTorneo);
+
         when(partitaRepository.save(any(Partita.class))).thenReturn(mockPartita);
 
-        String result = String.valueOf(partitaService.aggiungereRisultato("1", mockPartita, mockTorneo, mockOrganizzatore));
+        String result = String.valueOf(partitaService.aggiungereRisultato(1, mockPartita, mockTorneo, mockOrganizzatore));
 
         verify(partitaRepository, times(1)).save(mockPartita);
 
         assertTrue(result.equals("true"));
-
 
     }
 }

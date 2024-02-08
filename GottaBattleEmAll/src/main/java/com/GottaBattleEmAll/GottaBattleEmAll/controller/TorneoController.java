@@ -1,9 +1,6 @@
 package com.GottaBattleEmAll.GottaBattleEmAll.controller;
 
-import com.GottaBattleEmAll.GottaBattleEmAll.entity.Giocatore;
-import com.GottaBattleEmAll.GottaBattleEmAll.entity.Organizzatore;
-import com.GottaBattleEmAll.GottaBattleEmAll.entity.StatoTorneo;
-import com.GottaBattleEmAll.GottaBattleEmAll.entity.Torneo;
+import com.GottaBattleEmAll.GottaBattleEmAll.entity.*;
 import com.GottaBattleEmAll.GottaBattleEmAll.service.TorneoService;
 import com.GottaBattleEmAll.GottaBattleEmAll.service.UtenteService;
 import jakarta.servlet.http.HttpSession;
@@ -16,8 +13,10 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
+import java.util.ArrayList;
 import java.util.Objects;
 import java.util.List;
+import java.util.stream.IntStream;
 
 @Controller
 public class TorneoController {
@@ -62,6 +61,56 @@ public class TorneoController {
         }
 
         model.addAttribute("torneo", torneo);
+
+        int round= (int) Math.floor(Math.log(torneo.getCapienza())/Math.log(2));
+
+        List<Integer> rounds = new ArrayList<>();
+        for (int i = 1; i <= round; i++) {
+            rounds.add(i);
+        }
+
+        model.addAttribute("rounds", rounds);
+
+
+        List<Partita> partite = new ArrayList<>(torneo.getPartite());
+
+        for(int i= partite.size();i < torneo.getCapienza();i++)
+            partite.add(new Partita());
+
+        List<List<Partita>> partiteRound = new ArrayList<>();
+
+        for (int i=0; i< partite.size();i++){
+            List<Partita> partiteRoundI = new ArrayList<>();
+            for(int j=0;j<partite.size()/2; j++,i++){
+                partiteRoundI.add(partite.get(i));
+                if(!partite.get(i).getGiocatoreList().isEmpty())
+                    System.out.println(partite.get(i).getGiocatoreList().get(0).getUsername());
+            }
+            partiteRound.add(partiteRoundI);
+
+
+            List<Partita> partiteRoundI2 = new ArrayList<>();
+            for(int j=0;j<partite.size()/4; j++,i++){
+                partiteRoundI2.add(partite.get(i));
+            }
+            partiteRound.add(partiteRoundI2);
+
+
+            List<Partita> partiteRoundI3 = new ArrayList<>();
+            for(int j=0;j<partite.size()/8; j++,i++){
+                partiteRoundI3.add(partite.get(i));
+            }
+            partiteRound.add(partiteRoundI3);
+
+            List<Partita> partiteRoundI4 = new ArrayList<>();
+            for(int j=0;j<partite.size()/16; j++,i++){
+                partiteRoundI4.add(partite.get(i));
+            }
+            partiteRound.add(partiteRoundI4);
+
+        }
+
+        model.addAttribute("partiteround", partiteRound);
 
         Organizzatore organizzatore = (Organizzatore) session.getAttribute("organizzatore");
         model.addAttribute("organizzatore", organizzatore);
