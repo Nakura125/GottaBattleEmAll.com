@@ -106,15 +106,7 @@
                                         </tr>
                                         </thead>
                                         <tbody>
-                                        <tr>
-                                            <td> Luis Sal</td>
-                                            <td> Luigi</td>
-                                            <td> Rocchino</td>
-                                            <td> emaildiprova@gmail.com</td>
-                                            <td>
-                                                <div class="badge badge-outline-success">Approved</div>
-                                            </td>
-                                        </tr>
+
                                         <tr th:if="${richieste!=null}" th:each="richiesta : ${richieste}">
                                             <td th:text="${richiesta.getOrganizzatore().getUsername()}"></td>
                                             <td th:text="${richiesta.getOrganizzatore.getNome()}"></td>
@@ -138,14 +130,6 @@
                                             </td>
 
 
-                                        </tr>
-                                        <td> Carminuccio</td>
-                                        <td> Carmine</td>
-                                        <td> Fulato</td>
-                                        <td> emaildiprova3@gmail.com</td>
-                                        <td>
-                                            <div class="badge badge-outline-danger">Rejected</div>
-                                        </td>
                                         </tr>
                                         </tbody>
                                     </table>
