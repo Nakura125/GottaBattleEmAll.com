@@ -55,7 +55,10 @@ public class DatabasePopulator {
             giocatore.setCognome("giocatore" + i);
             giocatore.setEmail("giocatore" + i + "@email.com");
             giocatore.setStato(Stato.ATTIVO);
+            if(i< 8)
+                giocatore.getIscrizioni().add("Torneo3");
             giocatoreRepository.save(giocatore);
+
         }
 
         Giocatore giocatore = new Giocatore();
@@ -167,8 +170,8 @@ public class DatabasePopulator {
         torneo3.setOrganizzatore(organizzatore);
 
         for (int i = 0; i < 8; i++) {
-            torneo3.addGiocatore(giocatoreRepository.findByUsername("giocatore" + i));
-
+            Giocatore gioca=giocatoreRepository.findByUsername("giocatore" + i);
+            torneo3.addGiocatore(gioca);
         }
 
         torneoRepository.save(torneo3);

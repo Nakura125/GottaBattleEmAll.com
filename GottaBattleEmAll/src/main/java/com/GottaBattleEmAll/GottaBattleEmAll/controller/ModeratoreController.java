@@ -133,7 +133,7 @@ public class ModeratoreController {
         Giocatore utente=new Giocatore();
         utente.setUsername(username);
         if(moderatoreService.sbannare(moderatore, utente,"giocatore"))
-            model.addAttribute("message", "Utente bannato: $"+ username);
+            model.addAttribute("message", "Utente sbannato: $"+ username);
         else
             model.addAttribute("error", "Errore nel bannare l'utente: $"+ username);
         model.addAttribute("moderatore", moderatore);

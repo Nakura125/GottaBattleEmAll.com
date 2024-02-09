@@ -50,26 +50,6 @@
                                     </tr>
                                     </thead>
                                     <tbody>
-                                    <tr>
-                                        <td> Luis Sal</td>
-                                        <td> Luigi</td>
-                                        <td> Rocchino</td>
-                                        <td> emaildiprova@gmail.com</td>
-                                        <td> bannato</td>
-                                        <td>
-                                            <div class="dropdown">
-                                                <button class="btn btn-outline-danger dropdown-toggle" type="button"
-                                                        id="dropdownMenuOutlineButton3" data-toggle="dropdown"
-                                                        aria-haspopup="true" aria-expanded="false"> Azioni
-                                                </button>
-                                                <div class="dropdown-menu" aria-labelledby="dropdownMenuOutlineButton3">
-                                                    <a class="dropdown-item" href="ProfiloUtente.html">Profilo</a>
-                                                    <a class="dropdown-item" href="#">Banna</a>
-                                                    <a class="dropdown-item" href="#">Sbanna</a>
-                                                </div>
-                                            </div>
-                                        </td>
-                                    </tr>
                                     <tr th:if="${giocatori!=null}" th:each="giocatore : ${giocatori}">
                                         <td th:text="${giocatore.getUsername()}"></td>
                                         <td th:text="${giocatore.getNome()}"></td>
