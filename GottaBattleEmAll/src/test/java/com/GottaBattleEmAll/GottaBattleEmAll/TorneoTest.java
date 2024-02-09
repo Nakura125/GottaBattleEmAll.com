@@ -144,6 +144,8 @@ public class TorneoTest {
 
 
         when(torneoRepository.findByNome("TorneoPesce")).thenReturn(mockTorneo);
+        when(organizzatoreRepository.findByUsername("Ugo Vaccaro")).thenReturn(mockOrganizzatore);
+
 
         boolean result = torneoService.iniziareTorneo(mockTorneo, mockOrganizzatore);
 
@@ -171,6 +173,8 @@ public class TorneoTest {
         when(mockTorneo.getStatoTorneo()).thenReturn(StatoTorneo.INCORSO);
 
         when(torneoRepository.findByNome("TorneoGodwin")).thenReturn(mockTorneo);
+        when(organizzatoreRepository.findByUsername("Ugo Vaccaro")).thenReturn(mockOrganizzatore);
+
 
         boolean result = torneoService.terminareTorneo(mockTorneo, mockOrganizzatore);
 
@@ -205,7 +209,8 @@ public class TorneoTest {
         mockTorneo.getGiocatoreList().add(mockGiocatore);
 
         when(torneoRepository.findByNome("TorneoGodwin")).thenReturn(mockTorneo);
-
+        when(giocatoreRepository.findByUsername("Paolo_Sorrentino")).thenReturn(mockGiocatore);
+        when(organizzatoreRepository.findByUsername("Ugo Vaccaro")).thenReturn(mockOrganizzatore);
 
         String result = torneoService.toglierePartecipanti(mockTorneo, mockGiocatore, mockOrganizzatore);
 
@@ -241,6 +246,7 @@ public class TorneoTest {
         mockTorneo.getGiocatoreList().add(mockGiocatore);
 
         when(torneoRepository.findByNome("TorneoGodwin")).thenReturn(mockTorneo);
+        when(organizzatoreRepository.findByUsername("Ugo Vaccaro")).thenReturn(mockOrganizzatore);
         when(giocatoreRepository.findByUsername("Paolo_Sorrentino")).thenReturn(mockGiocatore);
 
         Giocatore result = torneoService.visualizzaProfiloUtente(mockTorneo, mockGiocatore, mockOrganizzatore);
