@@ -1,20 +1,14 @@
 package com.GottaBattleEmAll.GottaBattleEmAll;
 
 
-import com.GottaBattleEmAll.GottaBattleEmAll.entity.Giocatore;
-import com.GottaBattleEmAll.GottaBattleEmAll.entity.Organizzatore;
-import com.GottaBattleEmAll.GottaBattleEmAll.entity.Richiesta;
-import com.GottaBattleEmAll.GottaBattleEmAll.entity.Stato;
+import com.GottaBattleEmAll.GottaBattleEmAll.entity.*;
 import com.GottaBattleEmAll.GottaBattleEmAll.repository.GiocatoreRepository;
 import com.GottaBattleEmAll.GottaBattleEmAll.repository.OrganizzatoreRepository;
 import com.GottaBattleEmAll.GottaBattleEmAll.repository.RichiestaRepository;
 import com.GottaBattleEmAll.GottaBattleEmAll.service.GuestServiceImpl;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
-import org.mockito.ArgumentCaptor;
-import org.mockito.InjectMocks;
-import org.mockito.Mock;
-import org.mockito.MockitoAnnotations;
+import org.mockito.*;
 import org.springframework.security.crypto.bcrypt.BCrypt;
 import org.springframework.security.crypto.password.PasswordEncoder;
 
@@ -53,12 +47,16 @@ public class GuestTest {
     @Test
     public void testRegistrazioneGiocatore() {
 
-        Giocatore inputGiocatore = new Giocatore();
-        inputGiocatore.setUsername("Ugo_Bronte");
-        inputGiocatore.setNome("Ugo");
-        inputGiocatore.setCognome("Bronte");
-        inputGiocatore.setEmail("Ugo.bronte69@studenti.unisa.it");
-        inputGiocatore.setPassword("password1243");
+
+
+        Giocatore inputGiocatore = Mockito.mock(Giocatore.class);
+        when(inputGiocatore.getUsername()).thenReturn("Ugo_Bronte");
+        when(inputGiocatore.getNome()).thenReturn("Ugo");
+        when(inputGiocatore.getCognome()).thenReturn("Bronte");
+        when(inputGiocatore.getEmail()).thenReturn("Ugo.bronte69@studenti.unisa.it");
+        when(inputGiocatore.getPassword()).thenReturn("password1243");
+
+
 
         when(giocatoreRepository.findByUsername("Ugo_Bronte")).thenReturn(null);
 
@@ -77,15 +75,18 @@ public class GuestTest {
     @Test
     public void testRegistrazioneGiocatoreUsernameGiàEsistente() {
 
-        Giocatore mockGiocatore = new Giocatore();
-        mockGiocatore.setUsername("Ugo_Vaccaro");
+        Giocatore mockGiocatore = Mockito.mock(Giocatore.class);
+        when(mockGiocatore.getUsername()).thenReturn("Ugo_Vaccaro");
 
-        Giocatore inputGiocatore = new Giocatore();
-        inputGiocatore.setUsername("Ugo_Vaccaro");
-        inputGiocatore.setNome("Ugo");
-        inputGiocatore.setCognome("Vaccaro");
-        inputGiocatore.setEmail("Ugo.vaccaro@studenti.unica.it");
-        inputGiocatore.setPassword("dijkstra12");
+
+        Giocatore inputGiocatore = Mockito.mock(Giocatore.class);
+        when(inputGiocatore.getUsername()).thenReturn("Ugo_Vaccaro");
+        when(inputGiocatore.getNome()).thenReturn("Ugo");
+        when(inputGiocatore.getCognome()).thenReturn("Vaccaro");
+        when(inputGiocatore.getEmail()).thenReturn("Ugo.vaccaro@studenti.unica.it");
+        when(inputGiocatore.getPassword()).thenReturn("dijkstra12");
+
+
 
         when(giocatoreRepository.findByUsername("Ugo_Vaccaro")).thenReturn(mockGiocatore);
 
@@ -101,12 +102,12 @@ public class GuestTest {
     @Test
     public void testRegistrazioneGiocatoreEmailNonValida() {
 
-        Giocatore inputGiocatore = new Giocatore();
-        inputGiocatore.setUsername("Ugo_Ferrari");
-        inputGiocatore.setNome("Ugo");
-        inputGiocatore.setCognome("Ferrari");
-        inputGiocatore.setEmail("Ugo.ferrari");
-        inputGiocatore.setPassword("password1243");
+        Giocatore inputGiocatore = Mockito.mock(Giocatore.class);
+        when(inputGiocatore.getUsername()).thenReturn("Ugo_Ferrari");
+        when(inputGiocatore.getNome()).thenReturn("Ugo");
+        when(inputGiocatore.getCognome()).thenReturn("Ferrari");
+        when(inputGiocatore.getEmail()).thenReturn("Ugo.ferrari");
+        when(inputGiocatore.getPassword()).thenReturn("password1243");
 
         when(giocatoreRepository.findByUsername("Ugo_Ferrari")).thenReturn(null);
 
@@ -122,14 +123,15 @@ public class GuestTest {
     @Test
     public void testRegistrazioneGiocatorePasswordNonCorrispondono() {
 
-        Giocatore inputGiocatore = new Giocatore();
-        inputGiocatore.setUsername("Annalisa_DeBonis");
-        inputGiocatore.setNome("Annalisa");
-        inputGiocatore.setCognome("DeBonis");
-        inputGiocatore.setEmail("Annalisa.DeBonis18@studenti.unisa.it");
-        inputGiocatore.setPassword("password18");
+        Giocatore inputGiocatore = Mockito.mock(Giocatore.class);
+        when(inputGiocatore.getUsername()).thenReturn("Annalisa_DeBonis");
+        when(inputGiocatore.getNome()).thenReturn("Annalisa");
+        when(inputGiocatore.getCognome()).thenReturn("DeBonis");
+        when(inputGiocatore.getEmail()).thenReturn("Annalisa.DeBonis18@studenti.unisa.it");
+        when(inputGiocatore.getPassword()).thenReturn("password18");
 
         when(giocatoreRepository.findByUsername("Annalisa_DeBonis")).thenReturn(null);
+
 
         String result = guestService.registrazioneGiocatore(inputGiocatore, "password17");
 
@@ -142,20 +144,19 @@ public class GuestTest {
     }
 
 
-    //Ri-Testare tutto registrazione siccome è stata aggiunta richiesta e hashPassword
+
     @Test
     public void testRegistrazioneOrganizzatore() {
 
-        Organizzatore inputOrganizzatore = new Organizzatore();
-        inputOrganizzatore.setUsername("Ugo_Bronte");
-        inputOrganizzatore.setNome("Ugo");
-        inputOrganizzatore.setCognome("Bronte");
-        inputOrganizzatore.setEmail("Ugo.bronte69@studenti.unica.it");
-        inputOrganizzatore.setPassword("password1243");
+        Organizzatore inputOrganizzatore = Mockito.mock(Organizzatore.class);
+        when(inputOrganizzatore.getUsername()).thenReturn("Ugo_Bronte");
+        when(inputOrganizzatore.getNome()).thenReturn("Ugo");
+        when(inputOrganizzatore.getCognome()).thenReturn("Bronte");
+        when(inputOrganizzatore.getEmail()).thenReturn("Ugo.bronte69@studenti.unica.it");
+        when(inputOrganizzatore.getPassword()).thenReturn("password1243");
 
-        Richiesta mockRichiesta = new Richiesta();
-        mockRichiesta.setOrganizzatore(inputOrganizzatore);
-
+        Richiesta mockRichiesta = Mockito.mock(Richiesta.class);
+        when(mockRichiesta.getOrganizzatore()).thenReturn(inputOrganizzatore);
 
 
         when(organizzatoreRepository.findByUsername("Ugo_Bronte")).thenReturn(null);
@@ -174,20 +175,23 @@ public class GuestTest {
     @Test
     public void testRegistrazioneOrganizzatoreUsernameGiàEsistente() {
 
-        Organizzatore mockOrganizzatore = new Organizzatore();
-        mockOrganizzatore.setUsername("Ugo_Vaccaro");
+        Organizzatore mockOrganizzatore = Mockito.mock(Organizzatore.class);
+        when(mockOrganizzatore.getUsername()).thenReturn("Ugo_Vaccaro");
 
-        Richiesta mockRichiesta = new Richiesta();
-        mockRichiesta.setOrganizzatore(mockOrganizzatore);
 
-        Organizzatore inputOrganizzatore = new Organizzatore();
-        inputOrganizzatore.setUsername("Ugo_Vaccaro");
-        inputOrganizzatore.setNome("Ugo");
-        inputOrganizzatore.setCognome("Vaccaro");
-        inputOrganizzatore.setEmail("Ugo.vaccaro@studenti.unica.it");
-        inputOrganizzatore.setPassword("dijsktra12");
+        Richiesta mockRichiesta = Mockito.mock(Richiesta.class);
+        when(mockRichiesta.getOrganizzatore()).thenReturn(mockOrganizzatore);
+
+
+        Organizzatore inputOrganizzatore = Mockito.mock(Organizzatore.class);
+        when(inputOrganizzatore.getUsername()).thenReturn("Ugo_Vaccaro");
+        when(inputOrganizzatore.getNome()).thenReturn("Ugo");
+        when(inputOrganizzatore.getCognome()).thenReturn("Vaccaro");
+        when(inputOrganizzatore.getEmail()).thenReturn("Ugo.vaccaro@studenti.unica.it");
+        when(inputOrganizzatore.getPassword()).thenReturn("dijsktra12");
 
         when(organizzatoreRepository.findByUsername("Ugo_Vaccaro")).thenReturn(mockOrganizzatore);
+
 
         String result = guestService.registrazioneOrganizzatore(inputOrganizzatore, "dijsktra12");
 
@@ -202,15 +206,17 @@ public class GuestTest {
     @Test
     public void testRegistrazioneOrganizzatoreEmailNonValida() {
 
-        Organizzatore inputOrganizzatore = new Organizzatore();
-        inputOrganizzatore.setUsername("Ugo_Ferrari");
-        inputOrganizzatore.setNome("Ugo");
-        inputOrganizzatore.setCognome("Ferrari");
-        inputOrganizzatore.setEmail("Ugo.ferrari");
-        inputOrganizzatore.setPassword("password1243");
+        Organizzatore inputOrganizzatore = Mockito.mock(Organizzatore.class);
+        when(inputOrganizzatore.getUsername()).thenReturn("Ugo_Ferrari");
+        when(inputOrganizzatore.getNome()).thenReturn("Ugo");
+        when(inputOrganizzatore.getCognome()).thenReturn("Ferrari");
+        when(inputOrganizzatore.getEmail()).thenReturn("Ugo.ferrari");
+        when(inputOrganizzatore.getPassword()).thenReturn("password1243");
 
-        Richiesta mockRichiesta = new Richiesta();
-        mockRichiesta.setOrganizzatore(inputOrganizzatore);
+        Richiesta mockRichiesta = Mockito.mock(Richiesta.class);
+        when(mockRichiesta.getOrganizzatore()).thenReturn(inputOrganizzatore);
+
+
 
         when(organizzatoreRepository.findByUsername("Ugo_Ferrari")).thenReturn(null);
 
@@ -226,15 +232,17 @@ public class GuestTest {
     @Test
     public void testRegistrazioneOrganizzatorePasswordNonCorrispondono() {
 
-        Organizzatore inputOrganizzatore = new Organizzatore();
-        inputOrganizzatore.setUsername("Annalisa_DeBonis");
-        inputOrganizzatore.setNome("Annalisa");
-        inputOrganizzatore.setCognome("DeBonis");
-        inputOrganizzatore.setEmail("Annalisa.DeBonis18@studenti.unisa.it");
-        inputOrganizzatore.setPassword("password18");
+        Organizzatore inputOrganizzatore = Mockito.mock(Organizzatore.class);
+        when(inputOrganizzatore.getUsername()).thenReturn("Annalisa_DeBonis");
+        when(inputOrganizzatore.getNome()).thenReturn("Annalisa");
+        when(inputOrganizzatore.getCognome()).thenReturn("DeBonis");
+        when(inputOrganizzatore.getEmail()).thenReturn("Annalisa.DeBonis18@studenti.unisa.it");
+        when(inputOrganizzatore.getPassword()).thenReturn("password18");
 
-        Richiesta mockRichiesta = new Richiesta();
-        mockRichiesta.setOrganizzatore(inputOrganizzatore);
+        Richiesta mockRichiesta = Mockito.mock(Richiesta.class);
+        when(mockRichiesta.getOrganizzatore()).thenReturn(inputOrganizzatore);
+
+
 
         when(organizzatoreRepository.findByUsername("Annalisa_DeBonis")).thenReturn(null);
 
