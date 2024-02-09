@@ -6,7 +6,9 @@ import com.GottaBattleEmAll.GottaBattleEmAll.entity.Torneo;
 import com.GottaBattleEmAll.GottaBattleEmAll.entity.Giocatore;
 import com.GottaBattleEmAll.GottaBattleEmAll.repository.GiocatoreRepository;
 import com.GottaBattleEmAll.GottaBattleEmAll.repository.OrganizzatoreRepository;
+import com.GottaBattleEmAll.GottaBattleEmAll.repository.PartitaRepository;
 import com.GottaBattleEmAll.GottaBattleEmAll.repository.TorneoRepository;
+import com.GottaBattleEmAll.GottaBattleEmAll.service.PartitaService;
 import com.GottaBattleEmAll.GottaBattleEmAll.service.TorneoServiceImpl;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
@@ -35,6 +37,12 @@ public class TorneoTest {
     @Mock
     private GiocatoreRepository giocatoreRepository;
 
+    @Mock
+    private PartitaRepository partitaRepository;
+
+    @Mock
+    private PartitaService partitaService;
+
 
     @BeforeEach
     public void setUp() {
@@ -42,6 +50,11 @@ public class TorneoTest {
         when(torneoRepository.findByNome(anyString())).thenReturn(null);
         when(organizzatoreRepository.findByUsername(anyString())).thenReturn(null);
         when(giocatoreRepository.findByUsername(anyString())).thenReturn(null);
+        when(giocatoreRepository.findByUsername(anyString())).thenReturn(null);
+        when(partitaRepository.save(any())).thenReturn(null);
+        when(partitaService.creaPartita(any(), any(), any())).thenReturn(null);
+        when(torneoRepository.save(any())).thenReturn(null);
+        when(giocatoreRepository.save(any())).thenReturn(null);
     }
 
     @Test

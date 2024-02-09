@@ -179,7 +179,7 @@ public class TorneoController {
 
         String result=torneoService.creaTorneo(torneo, organizzatore);
         if (result.equals( "torneo creato con successo")) {
-            return "redirect:/Organizzatore/torneoInAttesa";
+            return "redirect:/Organizzatore/torneoInAttesa?name="+torneo.getNome();
         }
         model.addAttribute("error", result);
         model.addAttribute("organizzatore", organizzatore);
