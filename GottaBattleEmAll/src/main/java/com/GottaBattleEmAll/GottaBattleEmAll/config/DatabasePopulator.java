@@ -58,6 +58,15 @@ public class DatabasePopulator {
             giocatoreRepository.save(giocatore);
         }
 
+        Giocatore giocatore = new Giocatore();
+        giocatore.setUsername("giocatore123");
+        giocatore.setPassword(passwordEncoder.encode("giocatore" ));
+        giocatore.setNome("giocatore" );
+        giocatore.setCognome("giocatore" );
+        giocatore.setEmail("giocatore" +"@email.com");
+        giocatore.setStato(Stato.BANNATO);
+        giocatoreRepository.save(giocatore);
+
 
 
         //Popolamento del database con un organizzatore di default

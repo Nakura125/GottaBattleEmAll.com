@@ -79,6 +79,7 @@ public class ModeratoreServiceImpl implements ModeratoreService{
             if (g != null && g.getStato() == Stato.ATTIVO) {
                 g.setStato(Stato.BANNATO);
                 giocatoreRepository.save(g);
+                utente= g;
                 return true;
             }
         }
@@ -88,6 +89,7 @@ public class ModeratoreServiceImpl implements ModeratoreService{
             if (o != null && o.getStato() == Stato.ATTIVO) {
                 o.setStato(Stato.BANNATO);
                 organizzatoreRepository.save(o);
+                utente= o;
                 return true;
             }
         }
@@ -111,6 +113,7 @@ public class ModeratoreServiceImpl implements ModeratoreService{
             if (g != null && g.getStato() == Stato.BANNATO) {
                 g.setStato(Stato.ATTIVO);
                 giocatoreRepository.save(g);
+                utente= g;
                 return true;
             }
         }
@@ -119,6 +122,7 @@ public class ModeratoreServiceImpl implements ModeratoreService{
             if (o != null && o.getStato() == Stato.BANNATO) {
                 o.setStato(Stato.ATTIVO);
                 organizzatoreRepository.save(o);
+                utente= o;
                 return true;
             }
         }
