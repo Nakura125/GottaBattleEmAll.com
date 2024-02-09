@@ -65,6 +65,7 @@ public class DatabasePopulator {
         giocatore.setCognome("giocatore" );
         giocatore.setEmail("giocatore" +"@email.com");
         giocatore.setStato(Stato.BANNATO);
+        giocatore.getIscrizioni().add("Torneo1");
         giocatoreRepository.save(giocatore);
 
 
@@ -167,6 +168,7 @@ public class DatabasePopulator {
 
         for (int i = 0; i < 8; i++) {
             torneo3.addGiocatore(giocatoreRepository.findByUsername("giocatore" + i));
+
         }
 
         torneoRepository.save(torneo3);

@@ -30,6 +30,9 @@ public class Giocatore extends Utente{
     @ManyToMany(mappedBy = "giocatoreList",cascade = CascadeType.REMOVE)
     private List<Torneo> tornei;
 
+    @ElementCollection
+    private List<String> iscrizioni=new java.util.ArrayList<>();
+
     @OneToMany(cascade = CascadeType.DETACH, orphanRemoval = true)
     List<Organizzatore> organizzatori;
 }
