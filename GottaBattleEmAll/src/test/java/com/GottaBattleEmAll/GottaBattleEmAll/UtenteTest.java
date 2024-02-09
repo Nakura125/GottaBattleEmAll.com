@@ -12,6 +12,7 @@ import org.junit.jupiter.api.Test;
 import org.mockito.ArgumentCaptor;
 import org.mockito.InjectMocks;
 import org.mockito.Mock;
+import org.mockito.Mockito;
 import org.mockito.MockitoAnnotations;
 import org.springframework.security.crypto.bcrypt.BCrypt;
 import org.springframework.security.crypto.password.PasswordEncoder;
@@ -44,19 +45,20 @@ public class UtenteTest {
 
     @Test
     public void testLogin() {
-        Utente inputUtente = new Utente();
-        inputUtente.setUsername("Ugo_Ferrari");
-        inputUtente.setPassword("password1243");
+        Utente inputUtente = Mockito.mock(Utente.class);
+        when(inputUtente.getUsername()).thenReturn("Ugo_Ferrari");
+        when(inputUtente.getPassword()).thenReturn("password1243");
         String ruolo = "organizzatore";
 
 
-        Organizzatore mockOrganizzatore = new Organizzatore();
-        mockOrganizzatore.setUsername("Ugo_Ferrari");
-        mockOrganizzatore.setPassword("password1243");
-        mockOrganizzatore.setStato(Stato.ATTIVO);
+        Organizzatore mockOrganizzatore = Mockito.mock(Organizzatore.class);
+        when(mockOrganizzatore.getUsername()).thenReturn("Ugo_Ferrari");
+        when(mockOrganizzatore.getPassword()).thenReturn("password1243");
+        when(mockOrganizzatore.getStato()).thenReturn(Stato.ATTIVO);
 
         when(organizzatoreRepository.findByUsername("Ugo_Ferrari")).thenReturn(mockOrganizzatore);
         when(passwordEncoder.matches("password1243", mockOrganizzatore.getPassword())).thenReturn(true);
+
 
         String result = utenteService.login(inputUtente, ruolo);
 
@@ -66,9 +68,9 @@ public class UtenteTest {
 
     @Test
     public void testLoginCredenzialiSbagliate1() {
-        Utente inputUtente = new Utente();
-        inputUtente.setUsername("Ugo_Ferrar");
-        inputUtente.setPassword("password1243");
+        Utente inputUtente = Mockito.mock(Utente.class);
+        when(inputUtente.getUsername()).thenReturn("Ugo_Ferrar");
+        when(inputUtente.getPassword()).thenReturn("password1243");
         String ruolo = "organizzatore";
 
         when(organizzatoreRepository.findByUsername("Ugo_Ferrar")).thenReturn(null);
@@ -80,14 +82,14 @@ public class UtenteTest {
 
     @Test
     public void testLoginCredenzialiSbagliate2() {
-        Utente inputUtente = new Utente();
-        inputUtente.setUsername("Ugo_Ferrari");
-        inputUtente.setPassword("password124");
+        Utente inputUtente = Mockito.mock(Utente.class);
+        when(inputUtente.getUsername()).thenReturn("Ugo_Ferrari");
+        when(inputUtente.getPassword()).thenReturn("password124");
         String ruolo = "organizzatore";
 
-        Organizzatore mockOrganizzatore = new Organizzatore();
-        mockOrganizzatore.setUsername("Ugo_Ferrari");
-        mockOrganizzatore.setPassword("password1243");
+        Organizzatore mockOrganizzatore = Mockito.mock(Organizzatore.class);
+        when(mockOrganizzatore.getUsername()).thenReturn("Ugo_Ferrari");
+        when(mockOrganizzatore.getPassword()).thenReturn("password1243");
 
         when(organizzatoreRepository.findByUsername("Ugo_Ferrari")).thenReturn(mockOrganizzatore);
 
@@ -98,15 +100,15 @@ public class UtenteTest {
 
     @Test
     public void testLoginAccountBannato() {
-        Utente inputUtente = new Utente();
-        inputUtente.setUsername("CristianCarmineEsposito");
-        inputUtente.setPassword("password20");
+        Utente inputUtente = Mockito.mock(Utente.class);
+        when(inputUtente.getUsername()).thenReturn("CristianCarmineEsposito");
+        when(inputUtente.getPassword()).thenReturn("password20");
         String ruolo = "organizzatore";
 
-        Organizzatore mockOrganizzatore = new Organizzatore();
-        mockOrganizzatore.setUsername("CristianCarmineEsposito");
-        mockOrganizzatore.setPassword("password20");
-        mockOrganizzatore.setStato(Stato.BANNATO);
+        Organizzatore mockOrganizzatore = Mockito.mock(Organizzatore.class);
+        when(mockOrganizzatore.getUsername()).thenReturn("CristianCarmineEsposito");
+        when(mockOrganizzatore.getPassword()).thenReturn("password20");
+        when(mockOrganizzatore.getStato()).thenReturn(Stato.BANNATO);
 
         when(organizzatoreRepository.findByUsername("CristianCarmineEsposito")).thenReturn(mockOrganizzatore);
 
@@ -117,15 +119,15 @@ public class UtenteTest {
 
     @Test
     public void testLoginAccountAncoraNonAccettato() {
-        Utente inputUtente = new Utente();
-        inputUtente.setUsername("SalvatoreLaTorre");
-        inputUtente.setPassword("password14");
+        Utente inputUtente = Mockito.mock(Utente.class);
+        when(inputUtente.getUsername()).thenReturn("SalvatoreLaTorre");
+        when(inputUtente.getPassword()).thenReturn("password14");
         String ruolo = "organizzatore";
 
-        Organizzatore mockOrganizzatore = new Organizzatore();
-        mockOrganizzatore.setUsername("SalvatoreLaTorre");
-        mockOrganizzatore.setPassword("password14");
-        mockOrganizzatore.setStato(Stato.INVERIFICA);
+        Organizzatore mockOrganizzatore = Mockito.mock(Organizzatore.class);
+        when(mockOrganizzatore.getUsername()).thenReturn("SalvatoreLaTorre");
+        when(mockOrganizzatore.getPassword()).thenReturn("password14");
+        when(mockOrganizzatore.getStato()).thenReturn(Stato.INVERIFICA);
 
         when(organizzatoreRepository.findByUsername("SalvatoreLaTorre")).thenReturn(mockOrganizzatore);
 
@@ -136,22 +138,22 @@ public class UtenteTest {
 
     @Test
     public void testModificaProfilo() {
-        Utente inputUtente = new Utente();
-        inputUtente.setUsername("Blanco01");
-        inputUtente.setPassword("Mario01");
-        inputUtente.setNome("Giovanni");
-        inputUtente.setCognome("Blanco");
-        inputUtente.setEmail("Bianco01@gmail.com");
+        Utente inputUtente = Mockito.mock(Utente.class);
+        when(inputUtente.getUsername()).thenReturn("Blanco01");
+        when(inputUtente.getPassword()).thenReturn("Mario01");
+        when(inputUtente.getNome()).thenReturn("Giovanni");
+        when(inputUtente.getCognome()).thenReturn("Blanco");
+        when(inputUtente.getEmail()).thenReturn("Bianco01@gmail.com");
         String confermaPassword = "Mario01";
         String ruolo = "giocatore";
         String username = "Blanco";
 
-        Giocatore mockGiocatore = new Giocatore();
-        mockGiocatore.setUsername("Blanco");
-        mockGiocatore.setPassword("Mario01");
-        mockGiocatore.setNome("Giovanni");
-        mockGiocatore.setCognome("Blanco");
-        mockGiocatore.setEmail("Bianco01@gmail.com");
+        Giocatore mockGiocatore = mock(Giocatore.class);
+        when(mockGiocatore.getUsername()).thenReturn("Blanco");
+        when(mockGiocatore.getPassword()).thenReturn("Mario01");
+        when(mockGiocatore.getNome()).thenReturn("Giovanni");
+        when(mockGiocatore.getCognome()).thenReturn("Blanco");
+        when(mockGiocatore.getEmail()).thenReturn("Bianco01@gmail.com");
 
         when(giocatoreRepository.findByUsername("Blanco01")).thenReturn(null);
         when(giocatoreRepository.findByUsername(username)).thenReturn(mockGiocatore);
@@ -165,22 +167,23 @@ public class UtenteTest {
 
     @Test
     public void testModificaProfiloUsernameGiàEsistente() {
-        Utente inputUtente = new Utente();
-        inputUtente.setUsername("Blanco");
-        inputUtente.setPassword("Mario01");
-        inputUtente.setNome("Giovanni");
-        inputUtente.setCognome("Blanco");
-        inputUtente.setEmail("Blanco01@gmail.com");
+        Utente inputUtente = Mockito.mock(Utente.class);
+        when(inputUtente.getUsername()).thenReturn("Blanco");
+        when(inputUtente.getPassword()).thenReturn("Mario01");
+        when(inputUtente.getNome()).thenReturn("Giovanni");
+        when(inputUtente.getCognome()).thenReturn("Blanco");
+        when(inputUtente.getEmail()).thenReturn("Blanco01@gmail.com");
         String confermaPassword = "Mario01";
         String ruolo = "giocatore";
         String username = "Blanco01";
 
-        Giocatore mockGiocatore = new Giocatore();
-        mockGiocatore.setUsername("Blanco01");
-        mockGiocatore.setPassword("Mario01");
-        mockGiocatore.setNome("Giovanni");
-        mockGiocatore.setCognome("Blanco");
-        mockGiocatore.setEmail("Blanco01@gmail.com");
+        Giocatore mockGiocatore = Mockito.mock(Giocatore.class);
+        when(mockGiocatore.getUsername()).thenReturn("Blanco01");
+        when(mockGiocatore.getPassword()).thenReturn("Mario01");
+        when(mockGiocatore.getNome()).thenReturn("Giovanni");
+        when(mockGiocatore.getCognome()).thenReturn("Blanco");
+        when(mockGiocatore.getEmail()).thenReturn("Blanco01@gmail.com");
+
 
         Giocatore mockGiocatoreGiàEsistente = new Giocatore();
         mockGiocatoreGiàEsistente.setUsername("Blanco");
@@ -199,22 +202,23 @@ public class UtenteTest {
 
     @Test
     public void testModificaProfiloEmailNonValida() {
-        Utente inputUtente = new Utente();
-        inputUtente.setUsername("Blanco");
-        inputUtente.setPassword("Mario01");
-        inputUtente.setNome("Giovanni");
-        inputUtente.setCognome("Blanco");
-        inputUtente.setEmail("Bianco01");
+        Utente inputUtente = Mockito.mock(Utente.class);
+        when(inputUtente.getUsername()).thenReturn("Blanco");
+        when(inputUtente.getPassword()).thenReturn("Mario01");
+        when(inputUtente.getNome()).thenReturn("Giovanni");
+        when(inputUtente.getCognome()).thenReturn("Blanco");
+        when(inputUtente.getEmail()).thenReturn("Bianco01");
         String confermaPassword = "Mario01";
         String ruolo = "giocatore";
         String username = "Blanco";
 
-        Giocatore mockGiocatore = new Giocatore();
-        mockGiocatore.setUsername("Blanco");
-        mockGiocatore.setPassword("Mario01");
-        mockGiocatore.setNome("Giovanni");
-        mockGiocatore.setCognome("Blanco");
-        mockGiocatore.setEmail("Bianco01@gmail.com");
+        Giocatore mockGiocatore = Mockito.mock(Giocatore.class);
+        when(mockGiocatore.getUsername()).thenReturn("Blanco");
+        when(mockGiocatore.getPassword()).thenReturn("Mario01");
+        when(mockGiocatore.getNome()).thenReturn("Giovanni");
+        when(mockGiocatore.getCognome()).thenReturn("Blanco");
+        when(mockGiocatore.getEmail()).thenReturn("Bianco01@gmail.com");
+
 
         when(giocatoreRepository.findByUsername("Blanco")).thenReturn(mockGiocatore);
 
@@ -227,22 +231,22 @@ public class UtenteTest {
 
     @Test
     public void testModificaProfiloPasswordNonCorrispondono() {
-        Utente inputUtente = new Utente();
-        inputUtente.setUsername("Blanco01");
-        inputUtente.setPassword("Mario01");
-        inputUtente.setNome("Giovanni");
-        inputUtente.setCognome("Blanco");
-        inputUtente.setEmail("Bianco01@gmail.com");
+        Utente inputUtente = Mockito.mock(Utente.class);
+        when(inputUtente.getUsername()).thenReturn("Blanco01");
+        when(inputUtente.getPassword()).thenReturn("Mario01");
+        when(inputUtente.getNome()).thenReturn("Giovanni");
+        when(inputUtente.getCognome()).thenReturn("Blanco");
+        when(inputUtente.getEmail()).thenReturn("Bianco01@gmail.com");
         String confermaPassword = "Mario0";
         String ruolo = "giocatore";
         String username = "Blanco01";
 
-        Giocatore mockGiocatore = new Giocatore();
-        mockGiocatore.setUsername("Blanco01");
-        mockGiocatore.setPassword("Mario01");
-        mockGiocatore.setNome("Giovanni");
-        mockGiocatore.setCognome("Blanco");
-        mockGiocatore.setEmail("Bianco01@gmail.com");
+        Giocatore mockGiocatore = Mockito.mock(Giocatore.class);
+        when(mockGiocatore.getUsername()).thenReturn("Blanco01");
+        when(mockGiocatore.getPassword()).thenReturn("Mario01");
+        when(mockGiocatore.getNome()).thenReturn("Giovanni");
+        when(mockGiocatore.getCognome()).thenReturn("Blanco");
+        when(mockGiocatore.getEmail()).thenReturn("Bianco01@gmail.com");
 
         when(giocatoreRepository.findByUsername("Blanco01")).thenReturn(mockGiocatore);
 

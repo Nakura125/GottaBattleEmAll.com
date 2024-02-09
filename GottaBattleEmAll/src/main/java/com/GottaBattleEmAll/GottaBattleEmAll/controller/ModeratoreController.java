@@ -86,7 +86,7 @@ public class ModeratoreController {
         Organizzatore utente=new Organizzatore();
         utente.setUsername(username);
         if(moderatoreService.sbannare(moderatore, utente,"organizzatore"))
-            model.addAttribute("message", "Utente bannato: $"+ username);
+            model.addAttribute("message", "Utente sbannato: $"+ username);
         else
             model.addAttribute("error", "Errore nel bannare l'utente: $"+ username);
 
