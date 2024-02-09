@@ -215,6 +215,8 @@ public class TorneoController {
             return "redirect:/Giocatore/ricercaTornei";
         }
 
+        model.addAttribute("organizzatore", torneo.getOrganizzatore());
+
         model.addAttribute("torneo", torneo);
 
         Giocatore giocatore = (Giocatore) session.getAttribute("giocatore");

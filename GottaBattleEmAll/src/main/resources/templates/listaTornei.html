@@ -64,7 +64,7 @@
                                         </thead>
                                         <tbody>
                                         <tr th:if="${tornei!=null}" th:each="torneo: ${tornei}"  >
-                                            <td  th:text="${torneo.getNome()}"><a th:href="@{'/Giocatore/iscrizioneTorneo?name='+${torneo.getNome()}}" th:text="${torneo.getNome()}"></a></td>
+                                            <td ><a th:href="@{'/Giocatore/iscrizioneTorneo?name='+${torneo.getNome()}}" th:text="${torneo.getNome()}"></a></td>
                                             <td th:text="${torneo.getData().toString()}"></td>
                                             <td th:if="${torneo.getStatoTorneo().toString()=='INCORSO'}" th:text="${torneo.getStatoTorneo().toString()}"><label  class="badge badge-danger"></label></td>
                                             <td th:if="${torneo.getStatoTorneo().toString()=='ATTESAISCRIZIONI'}" th:text="${torneo.getStatoTorneo().toString()}"><label  class="badge badge-warning"></label></td>
