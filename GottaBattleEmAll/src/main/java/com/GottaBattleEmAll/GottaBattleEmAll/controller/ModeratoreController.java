@@ -240,6 +240,9 @@ public class ModeratoreController {
         Organizzatore organizzatore=new Organizzatore();
         organizzatore.setUsername(username);
         moderatoreService.accettare(moderatore, organizzatore);
+        List<Richiesta> notifiche=moderatoreService.notifiche();
+
+        model.addAttribute("notifiche", notifiche);
 
         model.addAttribute("message", "Richiesta accettata per l'utente: $"+ username);
         model.addAttribute("moderatore", moderatore);
@@ -257,6 +260,9 @@ public class ModeratoreController {
 
         model.addAttribute("message", "Richiesta rifiutata per l'utente: $"+ username);
         model.addAttribute("moderatore", moderatore);
+        List<Richiesta> notifiche=moderatoreService.notifiche();
+
+        model.addAttribute("notifiche", notifiche);
 
         return "centroNotifiche";
     }
