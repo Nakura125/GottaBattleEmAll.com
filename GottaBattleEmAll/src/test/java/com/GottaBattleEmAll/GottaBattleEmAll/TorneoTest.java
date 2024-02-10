@@ -104,7 +104,7 @@ public class TorneoTest {
         when(inputTorneo.getData()).thenReturn(LocalDate.parse("2099-01-27"));
         when(inputTorneo.getRegole()).thenReturn("Solo pokemon della regione di Unima");
         when(inputTorneo.getPremi()).thenReturn("Una pacca sulla spalla");
-        when(inputTorneo.getOrganizzazione()).thenReturn("TorneiForLife");
+        when(inputTorneo.getOrganizzazione()).thenReturn("1vs1");
         when(inputTorneo.getCapienza()).thenReturn(16);
         when(inputTorneo.getOrganizzatore()).thenReturn(mockOrganizzatore);
 
@@ -167,7 +167,7 @@ public class TorneoTest {
         when(mockTorneo.getData()).thenReturn(LocalDate.parse("2099-01-27"));
         when(mockTorneo.getRegole()).thenReturn("Solo pokemon della regione di Kanto");
         when(mockTorneo.getPremi()).thenReturn("Una pacca sulla spalla");
-        when(mockTorneo.getOrganizzazione()).thenReturn("TorneiForLife");
+        when(mockTorneo.getOrganizzazione()).thenReturn("1vs1");
         when(mockTorneo.getCapienza()).thenReturn(16);
         when(mockTorneo.getOrganizzatore()).thenReturn(mockOrganizzatore);
         when(mockTorneo.getStatoTorneo()).thenReturn(StatoTorneo.INCORSO);
@@ -197,7 +197,7 @@ public class TorneoTest {
         when(mockTorneo.getData()).thenReturn(LocalDate.parse("2099-01-27"));
         when(mockTorneo.getRegole()).thenReturn("Solo pokemon della regione di Kanto");
         when(mockTorneo.getPremi()).thenReturn("Una pacca sulla spalla");
-        when(mockTorneo.getOrganizzazione()).thenReturn("TorneiForLife");
+        when(mockTorneo.getOrganizzazione()).thenReturn("1vs1");
         when(mockTorneo.getCapienza()).thenReturn(16);
         when(mockTorneo.getOrganizzatore()).thenReturn(mockOrganizzatore);
         when(mockTorneo.getGiocatoreList()).thenReturn(new ArrayList<>());

@@ -69,7 +69,7 @@ public class TorneoIntegrationTest {
         inputTorneo.setData(LocalDate.parse("2099-01-27"));
         inputTorneo.setRegole("Solo pokemon della regione di Kanto");
         inputTorneo.setPremi("Una pacca sulla spalla");
-        inputTorneo.setOrganizzazione("TorneiForLife");
+        inputTorneo.setOrganizzazione("1vs1");
         inputTorneo.setCapienza(16);
         inputTorneo.setOrganizzatore(mockOrganizzatore);
 
@@ -98,7 +98,7 @@ public class TorneoIntegrationTest {
         inputTorneo.setData(LocalDate.parse("2099-01-27"));
         inputTorneo.setRegole("Solo pokemon della regione di Unima");
         inputTorneo.setPremi("Una pacca sulla spalla");
-        inputTorneo.setOrganizzazione("TorneiForLife");
+        inputTorneo.setOrganizzazione("1vs1");
         inputTorneo.setCapienza(16);
         inputTorneo.setOrganizzatore(mockOrganizzatore);
 
