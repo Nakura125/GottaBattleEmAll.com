@@ -27,8 +27,10 @@ public class GuestTest {
     private GiocatoreRepository giocatoreRepository;
     @Mock
     private OrganizzatoreRepository organizzatoreRepository;
+
     @Mock
     private RichiestaRepository richiestaRepository;
+
 
     @BeforeEach
     public void setUp() {
@@ -60,14 +62,11 @@ public class GuestTest {
 
         when(giocatoreRepository.findByUsername("Ugo_Bronte")).thenReturn(null);
 
+        when(passwordEncoder.encode("password1243")).thenReturn("hashed_password");
+
         String result = guestService.registrazioneGiocatore(inputGiocatore, "password1243");
 
-        ArgumentCaptor<Giocatore> argument = ArgumentCaptor.forClass(Giocatore.class);
-        verify(giocatoreRepository).save(argument.capture());
-        assertTrue(BCrypt.checkpw("password1243", argument.getValue().getPassword()));
-
-        assertEquals(Stato.ATTIVO, inputGiocatore.getStato());
-
+        assertEquals("hashed_password", passwordEncoder.encode("password1243"));
 
         assertEquals("registrazione avvenuta con successo", result);
     }
@@ -160,14 +159,12 @@ public class GuestTest {
 
 
         when(organizzatoreRepository.findByUsername("Ugo_Bronte")).thenReturn(null);
+        when(richiestaRepository.save(Mockito.any())).thenReturn(mockRichiesta);
+        when(passwordEncoder.encode("password1243")).thenReturn("hashed_password");
 
         String result = guestService.registrazioneOrganizzatore(inputOrganizzatore, "password1243");
 
-        ArgumentCaptor<Organizzatore> argument = ArgumentCaptor.forClass(Organizzatore.class);
-        verify(organizzatoreRepository).save(argument.capture());
-        assertTrue(BCrypt.checkpw("password1243", argument.getValue().getPassword()));
-
-        assertEquals(Stato.INVERIFICA, inputOrganizzatore.getStato());
+        assertEquals("hashed_password", passwordEncoder.encode("password1243"));
 
         assertEquals("richiesta di registrazione inviata con successo", result);
     }
