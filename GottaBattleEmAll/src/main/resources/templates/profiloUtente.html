@@ -23,6 +23,7 @@
     <link rel="stylesheet" th:href="@{../assets/css/stylebro.css}">
     <!-- End layout styles -->
     <link rel="shortcut icon" th:href="@{../assets/images/favicon.png}"/>
+
 </head>
 
 <body>
@@ -37,29 +38,17 @@
                     <div class="col-lg-6 grid-margin stretch-card">
                         <div class="card">
                             <div class="card-body">
-                                <h4 class="card-title">LuisSteel392</h4>
+                                <h4 class="card-title">Profilo</h4>
                                 <div class="table-responsive">
                                     <table class="table table-dark">
                                         <thead>
-                                        <tr>
-                                            <th> Username</th>
-                                            <th> Nome</th>
-                                            <th> Cognome</th>
-                                            <th> Email</th>
-                                            <th> Stato</th>
-                                        </tr>
+                                        <tr><td> Username</td><td th:text="${giocatore.getUsername()}"></td></tr>
+                                        <tr><td> Nome</td><td th:text="${giocatore.getNome()}"></td></tr>
+                                        <tr><td> Cognome</td><td th:text="${giocatore.getCognome()}"></td></tr>
+                                        <tr><td> Email</td> <td th:text="${giocatore.getEmail()}"></td></tr>
+                                        <tr><td> Stato</td><td th:text="${giocatore.getStato()}"></td></tr>
                                         </thead>
-                                        <tbody>
-                                        <tr>
-                                            <td th:text="${giocatore.getUsername()}"> Luigi</td>
-                                            <td th:text="${giocatore.getNome()}"> Luigi</td>
-                                            <td th:text="${giocatore.getCognome()}"> Rocchino</td>
-                                            <td th:text="${giocatore.getEmail()}"> emaildiprova@gmail.com</td>
-                                            <td th:text="${giocatore.getStato()}"> stato</td>
-                                        </tr>
-                                        </tbody>
                                     </table>
-
                                 </div>
                             </div>
                         </div>
@@ -118,7 +107,7 @@
     <script th:src="@{../assets/js/todolist.js}"></script>
     <!-- endinject -->
     <!-- Custom js for this page -->
-    <script th:src="@{../assets/js/dashboard.js}"></script>
+    <script th:src="@{../assets/js/chart.js}"></script>
     <!-- End custom js for this page -->
 </body>
 
