@@ -73,7 +73,10 @@ public class GuestIntegrationTest {
         String result = guestService.registrazioneGiocatore(inputGiocatore, "password1243");
 
 
-        assertEquals(Stato.ATTIVO, inputGiocatore.getStato());
+        // Verifica degli effetti della registrazione
+        Giocatore savedGiocatore = giocatoreRepository.findByUsername("Ugo_Bronte");
+        assertEquals(Stato.ATTIVO, savedGiocatore.getStato());
+        assertTrue(passwordEncoder.matches("password1243", savedGiocatore.getPassword()));
 
         assertEquals("registrazione avvenuta con successo", result);
     }
@@ -157,7 +160,9 @@ public class GuestIntegrationTest {
         String result = guestService.registrazioneOrganizzatore(inputOrganizzatore, "password1243");
 
 
+        Organizzatore savedOrganizzatore = organizzatoreRepository.findByUsername("Ugo_Bronte");
         assertEquals(Stato.INVERIFICA, inputOrganizzatore.getStato());
+        assertTrue(passwordEncoder.matches("password1243", savedOrganizzatore.getPassword()));
 
         assertEquals("richiesta di registrazione inviata con successo", result);
     }

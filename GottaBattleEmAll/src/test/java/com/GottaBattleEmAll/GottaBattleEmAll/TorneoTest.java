@@ -104,7 +104,7 @@ public class TorneoTest {
         when(inputTorneo.getData()).thenReturn(LocalDate.parse("2099-01-27"));
         when(inputTorneo.getRegole()).thenReturn("Solo pokemon della regione di Unima");
         when(inputTorneo.getPremi()).thenReturn("Una pacca sulla spalla");
-        when(inputTorneo.getOrganizzazione()).thenReturn("TorneiForLife");
+        when(inputTorneo.getOrganizzazione()).thenReturn("1vs1");
         when(inputTorneo.getCapienza()).thenReturn(16);
         when(inputTorneo.getOrganizzatore()).thenReturn(mockOrganizzatore);
 
@@ -131,16 +131,16 @@ public class TorneoTest {
         when(mockTorneo.getRegole()).thenReturn("Solo pokemon della regione di Kanto");
         when(mockTorneo.getPremi()).thenReturn("Una pacca sulla spalla");
         when(mockTorneo.getOrganizzazione()).thenReturn("1vs1");
-        when(mockTorneo.getCapienza()).thenReturn(16);
+        when(mockTorneo.getCapienza()).thenReturn(2);
         when(mockTorneo.getOrganizzatore()).thenReturn(mockOrganizzatore);
         when(mockTorneo.getStatoTorneo()).thenReturn(StatoTorneo.ISCRIZIONICOMPLETATE);
 
         List<Giocatore> mockGiocatori = new ArrayList<>();
-        for (int i = 0; i < 16; i++) {
+        for (int i = 0; i < 2; i++) {
             Giocatore mockGiocatore = Mockito.mock(Giocatore.class);
-            when(mockGiocatore.getUsername()).thenReturn("Giocatore" + i);
-            mockTorneo.getGiocatoreList().add(new Giocatore());
+            mockGiocatori.add(mockGiocatore);
         }
+        when(mockTorneo.getGiocatoreList()).thenReturn(mockGiocatori);
 
 
         when(torneoRepository.findByNome("TorneoPesce")).thenReturn(mockTorneo);
@@ -167,7 +167,7 @@ public class TorneoTest {
         when(mockTorneo.getData()).thenReturn(LocalDate.parse("2099-01-27"));
         when(mockTorneo.getRegole()).thenReturn("Solo pokemon della regione di Kanto");
         when(mockTorneo.getPremi()).thenReturn("Una pacca sulla spalla");
-        when(mockTorneo.getOrganizzazione()).thenReturn("TorneiForLife");
+        when(mockTorneo.getOrganizzazione()).thenReturn("1vs1");
         when(mockTorneo.getCapienza()).thenReturn(16);
         when(mockTorneo.getOrganizzatore()).thenReturn(mockOrganizzatore);
         when(mockTorneo.getStatoTorneo()).thenReturn(StatoTorneo.INCORSO);
@@ -197,7 +197,7 @@ public class TorneoTest {
         when(mockTorneo.getData()).thenReturn(LocalDate.parse("2099-01-27"));
         when(mockTorneo.getRegole()).thenReturn("Solo pokemon della regione di Kanto");
         when(mockTorneo.getPremi()).thenReturn("Una pacca sulla spalla");
-        when(mockTorneo.getOrganizzazione()).thenReturn("TorneiForLife");
+        when(mockTorneo.getOrganizzazione()).thenReturn("1vs1");
         when(mockTorneo.getCapienza()).thenReturn(16);
         when(mockTorneo.getOrganizzatore()).thenReturn(mockOrganizzatore);
         when(mockTorneo.getGiocatoreList()).thenReturn(new ArrayList<>());
@@ -348,7 +348,9 @@ public class TorneoTest {
         Giocatore mockGiocatore = Mockito.mock(Giocatore.class);
         when(mockGiocatore.getUsername()).thenReturn("Annalisa_DeBonis");
         when(mockGiocatore.getTornei()).thenReturn(new ArrayList<>());
-
+        List<String> iscrizioni = new ArrayList<>();
+        iscrizioni.add("TorneoUnisa");
+        when(mockGiocatore.getIscrizioni()).thenReturn(iscrizioni);
 
         Torneo mockTorneo = Mockito.mock(Torneo.class);
         when(mockTorneo.getNome()).thenReturn("TorneoUnisa");
